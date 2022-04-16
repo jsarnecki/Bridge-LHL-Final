@@ -11,7 +11,12 @@ class ConversationsController < ApplicationController
 				ActiveModelSerializers::Adapter::Json.new(
 					ConversationSerializer.new(conversation),
 				).serializable_hash
-			ActionCable.server.broadcast 'conversations_channel', serialized_data
+
+			ActionCable.server.broadcast(
+				# 'conversations_channel',
+				"current_user_#{current_user.id}",
+				serialized_data,
+			)
 			head :ok
 		end
 	end
@@ -19,6 +24,6 @@ class ConversationsController < ApplicationController
 	private
 
 	def conversation_params
-		params.require(:conversation).permit(:title)
+		params.require(:conversation).permit(:title, :user_id)
 	end
 end

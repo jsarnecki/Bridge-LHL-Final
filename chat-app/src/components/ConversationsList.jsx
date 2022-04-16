@@ -4,6 +4,7 @@ import { API_ROOT } from "../constants";
 import NewConversationForm from "./NewConversationForm";
 import MessagesArea from "./MessagesArea";
 import Cable from "./Cable";
+import axios from "axios";
 
 const findActiveConversation = (conversations, activeConversation) => {
 	return conversations.find(
@@ -21,7 +22,7 @@ const mapConversations = (conversations, handleClick) => {
 	});
 };
 
-export default function ConversationsList() {
+export default function ConversationsList(props) {
 	const [state, setState] = useState({
 		conversations: [],
 		activeConversation: null,
@@ -81,7 +82,7 @@ export default function ConversationsList() {
 			) : null}
 			<h2>Conversations</h2>
 			<ul>{mapConversations(conversations, handleClick)}</ul>
-			<NewConversationForm />
+			<NewConversationForm logged_in_user={props.logged_in_user} />
 			{activeConversation ? (
 				<MessagesArea
 					conversation={findActiveConversation(

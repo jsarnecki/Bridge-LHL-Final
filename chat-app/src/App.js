@@ -38,8 +38,9 @@ function App() {
 				withCredentials: true,
 			})
 			.then(response => {
+				console.log("response", response);
 				if (response.data.logged_in) {
-					handleLogin(response);
+					handleLogin(response.data);
 				} else {
 					handleLogout();
 				}
@@ -59,7 +60,7 @@ function App() {
 				<Login handleLogin={handleLogin} />
 				<Login2 handleLogin={handleLogin} />
 			</nav>
-			<ConversationsList />
+			<ConversationsList logged_in_user={state.user} />
 		</div>
 	);
 }

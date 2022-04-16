@@ -15,7 +15,11 @@ class NewConversationForm extends React.Component {
 		fetch(`${API_ROOT}/conversations`, {
 			method: "POST",
 			headers: HEADERS,
-			body: JSON.stringify(this.state),
+			body: JSON.stringify({
+				...this.state,
+				user_id: this.props.logged_in_user.id,
+			}),
+			credentials: "include",
 		});
 		this.setState({ title: "" });
 	};
