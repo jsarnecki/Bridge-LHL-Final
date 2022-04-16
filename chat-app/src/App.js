@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { ActionCableProvider } from "react-actioncable-provider";
 import ConversationsList from "./components/ConversationsList";
+import Login from "./components/Login";
 
 function App() {
 	return (
@@ -12,8 +13,9 @@ function App() {
 			<nav>
 				<Link to="/profiles">Profiles</Link>
 				<Link to="/chat">Chat</Link>
-				<ConversationsList />
+				<Login />
 			</nav>
+			<ConversationsList />
 		</div>
 	);
 }
