@@ -6,6 +6,7 @@ import { Link, Outlet, BrowserRouter, Routes, Route } from "react-router-dom";
 import { ActionCableProvider } from "react-actioncable-provider";
 import ConversationsList from "./components/ConversationsList";
 import Login from "./components/Login";
+import Login2 from "./components/Login2";
 import axios from "axios";
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
 				{/* <Link to="/login">Log In</Link> */}
 				{/* <Link to="/logout">Log Out</Link> */}
 				<Login handleLogin={handleLogin} />
+				<Login2 handleLogin={handleLogin} />
 			</nav>
 			<ConversationsList />
 		</div>

@@ -28,6 +28,8 @@ class User < ApplicationRecord
 	#   !confirmed?
 	# end
 
+	has_many :conversations
+
 	private
 
 	def downcase_email

@@ -16,7 +16,7 @@ export default function Login(props) {
 				"http://localhost:3000/login",
 				{
 					user: {
-						email: "admin@admin.com",
+						email: "admin2@admin.com",
 						password: "123456",
 					},
 				},
@@ -36,7 +36,7 @@ export default function Login(props) {
 	// console.log("hello state.rooms", state.rooms);
 	return (
 		<div>
-			<button onClick={onClick}>Login</button>
+			<button onClick={onClick}>Login 2</button>
 		</div>
 	);
 }
