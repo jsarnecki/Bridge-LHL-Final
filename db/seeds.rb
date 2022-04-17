@@ -36,3 +36,15 @@ Message.destroy_all
 		accepter_id: @user5.id,
 		title: 'last_friends',
 	)
+
+@conversation1.messages.create!(
+	sender_id: @user1.id,
+	receiver_id: @user2.id,
+	text: 'hey!',
+)
+
+@conversation1.messages.create!(
+	sender_id: @user2.id,
+	receiver_id: @user1.id,
+	text: 'back at you!',
+)
