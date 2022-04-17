@@ -1,8 +1,20 @@
 class ConversationsController < ApplicationController
 	def index
 		# conversations = Conversation.all
-		conversations = current_user.conversations
-		render json: conversations
+		requested_friendships = current_user.requested_friendships
+
+		accepted_friendships = current_user.accepted_friendships
+
+		all_friendships = requested_friendships + accepted_friendships
+
+		requesters = current_user.requesters
+		accepters = current_user.accepters
+
+		all_friends = requesters + accepters
+
+		# render json: { friendships: all_friendships, friends: all_friends }
+		# render json: all_friends
+		render json: all_friendships
 	end
 
 	def create
@@ -25,6 +37,6 @@ class ConversationsController < ApplicationController
 	private
 
 	def conversation_params
-		params.require(:conversation).permit(:title, :user_id)
+		params.require(:conversation).permit(:title, :requester_id, :accepter_id)
 	end
 end

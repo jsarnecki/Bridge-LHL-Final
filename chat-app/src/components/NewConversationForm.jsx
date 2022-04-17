@@ -3,11 +3,12 @@ import { API_ROOT, HEADERS } from "../constants";
 
 class NewConversationForm extends React.Component {
 	state = {
-		title: "",
+		title: "always",
+		accepter_id: "",
 	};
 
 	handleChange = e => {
-		this.setState({ title: e.target.value });
+		this.setState({ accepter_id: e.target.value });
 	};
 
 	handleSubmit = e => {
@@ -17,11 +18,11 @@ class NewConversationForm extends React.Component {
 			headers: HEADERS,
 			body: JSON.stringify({
 				...this.state,
-				user_id: this.props.logged_in_user.id,
+				requester_id: this.props.logged_in_user.id,
 			}),
 			credentials: "include",
 		});
-		this.setState({ title: "" });
+		this.setState({ accepter_id: "" });
 	};
 
 	render = () => {
@@ -32,7 +33,7 @@ class NewConversationForm extends React.Component {
 					<br />
 					<input
 						type="text"
-						value={this.state.title}
+						value={this.state.accepter_id}
 						onChange={this.handleChange}
 					/>
 					<input type="submit" />

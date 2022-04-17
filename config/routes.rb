@@ -10,5 +10,9 @@ Rails.application.routes.draw do
 	resources :users, only: %i[create show index] do
 		resources :conversations, only: %i[create index]
 	end
+
+	#my own
+	get '/friends', to: 'friendships#index'
+
 	mount ActionCable.server => '/cable'
 end

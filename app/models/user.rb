@@ -12,6 +12,18 @@ class User < ApplicationRecord
 	          presence: true,
 	          uniqueness: true
 
+	has_many :requested_friendships,
+	         foreign_key: :requester_id,
+	         class_name: 'Conversation'
+
+	has_many :accepters, through: :requested_friendships
+
+	has_many :accepted_friendships,
+	         foreign_key: :accepter_id,
+	         class_name: 'Conversation'
+
+	has_many :requesters, through: :accepted_friendships
+
 	# def confirm!
 	#   update_columns(confirmed_at: Time.current)
 	# end
@@ -27,8 +39,6 @@ class User < ApplicationRecord
 	# def unconfirmed?
 	#   !confirmed?
 	# end
-
-	has_many :conversations
 
 	private
 
