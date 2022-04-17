@@ -29,14 +29,14 @@ export default function ConversationsList(props) {
 	});
 
 	useEffect(() => {
-		fetch(`${API_ROOT}/conversations`)
+		fetch(`${API_ROOT}/conversations`, { credentials: "include" })
 			.then(res => res.json())
 			.then(conversations =>
 				setState(prev => {
 					return { ...prev, conversations };
 				})
 			);
-	}, []);
+	}, [props.logged_in_user]);
 
 	const handleClick = id => {
 		setState(prev => {

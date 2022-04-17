@@ -50,6 +50,7 @@ function App() {
 	useEffect(() => {
 		loginStatus();
 	}, []);
+
 	return (
 		<div className="App">
 			<nav>

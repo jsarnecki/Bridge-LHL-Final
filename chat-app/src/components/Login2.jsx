@@ -25,7 +25,8 @@ export default function Login(props) {
 			.then(response => {
 				if (response.data.logged_in) {
 					props.handleLogin(response.data);
-					alert("logged in");
+					// alert("logged in");
+					window.location.reload(false);
 				} else {
 					alert("error logging in");
 				}
