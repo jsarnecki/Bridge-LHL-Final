@@ -100,6 +100,7 @@ export default function ConversationsList(props) {
 						conversations,
 						activeConversation
 					)}
+					logged_in_user={props.logged_in_user}
 				/>
 			) : null}
 		</div>

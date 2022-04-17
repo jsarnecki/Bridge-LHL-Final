@@ -5,6 +5,8 @@ class NewMessageForm extends React.Component {
 	state = {
 		text: "",
 		conversation_id: this.props.conversation_id,
+		sender_id: this.props.logged_in_user.id,
+		receiver_id: this.props.friend_id,
 	};
 
 	componentWillReceiveProps = nextProps => {
