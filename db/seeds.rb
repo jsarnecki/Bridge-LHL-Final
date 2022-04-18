@@ -16,12 +16,12 @@ Message.destroy_all
 @user4 = User.create!(email: 'admin4@admin.com', password: '123456')
 @user5 = User.create!(email: 'admin5@admin.com', password: '123456')
 
-@conversation1 =
-	Conversation.create!(
-		requester_id: @user1.id,
-		accepter_id: @user2.id,
-		title: 'first_friends',
-	)
+# @conversation1 =
+# 	Conversation.create!(
+# 		requester_id: @user1.id,
+# 		accepter_id: @user2.id,
+# 		title: 'first_friends',
+# 	)
 
 @conversation2 =
 	Conversation.create!(
@@ -37,14 +37,14 @@ Message.destroy_all
 		title: 'last_friends',
 	)
 
-@conversation1.messages.create!(
-	sender_id: @user1.id,
-	receiver_id: @user2.id,
-	text: 'hey!',
-)
+# @conversation1.messages.create!(
+# 	sender_id: @user1.id,
+# 	receiver_id: @user2.id,
+# 	text: 'hey!',
+# )
 
-@conversation1.messages.create!(
-	sender_id: @user2.id,
-	receiver_id: @user1.id,
-	text: 'back at you!',
-)
+# @conversation1.messages.create!(
+# 	sender_id: @user2.id,
+# 	receiver_id: @user1.id,
+# 	text: 'back at you!',
+# )

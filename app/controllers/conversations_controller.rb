@@ -47,6 +47,12 @@ class ConversationsController < ApplicationController
 				"current_user_#{current_user.id}",
 				serialized_data,
 			)
+
+			ActionCable.server.broadcast(
+				# Broadcast to user/receiver private channel
+				"current_user_#{params['accepter_id']}",
+				serialized_data,
+			)
 			head :ok
 		end
 	end
