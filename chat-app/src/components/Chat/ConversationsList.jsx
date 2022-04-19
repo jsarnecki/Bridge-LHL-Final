@@ -3,7 +3,7 @@ export default function ConversationsList(props) {
 		return conversations.map(conversation => {
 			return (
 				<li key={conversation.id} onClick={() => handleClick(conversation.id)}>
-					{conversation.friend_id}
+					{conversation.friend_first_name} {conversation.friend_last_name}
 				</li>
 			);
 		});
