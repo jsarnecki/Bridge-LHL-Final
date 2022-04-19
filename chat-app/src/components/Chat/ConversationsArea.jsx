@@ -4,7 +4,7 @@ export default function ConversationsArea(props) {
 	const { conversations, handleClick, logged_in_user } = props;
 
 	return (
-		<div class="conversations">
+		<div className="conversations">
 			<ConversationsList
 				conversations={conversations}
 				handleClick={handleClick}

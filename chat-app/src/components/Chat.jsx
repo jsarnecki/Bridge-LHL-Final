@@ -32,7 +32,7 @@ export default function Chat(props) {
 	const [state, setState] = useState({
 		conversations: [],
 		activeConversation: null,
-		friendships: [],
+		friends: {},
 	});
 
 	useEffect(() => {
@@ -43,6 +43,17 @@ export default function Chat(props) {
 					return { ...prev, conversations };
 				})
 			);
+
+		axios
+			.get("http://localhost:3000/friends", {
+				withCredentials: true,
+			})
+			.then(response => {
+				setState(prev => {
+					return { ...prev, friends: response.data };
+				});
+			})
+			.catch(error => console.log("api errors:", error));
 	}, [logged_in_user]);
 
 	const handleClick = id => {

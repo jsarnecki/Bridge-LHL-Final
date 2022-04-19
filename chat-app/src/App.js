@@ -38,7 +38,6 @@ function App() {
 				withCredentials: true,
 			})
 			.then(response => {
-				console.log("response", response);
 				if (response.data.logged_in) {
 					handleLogin(response.data);
 				} else {
