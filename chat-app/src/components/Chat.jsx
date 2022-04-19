@@ -6,6 +6,9 @@ import MessagesArea from "./MessagesArea";
 import Cable from "./Cable";
 import axios from "axios";
 import { useOutlet, useOutletContext } from "react-router-dom";
+import ConversationsList from "./Chat/ConversationsList";
+import ConversationsArea from "./Chat/ConversationsArea";
+import "./Chat.scss";
 
 const findActiveConversation = (conversations, activeConversation) => {
 	return conversations.find(
@@ -78,7 +81,7 @@ export default function Chat(props) {
 		});
 	};
 
-	const { conversations, activeConversation, friendships } = state;
+	const { conversations, activeConversation } = state;
 
 	return (
 		<div className="chat">
@@ -92,19 +95,22 @@ export default function Chat(props) {
 					handleReceivedMessage={handleReceivedMessage}
 				/>
 			) : null}
-			<h2>Conversations V2</h2>
-			<h2>Conversations</h2>
-			<ul>{mapConversations(conversations, handleClick)}</ul>
-			<NewConversationForm logged_in_user={logged_in_user} />
-			{activeConversation ? (
-				<MessagesArea
-					conversation={findActiveConversation(
-						conversations,
-						activeConversation
-					)}
+			<div className="chat-display">
+				<ConversationsArea
+					conversations={conversations}
+					handleClick={handleClick}
 					logged_in_user={logged_in_user}
-				/>
-			) : null}
+				></ConversationsArea>
+				{activeConversation ? (
+					<MessagesArea
+						conversation={findActiveConversation(
+							conversations,
+							activeConversation
+						)}
+						logged_in_user={logged_in_user}
+					/>
+				) : null}
+			</div>
 		</div>
 	);
 }
