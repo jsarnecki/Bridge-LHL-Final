@@ -24,9 +24,16 @@ class ConversationsController < ApplicationController
 				else
 					friend_id = friendship.requester_id
 				end
+				friend = User.find(friend_id)
 
 				messages = friendship.messages
-				{ id: friendship.id, friend_id: friend_id, messages: messages }
+				{
+					id: friendship.id,
+					friend_id: friend_id,
+					friend_first_name: friend.first_name,
+					friend_last_name: friend.last_name,
+					messages: messages,
+				}
 			end
 
 		# render json: { friendships: all_friendships, friends: all_friends }

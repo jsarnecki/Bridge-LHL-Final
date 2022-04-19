@@ -1,4 +1,12 @@
 .chat-display {
 	display: flex;
 	flex-direction: row;
+	.conversations {
+		width: 50%;
+		border: black solid 1px;
+	}
+	.messagesArea {
+		border: black solid 1px;
+		width: 50%;
+	}
 }

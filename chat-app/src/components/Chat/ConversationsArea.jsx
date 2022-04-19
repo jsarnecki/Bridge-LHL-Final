@@ -5,7 +5,6 @@ export default function ConversationsArea(props) {
 
 	return (
 		<div class="conversations">
-			<h2>Conversations</h2>
 			<ConversationsList
 				conversations={conversations}
 				handleClick={handleClick}
