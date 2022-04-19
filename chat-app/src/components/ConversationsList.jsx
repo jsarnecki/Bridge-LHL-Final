@@ -22,14 +22,6 @@ const mapConversations = (conversations, handleClick) => {
 	});
 };
 
-const mapFriendships = (friendships, handleClickFriend) => {
-	return friendships.map(friend => {
-		return (
-			<li key={friend.id} onClick={() => handleClickFriend(friend.id)}></li>
-		);
-	});
-};
-
 export default function ConversationsList(props) {
 	const [state, setState] = useState({
 		conversations: [],
@@ -55,10 +47,18 @@ export default function ConversationsList(props) {
 
 	const handleReceivedConversation = response => {
 		const { conversation } = response;
+		const newConversation = {
+			id: conversation.id,
+			friend_id:
+				conversation.requester_id === props.logged_in_user.id
+					? conversation.accepter_id
+					: conversation.requester_id,
+			messages: conversation.messages,
+		};
 		setState(prev => {
 			return {
 				...prev,
-				conversations: [...prev.conversations, conversation],
+				conversations: [...prev.conversations, newConversation],
 			};
 		});
 	};
@@ -90,7 +90,6 @@ export default function ConversationsList(props) {
 				/>
 			) : null}
 			<h2>Conversations V2</h2>
-			{/* <ul>{mapFriendships(friendships, handleClick)}</ul> */}
 			<h2>Conversations</h2>
 			<ul>{mapConversations(conversations, handleClick)}</ul>
 			<NewConversationForm logged_in_user={props.logged_in_user} />

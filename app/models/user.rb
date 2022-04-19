@@ -24,6 +24,9 @@ class User < ApplicationRecord
 
 	has_many :requesters, through: :accepted_friendships
 
+	has_many :users_languages
+	has_many :languages, through: :users_languages
+
 	# def confirm!
 	#   update_columns(confirmed_at: Time.current)
 	# end

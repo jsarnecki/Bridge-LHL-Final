@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_16_163209) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_19_025515) do
   create_table "conversations", force: :cascade do |t|
     t.string "title"
     t.integer "requester_id"
     t.integer "accepter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,9 +38,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_163209) do
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "image"
+    t.text "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "users_languages", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "language_id"
+    t.integer "skill_level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "learning"
+    t.index ["language_id"], name: "index_users_languages_on_language_id"
+    t.index ["user_id"], name: "index_users_languages_on_user_id"
   end
 
   add_foreign_key "messages", "conversations"

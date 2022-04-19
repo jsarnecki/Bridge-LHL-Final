@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
 	resources :users, only: %i[create show index] do
 		resources :conversations, only: %i[create index]
+		resources :users_languages
 	end
 
 	#my own

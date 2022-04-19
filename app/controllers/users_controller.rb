@@ -4,7 +4,11 @@ class UsersController < ApplicationController
 	def index
 		@users = User.all
 		if @users
-			render json: { users: @users }
+			users_with_languages =
+				@users.map { |user| { user: user, languages: user.users_languages } }
+
+			# render json: { users: @users }
+			render json: users_with_languages
 		else
 			render json: { status: 500, errors: ['no users found'] }
 		end
@@ -13,7 +17,7 @@ class UsersController < ApplicationController
 	def show
 		@user = User.find(params[:id])
 		if @user
-			render json: { user: @user }
+			render json: { user: @user, languages: @user.users_languages }
 		else
 			render json: { status: 500, errors: ['user not found'] }
 		end
