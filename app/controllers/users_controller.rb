@@ -5,7 +5,22 @@ class UsersController < ApplicationController
 		@users = User.all
 		if @users
 			users_with_languages =
-				@users.map { |user| { user: user, languages: user.users_languages } }
+				@users.map do |user|
+					user_languages_with_names =
+						user.users_languages.map do |language|
+							language_name = Language.find(language.language_id).name
+							{
+								id: language.id,
+								user_id: language.user_id,
+								language_id: language.language_id,
+								language_name: language_name,
+								skill_level: language.skill_level,
+								learning: language.learning,
+							}
+						end
+
+					{ user: user, languages: user_languages_with_names }
+				end
 
 			# render json: { users: @users }
 			render json: users_with_languages
