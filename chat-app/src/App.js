@@ -8,6 +8,7 @@ import Chat from "./components/Chat";
 import Login from "./components/Login";
 import Login2 from "./components/Login2";
 import axios from "axios";
+import Login3 from "./components/Login3";
 
 function App() {
 	const [state, setState] = useState({
@@ -57,6 +58,7 @@ function App() {
 				<Link to="/chat">Chat</Link>
 				<Login handleLogin={handleLogin} />
 				<Login2 handleLogin={handleLogin} />
+				<Login3 handleLogin={handleLogin} />
 			</nav>
 
 			<Outlet
