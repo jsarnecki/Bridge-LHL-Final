@@ -5,6 +5,7 @@ import NewConversationForm from "./NewConversationForm";
 import MessagesArea from "./MessagesArea";
 import Cable from "./Cable";
 import axios from "axios";
+import { useOutlet, useOutletContext } from "react-router-dom";
 
 const findActiveConversation = (conversations, activeConversation) => {
 	return conversations.find(
@@ -23,6 +24,8 @@ const mapConversations = (conversations, handleClick) => {
 };
 
 export default function ConversationsList(props) {
+	const { logged_in_user } = useOutletContext();
+
 	const [state, setState] = useState({
 		conversations: [],
 		activeConversation: null,
@@ -37,7 +40,7 @@ export default function ConversationsList(props) {
 					return { ...prev, conversations };
 				})
 			);
-	}, [props.logged_in_user]);
+	}, [logged_in_user]);
 
 	const handleClick = id => {
 		setState(prev => {
@@ -50,7 +53,7 @@ export default function ConversationsList(props) {
 		const newConversation = {
 			id: conversation.id,
 			friend_id:
-				conversation.requester_id === props.logged_in_user.id
+				conversation.requester_id === logged_in_user.id
 					? conversation.accepter_id
 					: conversation.requester_id,
 			messages: conversation.messages,
@@ -92,14 +95,14 @@ export default function ConversationsList(props) {
 			<h2>Conversations V2</h2>
 			<h2>Conversations</h2>
 			<ul>{mapConversations(conversations, handleClick)}</ul>
-			<NewConversationForm logged_in_user={props.logged_in_user} />
+			<NewConversationForm logged_in_user={logged_in_user} />
 			{activeConversation ? (
 				<MessagesArea
 					conversation={findActiveConversation(
 						conversations,
 						activeConversation
 					)}
-					logged_in_user={props.logged_in_user}
+					logged_in_user={logged_in_user}
 				/>
 			) : null}
 		</div>

@@ -9,6 +9,7 @@ import Profiles from "./components/Profiles";
 import { ActionCableProvider } from "react-actioncable-provider";
 import { API_WS_ROOT } from "./constants";
 import Login from "./components/Login";
+import ConversationsList from "./components/ConversationsList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,9 +17,10 @@ root.render(
 		<ActionCableProvider url={API_WS_ROOT}>
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" element={<App />} />
-					<Route path="profiles" element={<Profiles />} />
-					<Route path="chat" element={<Chat />} />
+					<Route path="/" element={<App />}>
+						<Route path="chat" element={<ConversationsList />} />
+						<Route path="profiles" element={<Profiles />} />
+					</Route>
 					<Route path="/login" element={<Login />} />
 					<Route path="/logout" />
 				</Routes>

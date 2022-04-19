@@ -56,12 +56,11 @@ function App() {
 			<nav>
 				<Link to="/profiles">Profiles</Link>
 				<Link to="/chat">Chat</Link>
-				{/* <Link to="/login">Log In</Link> */}
-				{/* <Link to="/logout">Log Out</Link> */}
 				<Login handleLogin={handleLogin} />
 				<Login2 handleLogin={handleLogin} />
 			</nav>
-			<ConversationsList logged_in_user={state.user} />
+
+			<Outlet context={{ logged_in_user: state.user }} />
 		</div>
 	);
 }
