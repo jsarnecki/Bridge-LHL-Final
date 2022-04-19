@@ -1,0 +1,22 @@
+@use "@material/card";
+
+@include card.core-styles;
+
+
+.my-card-content {
+  padding: 16px;
+}
+
+div.mdc-card {
+  padding: 2%;
+  width: 50%;
+  margin: 5%;
+  color: white;
+  background-color: black;
+  flex-basis: 20%; //Makes it 3 per line --- 33.333% == 4 per line
+}
+
+.profile-img {
+  max-width: 100%;
+}
+

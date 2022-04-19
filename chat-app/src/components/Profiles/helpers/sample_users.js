@@ -118,6 +118,87 @@ const userInformation = [
       },
     ],
   },
+  {
+    user: {
+      id: 4,
+      email: "admin3@admin.com",
+      password_digest:
+        "$2a$12$iHvs4YiatZZDKAHfi91CS.HsGQv/gq5Z6GJ7ydx4KkEgShVXrI.6y",
+      first_name: "Tony",
+      last_name: "Fu",
+      image: tony,
+      bio: "Hi, I am Tony and I have lived on 3 continents!",
+      created_at: "2022-04-19T15:48:40.854Z",
+      updated_at: "2022-04-19T15:48:40.854Z",
+    },
+    languages: [
+      {
+        id: 6,
+        user_id: 3,
+        language_id: 1,
+        language_name: "English",
+        skill_level: 5,
+        learning: false,
+      },
+      {
+        id: 7,
+        user_id: 3,
+        language_id: 4,
+        language_name: "Chinese",
+        skill_level: 5,
+        learning: false,
+      },
+      {
+        id: 8,
+        user_id: 3,
+        language_id: 5,
+        language_name: "French",
+        skill_level: 1,
+        learning: true,
+      },
+    ],
+  }
+  ,
+  {
+    user: {
+      id: 5,
+      email: "admin3@admin.com",
+      password_digest:
+        "$2a$12$iHvs4YiatZZDKAHfi91CS.HsGQv/gq5Z6GJ7ydx4KkEgShVXrI.6y",
+      first_name: "Tony",
+      last_name: "Fu",
+      image: tony,
+      bio: "Hi, I am Tony and I have lived on 3 continents!",
+      created_at: "2022-04-19T15:48:40.854Z",
+      updated_at: "2022-04-19T15:48:40.854Z",
+    },
+    languages: [
+      {
+        id: 6,
+        user_id: 3,
+        language_id: 1,
+        language_name: "English",
+        skill_level: 5,
+        learning: false,
+      },
+      {
+        id: 7,
+        user_id: 3,
+        language_id: 4,
+        language_name: "Chinese",
+        skill_level: 5,
+        learning: false,
+      },
+      {
+        id: 8,
+        user_id: 3,
+        language_id: 5,
+        language_name: "French",
+        skill_level: 1,
+        learning: true,
+      },
+    ],
+  }
 ];
 
 export default userInformation;
