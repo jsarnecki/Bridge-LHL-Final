@@ -5,8 +5,6 @@ export default function ConversationsList(props) {
 				(a, b) => new Date(a.created_at) - new Date(b.created_at)
 			);
 			const lastMessage = sortedMessages[sortedMessages.length - 1];
-			console.log("sortedMessages", sortedMessages);
-			console.log("lastMessage", lastMessage);
 			return (
 				<li key={conversation.id} onClick={() => handleClick(conversation.id)}>
 					{conversation.friend_first_name} {conversation.friend_last_name} id:{" "}

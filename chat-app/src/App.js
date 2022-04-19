@@ -59,7 +59,9 @@ function App() {
 				<Login2 handleLogin={handleLogin} />
 			</nav>
 
-			<Outlet context={{ logged_in_user: state.user }} />
+			<Outlet
+				context={{ logged_in_user: state.user, isLoggedIn: state.isLoggedIn }}
+			/>
 		</div>
 	);
 }

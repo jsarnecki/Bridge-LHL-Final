@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ActionCableConsumer } from "react-actioncable-provider";
+// import { ActionCableConsumer } from "react-actioncable-provider";
+import { ActionCableConsumer } from "@thrash-industries/react-actioncable-provider";
 import { API_ROOT } from "../constants";
 import NewConversationForm from "./NewConversationForm";
 import MessagesArea from "./MessagesArea";
@@ -27,7 +28,7 @@ const mapConversations = (conversations, handleClick) => {
 };
 
 export default function Chat(props) {
-	const { logged_in_user } = useOutletContext();
+	const { logged_in_user, isLoggedIn } = useOutletContext();
 
 	const [state, setState] = useState({
 		conversations: [],
@@ -106,10 +107,15 @@ export default function Chat(props) {
 
 	return (
 		<div className="chat">
-			<ActionCableConsumer
-				channel={{ channel: "ConversationsChannel" }}
-				onReceived={handleReceivedConversation}
-			/>
+			{isLoggedIn && (
+				<ActionCableConsumer
+					channel={{ channel: "ConversationsChannel" }}
+					onReceived={handleReceivedConversation}
+					onConnected={() => {
+						alert("connected");
+					}}
+				/>
+			)}
 			{state.conversations.length ? (
 				<Cable
 					conversations={conversations}
