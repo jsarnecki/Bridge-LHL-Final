@@ -1,3 +1,10 @@
+
+import andy from './seed_assets/andy.png';
+import yuki from './seed_assets/yuki.png';
+import josh from './seed_assets/josh.png';
+import tony from './seed_assets/tony.png';
+
+
 const userInformation = [
   {
     user: {
@@ -7,7 +14,7 @@ const userInformation = [
         "$2a$12$KMXbAzCNqcLCMrMWXSHy6uoNDEPfdns1EabjKL1tNAEV/CjFJUnga",
       first_name: "Yuki",
       last_name: "Fujiwara",
-      image: "#<File:0x000000011203a0a8>",
+      image: yuki,
       bio: "Hi, I am Yuki, I am half Japanese and half Indian. My other first name is Sathvik!",
       created_at: "2022-04-19T15:48:40.165Z",
       updated_at: "2022-04-19T15:48:40.165Z",
@@ -47,7 +54,7 @@ const userInformation = [
         "$2a$12$KMQ63heL0R3QfgmS5.Ht8.HMKiwwjJmO9qI7Wv4Gd8PfmXod.R1EC",
       first_name: "Josh",
       last_name: "Sarnecki",
-      image: "#<File:0x000000010c91ae08>",
+      image: josh,
       bio: "Hi, I am Josh! I like snowboarding and learning Korean!",
       created_at: "2022-04-19T15:48:40.513Z",
       updated_at: "2022-04-19T15:48:40.513Z",
@@ -79,7 +86,7 @@ const userInformation = [
         "$2a$12$iHvs4YiatZZDKAHfi91CS.HsGQv/gq5Z6GJ7ydx4KkEgShVXrI.6y",
       first_name: "Tony",
       last_name: "Fu",
-      image: "#<File:0x000000010df1f050>",
+      image: tony,
       bio: "Hi, I am Tony and I have lived on 3 continents!",
       created_at: "2022-04-19T15:48:40.854Z",
       updated_at: "2022-04-19T15:48:40.854Z",

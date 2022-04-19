@@ -2,6 +2,7 @@ import userInformation from "./Profiles/helpers/sample_users"
 import Profile from "./Profiles/Profile"
 
 
+
 export default function Profiles() {
   // State will keep track of which profiles to render, based on user logged in
   // We can use useOuletContext hook to obtain logged in users id
