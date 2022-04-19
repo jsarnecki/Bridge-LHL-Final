@@ -64,12 +64,22 @@ export default function Chat(props) {
 
 	const handleReceivedConversation = response => {
 		const { conversation } = response;
+		const friend_id =
+			conversation.requester_id === logged_in_user.id
+				? conversation.accepter_id
+				: conversation.requester_id;
 		const newConversation = {
 			id: conversation.id,
-			friend_id:
-				conversation.requester_id === logged_in_user.id
-					? conversation.accepter_id
-					: conversation.requester_id,
+			friend_id,
+			friend_first_name:
+				friend_id === conversation.accepter_id
+					? conversation.accepter.first_name
+					: conversation.requester.first_name,
+			friend_last_name:
+				friend_id === conversation.accepter_id
+					? conversation.accepter.last_name
+					: conversation.requester.last_name,
+
 			messages: conversation.messages,
 		};
 		setState(prev => {
