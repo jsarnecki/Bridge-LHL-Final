@@ -4,7 +4,7 @@ import { ActionCable } from "react-actioncable-provider";
 import { useState, useEffect } from "react";
 import { Link, Outlet, BrowserRouter, Routes, Route } from "react-router-dom";
 import { ActionCableProvider } from "react-actioncable-provider";
-import ConversationsList from "./components/ConversationsList";
+import Chat from "./components/Chat";
 import Login from "./components/Login";
 import Login2 from "./components/Login2";
 import axios from "axios";
