@@ -1,19 +1,27 @@
 import "./Profile.scss";
+//change Button to MUI component later- before meeting
+// import Button from 'react-bootstrap/Button';
+import Button from '@mui/material/Button';
+
 
 export default function Profile(props) {
   return (
-    <div class="mdc-card mdc-card--outlined">
+    <div className="mdc-card mdc-card--outlined">
       <div>
         <span>{props.firstName}</span> <span>{props.lastName}</span>
       </div>
-      <div class="my-card__media">
-        <img class="profile-img" src={props.image} />
+      <div className="my-card__media">
+        <img className="profile-img" src={props.image} />
       </div>
       <div>{props.bio}</div>
       <div>{props.langauages}</div>
-      <button class="mdc-button mdc-card__action mdc-card__action--button ">
-        <span class="mdc-button__label">Action 1</span>
-      </button>
+      {/* <button className="mdc-button mdc-card__action mdc-card__action--button ">
+        <span className="mdc-button__label">Action 1</span>
+      </button> */}
+      <div> ______________________</div>
+      <Button variant="contained" onClick={()=>{console.log("button clicked!")}}>Expand Profile</Button>
+      <div> ______________________</div>
+      <Button variant="contained" onClick={()=>{console.log("button clicked!")}}>Message</Button>
     </div>
   );
 }

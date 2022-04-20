@@ -2,6 +2,10 @@ import userInformation from "./Profiles/helpers/sample_users";
 import Profile from "./Profiles/Profile";
 import "./Profiles.scss";
 
+import { useState } from "react";
+import Example from "./Profiles/ProfilePopup";
+
+
 import { useOutletContext } from "react-router-dom";
 
 export default function Profiles() {
@@ -65,13 +69,24 @@ export default function Profiles() {
 				)
 		}
 
-	})
+	});
+  
 
 
   return (
     <main style={{ padding: "1rem 0" }}>
+			<>
+				<Example />
+      </>
       <h2>Profiles</h2>
       <ul className="cards" >{usersMapped}</ul>
+
+{/* 
+			<>
+				<Example />
+      </> */}
+
+			
     </main>
   );
 }

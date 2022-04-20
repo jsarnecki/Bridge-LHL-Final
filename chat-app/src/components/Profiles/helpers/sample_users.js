@@ -33,8 +33,8 @@ const userInformation = [
         user_id: 1,
         language_id: 3,
         language_name: "Japanese",
-        skill_level: 5,
-        learning: false,
+        skill_level: 3,
+        learning: true,
       },
       {
         id: 3,
@@ -205,8 +205,8 @@ const userInformation = [
       email: "admin3@admin.com",
       password_digest:
         "$2a$12$iHvs4YiatZZDKAHfi91CS.HsGQv/gq5Z6GJ7ydx4KkEgShVXrI.6y",
-      first_name: "Tony",
-      last_name: "Fu",
+      first_name: "Tony K",
+      last_name: "Fu ",
       image: tony,
       bio: "Hi, I can teach Korean!",
       created_at: "2022-04-19T15:48:40.854Z",
@@ -214,7 +214,7 @@ const userInformation = [
     },
     languages: [
       {
-        id: 12,
+        id: 15,
         user_id: 5,
         language_id: 1,
         language_name: "English",
@@ -222,7 +222,7 @@ const userInformation = [
         learning: false,
       },
       {
-        id: 13,
+        id: 16,
         user_id: 5,
         language_id: 2,
         language_name: "Korean",
@@ -230,13 +230,77 @@ const userInformation = [
         learning: false,
       },
       {
-        id: 14,
+        id: 17,
         user_id: 5,
         language_id: 5,
         language_name: "French",
         skill_level: 1,
         learning: false,
       },
+    ],
+  },
+  {
+    user: {
+      id: 6,
+      email: "admin3@admin.com",
+      password_digest:
+        "$2a$12$iHvs4YiatZZDKAHfi91CS.HsGQv/gq5Z6GJ7ydx4KkEgShVXrI.6y",
+      first_name: "Andy",
+      last_name: "The Goat",
+      image: andy,
+      bio: "Hi, I can also teach Korean! I'm the GOAT",
+      created_at: "2022-04-19T15:48:40.854Z",
+      updated_at: "2022-04-19T15:48:40.854Z",
+    },
+    languages: [
+      {
+        id: 16,
+        user_id: 6,
+        language_id: 1,
+        language_name: "English",
+        skill_level: 5,
+        learning: false,
+      },
+      {
+        id: 17,
+        user_id: 6,
+        language_id: 2,
+        language_name: "Korean",
+        skill_level: 5,
+        learning: false,
+      },
+      {
+        id: 18,
+        user_id: 5,
+        language_id: 6,
+        language_name: "French",
+        skill_level: 1,
+        learning: false,
+      },
+    ],
+  },
+  {
+    user: {
+      id: 7,
+      email: "admin3@admin.com",
+      password_digest:
+        "$2a$12$iHvs4YiatZZDKAHfi91CS.HsGQv/gq5Z6GJ7ydx4KkEgShVXrI.6y",
+      first_name: "Andy J",
+      last_name: "Lindsay",
+      image: andy,
+      bio: "Hi, I can also teach Japanese! I'm the GOAT",
+      created_at: "2022-04-19T15:48:40.854Z",
+      updated_at: "2022-04-19T15:48:40.854Z",
+    },
+    languages: [
+      {
+        id: 17,
+        user_id: 7,
+        language_id: 3,
+        language_name: "Japanese",
+        skill_level: 5,
+        learning: false,
+      }
     ],
   }
 ];
