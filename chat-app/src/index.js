@@ -11,23 +11,27 @@ import { ActionCableProvider } from "@thrash-industries/react-actioncable-provid
 import { API_WS_ROOT } from "./constants";
 import Login from "./components/Login";
 import Chat from "./components/Chat";
+import actionCable from "actioncable";
+
+const CableApp = {};
+CableApp.cable = actionCable.createConsumer("ws://localhost:3000/cable");
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<React.StrictMode>
-		<ActionCableProvider url={API_WS_ROOT}>
-			<BrowserRouter>
-				<Routes>
-					<Route path="/" element={<App />}>
-						<Route path="chat" element={<Chat />} />
-						<Route path="profiles" element={<Profiles />} />
-					</Route>
-					<Route path="/login" element={<Login />} />
-					<Route path="/logout" />
-				</Routes>
-			</BrowserRouter>
-		</ActionCableProvider>
-	</React.StrictMode>
+	// <React.StrictMode>
+	<ActionCableProvider url={API_WS_ROOT}>
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<App cableApp={CableApp} />}>
+					<Route path="chat" element={<Chat />} />
+					<Route path="profiles" element={<Profiles />} />
+				</Route>
+				<Route path="/login" element={<Login />} />
+				<Route path="/logout" />
+			</Routes>
+		</BrowserRouter>
+	</ActionCableProvider>
+	// </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -28,7 +28,8 @@ const mapConversations = (conversations, handleClick) => {
 };
 
 export default function Chat(props) {
-	const { logged_in_user, isLoggedIn } = useOutletContext();
+	const { logged_in_user, isLoggedIn, cableApp } = useOutletContext();
+	// console.log("cableApp.cable", cableApp.cable);
 
 	const [state, setState] = useState({
 		conversations: [],
@@ -43,7 +44,22 @@ export default function Chat(props) {
 				setState(prev => {
 					return { ...prev, conversations };
 				})
-			);
+			)
+			.then(() => {
+				// console.log("cableApp.cable", cableApp.cable);
+				console.log("isLoggedIn", isLoggedIn);
+				if (isLoggedIn) {
+					cableApp.cable.subscriptions.create(
+						{
+							channel: "ConversationsChannel",
+						},
+						{
+							connected: () => console.log("connected with this"),
+							received: handleReceivedConversation,
+						}
+					);
+				}
+			});
 
 		axios
 			.get("http://localhost:3000/friends", {
@@ -107,7 +123,7 @@ export default function Chat(props) {
 
 	return (
 		<div className="chat">
-			{isLoggedIn && (
+			{/* {isLoggedIn && (
 				<ActionCableConsumer
 					channel={{ channel: "ConversationsChannel" }}
 					onReceived={handleReceivedConversation}
@@ -115,18 +131,21 @@ export default function Chat(props) {
 						alert("connected");
 					}}
 				/>
-			)}
-			{state.conversations.length ? (
+			)} */}
+
+			{/* {state.conversations.length ? (
 				<Cable
 					conversations={conversations}
 					handleReceivedMessage={handleReceivedMessage}
 				/>
-			) : null}
+			) : null} */}
 			<div className="chat-display">
 				<ConversationsArea
 					conversations={conversations}
 					handleClick={handleClick}
 					logged_in_user={logged_in_user}
+					handleReceivedMessage={handleReceivedMessage}
+					cableApp={cableApp}
 				></ConversationsArea>
 				{activeConversation ? (
 					<MessagesArea

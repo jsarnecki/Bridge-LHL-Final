@@ -10,7 +10,10 @@ import Login2 from "./components/Login2";
 import axios from "axios";
 import Login3 from "./components/Login3";
 
-function App() {
+function App(props) {
+	const { cableApp } = props;
+	// console.log("cableApp", cableApp);
+
 	const [state, setState] = useState({
 		isLoggedIn: false,
 		user: {},
@@ -34,6 +37,7 @@ function App() {
 		});
 	};
 	const loginStatus = () => {
+		console.log("loginStatus");
 		axios
 			.get("http://localhost:3000/logged_in", {
 				withCredentials: true,
@@ -62,7 +66,11 @@ function App() {
 			</nav>
 
 			<Outlet
-				context={{ logged_in_user: state.user, isLoggedIn: state.isLoggedIn }}
+				context={{
+					logged_in_user: state.user,
+					isLoggedIn: state.isLoggedIn,
+					cableApp,
+				}}
 			/>
 		</div>
 	);

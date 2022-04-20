@@ -14,6 +14,7 @@ const Cable = ({ conversations, handleReceivedMessage }) => {
 							conversation: conversation.id,
 						}}
 						onReceived={handleReceivedMessage}
+						onConnected={() => alert("message connected")}
 					/>
 				);
 			})}
