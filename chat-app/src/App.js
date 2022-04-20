@@ -4,12 +4,15 @@ import { ActionCable } from "react-actioncable-provider";
 import { useState, useEffect } from "react";
 import { Link, Outlet, BrowserRouter, Routes, Route } from "react-router-dom";
 import { ActionCableProvider } from "react-actioncable-provider";
-import ConversationsList from "./components/ConversationsList";
+import Chat from "./components/Chat";
 import Login from "./components/Login";
 import Login2 from "./components/Login2";
 import axios from "axios";
+import Login3 from "./components/Login3";
 
-function App() {
+function App(props) {
+	const { cableApp } = props;
+
 	const [state, setState] = useState({
 		isLoggedIn: false,
 		user: {},
@@ -38,7 +41,6 @@ function App() {
 				withCredentials: true,
 			})
 			.then(response => {
-				console.log("response", response);
 				if (response.data.logged_in) {
 					handleLogin(response.data);
 				} else {
@@ -58,9 +60,16 @@ function App() {
 				<Link to="/chat">Chat</Link>
 				<Login handleLogin={handleLogin} />
 				<Login2 handleLogin={handleLogin} />
+				<Login3 handleLogin={handleLogin} />
 			</nav>
 
-			<Outlet context={{ logged_in_user: state.user }} />
+			<Outlet
+				context={{
+					logged_in_user: state.user,
+					isLoggedIn: state.isLoggedIn,
+					cableApp,
+				}}
+			/>
 		</div>
 	);
 }

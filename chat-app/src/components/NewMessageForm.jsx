@@ -1,49 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { API_ROOT, HEADERS } from "../constants";
 
-class NewMessageForm extends React.Component {
-	state = {
+export default function NewMessageForm(props) {
+	const { conversation_id, logged_in_user, friend_id } = props;
+	const [state, setState] = useState({
 		text: "",
-		conversation_id: this.props.conversation_id,
-		sender_id: this.props.logged_in_user.id,
-		receiver_id: this.props.friend_id,
+		conversation_id: null,
+		sender_id: null,
+		receiver_id: null,
+	});
+
+	useEffect(() => {
+		setState(prev => {
+			return {
+				...prev,
+				conversation_id: conversation_id,
+				sender_id: logged_in_user.id,
+				receiver_id: friend_id,
+			};
+		});
+	}, [props]);
+
+	const handleChange = e => {
+		setState(prev => {
+			return { ...prev, text: e.target.value };
+		});
 	};
 
-	componentWillReceiveProps = nextProps => {
-		this.setState({ conversation_id: nextProps.conversation_id });
-	};
-
-	handleChange = e => {
-		this.setState({ text: e.target.value });
-	};
-
-	handleSubmit = e => {
+	const handleSubmit = e => {
 		e.preventDefault();
 
 		fetch(`${API_ROOT}/messages`, {
 			method: "POST",
 			headers: HEADERS,
-			body: JSON.stringify(this.state),
+			body: JSON.stringify(state),
 		});
-		this.setState({ text: "" });
+		setState(prev => {
+			return { ...prev, text: "" };
+		});
 	};
 
-	render = () => {
-		return (
-			<div className="newMessageForm">
-				<form onSubmit={this.handleSubmit}>
-					<label>New Message:</label>
-					<br />
-					<input
-						type="text"
-						value={this.state.text}
-						onChange={this.handleChange}
-					/>
-					<input type="submit" />
-				</form>
-			</div>
-		);
-	};
+	return (
+		<div className="newMessageForm">
+			<h2>{props.conversation_id}</h2>
+			<form onSubmit={handleSubmit}>
+				<label>New Message:</label>
+				<br />
+				<input type="text" value={state.text} onChange={handleChange} />
+				<input type="submit" />
+			</form>
+		</div>
+	);
 }
-
-export default NewMessageForm;

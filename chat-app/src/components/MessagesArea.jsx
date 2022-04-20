@@ -1,14 +1,30 @@
 import React from "react";
 import NewMessageForm from "./NewMessageForm";
+import "./MessagesArea.scss";
+import MessagesList from "./Chat/MessagesList";
 
 const MessagesArea = ({
-	conversation: { id, friend_id, messages },
+	conversation: {
+		id,
+		friend_id,
+		messages,
+		friend_first_name,
+		friend_last_name,
+	},
 	logged_in_user,
 }) => {
 	return (
 		<div className="messagesArea">
-			<h2>{friend_id}</h2>
-			<ul>{orderedMessages(messages)}</ul>
+			<h2>Friend id: {friend_id}</h2>
+			<h2>Conversation id: {id}</h2>
+			<MessagesList
+				messages={messages}
+				friend_id={friend_id}
+				friend_first_name={friend_first_name}
+				friend_last_name={friend_last_name}
+				logged_in_user={logged_in_user}
+			></MessagesList>
+
 			<NewMessageForm
 				conversation_id={id}
 				logged_in_user={logged_in_user}
@@ -19,18 +35,3 @@ const MessagesArea = ({
 };
 
 export default MessagesArea;
-
-// helpers
-
-const orderedMessages = messages => {
-	const sortedMessages = messages.sort(
-		(a, b) => new Date(a.created_at) - new Date(b.created_at)
-	);
-	return sortedMessages.map(message => {
-		return (
-			<li key={message.id}>
-				{message.sender_id}: {message.text}
-			</li>
-		);
-	});
-};

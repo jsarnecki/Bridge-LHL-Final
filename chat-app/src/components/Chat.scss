@@ -1,0 +1,16 @@
+.chat-display {
+	display: flex;
+	flex-direction: row;
+	.conversations {
+		width: 30%;
+		border: black solid 1px;
+		li {
+			border: black solid 1px;
+			height: 50px;
+		}
+	}
+	.messagesArea {
+		border: black solid 1px;
+		width: 70%;
+	}
+}
