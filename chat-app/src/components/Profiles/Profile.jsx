@@ -19,9 +19,9 @@ export default function Profile(props) {
         <span className="mdc-button__label">Action 1</span>
       </button> */}
       <div> ______________________</div>
-      <Button variant="contained" onClick={()=>{console.log("button clicked!")}}>Expand Profile</Button>
+      <Button variant="contained" onClick={()=>{console.log("Profile button clicked!")}}>Expand Profile</Button>
       <div> ______________________</div>
-      <Button variant="contained" onClick={()=>{console.log("button clicked!")}}>Message</Button>
+      <Button variant="contained" onClick={()=>{console.log("Messaging button clicked!")}}>Message</Button>
     </div>
   );
 }
