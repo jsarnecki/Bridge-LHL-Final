@@ -273,7 +273,7 @@ const userInformation = [
         id: 18,
         user_id: 5,
         language_id: 6,
-        language_name: "French",
+        language_name: "Spanish",
         skill_level: 1,
         learning: false,
       },
@@ -300,6 +300,14 @@ const userInformation = [
         language_name: "Japanese",
         skill_level: 5,
         learning: false,
+      },
+      {
+        id: 18,
+        user_id: 7,
+        language_id: 7,
+        language_name: "German",
+        skill_level: 3,
+        learning: true,
       }
     ],
   }
