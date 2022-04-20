@@ -35,7 +35,7 @@ export default function Chat(props) {
 					return {
 						...prev,
 						conversations,
-						activeConversation: conversations[0].id,
+						activeConversation: conversations[0] ? conversations[0].id : null,
 					};
 				})
 			)

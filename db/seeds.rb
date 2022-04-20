@@ -271,6 +271,7 @@ UsersLanguage.create!(
 		requester_id: @user2.id,
 		accepter_id: @user3.id,
 		title: 'second_friends',
+		accepted: false,
 	)
 
 @conversation3 =
@@ -278,6 +279,7 @@ UsersLanguage.create!(
 		requester_id: @user4.id,
 		accepter_id: @user5.id,
 		title: 'last_friends',
+		accepted: true,
 	)
 
 # @conversation1.messages.create!(

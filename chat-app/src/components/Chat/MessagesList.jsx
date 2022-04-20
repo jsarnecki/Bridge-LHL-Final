@@ -28,6 +28,7 @@ export default function MessagesList(props) {
 						message={message}
 						sender={sender}
 						current_user={false}
+						key={message.id}
 					></MessagesListItem>
 				);
 			} else {
@@ -37,6 +38,7 @@ export default function MessagesList(props) {
 						message={message}
 						sender={sender}
 						current_user={true}
+						key={message.id}
 					></MessagesListItem>
 				);
 			}
