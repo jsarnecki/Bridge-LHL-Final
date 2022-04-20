@@ -10,6 +10,7 @@ import { useOutlet, useOutletContext } from "react-router-dom";
 import ConversationsList from "./Chat/ConversationsList";
 import ConversationsArea from "./Chat/ConversationsArea";
 import "./Chat.scss";
+import { flushSync } from "react-dom";
 
 const findActiveConversation = (conversations, activeConversation) => {
 	return conversations.find(
@@ -17,19 +18,8 @@ const findActiveConversation = (conversations, activeConversation) => {
 	);
 };
 
-const mapConversations = (conversations, handleClick) => {
-	return conversations.map(conversation => {
-		return (
-			<li key={conversation.id} onClick={() => handleClick(conversation.id)}>
-				{conversation.friend_id}
-			</li>
-		);
-	});
-};
-
 export default function Chat(props) {
 	const { logged_in_user, isLoggedIn, cableApp } = useOutletContext();
-	// console.log("cableApp.cable", cableApp.cable);
 
 	const [state, setState] = useState({
 		conversations: [],
@@ -46,8 +36,6 @@ export default function Chat(props) {
 				})
 			)
 			.then(() => {
-				// console.log("cableApp.cable", cableApp.cable);
-				console.log("isLoggedIn", isLoggedIn);
 				if (isLoggedIn) {
 					cableApp.cable.subscriptions.create(
 						{
@@ -56,21 +44,22 @@ export default function Chat(props) {
 						{
 							connected: () => console.log("connected with this"),
 							received: handleReceivedConversation,
+							disconnected: () => console.log("disconnected with this"),
 						}
 					);
 				}
 			});
 
-		axios
-			.get("http://localhost:3000/friends", {
-				withCredentials: true,
-			})
-			.then(response => {
-				setState(prev => {
-					return { ...prev, friends: response.data };
-				});
-			})
-			.catch(error => console.log("api errors:", error));
+		// axios
+		// 	.get("http://localhost:3000/friends", {
+		// 		withCredentials: true,
+		// 	})
+		// 	.then(response => {
+		// 		setState(prev => {
+		// 			return { ...prev, friends: response.data };
+		// 		});
+		// 	})
+		// 	.catch(error => console.log("api errors:", error));
 	}, [logged_in_user]);
 
 	const handleClick = id => {
@@ -99,6 +88,7 @@ export default function Chat(props) {
 
 			messages: conversation.messages,
 		};
+
 		setState(prev => {
 			return {
 				...prev,
@@ -109,12 +99,13 @@ export default function Chat(props) {
 
 	const handleReceivedMessage = response => {
 		const { message } = response;
-		const conversations = [...state.conversations];
-		const conversation = conversations.find(
-			conversation => conversation.id === message.conversation_id
-		);
-		conversation.messages = [...conversation.messages, message];
+
 		setState(prev => {
+			const conversations = [...prev.conversations];
+			const conversation = conversations.find(
+				conversation => conversation.id === message.conversation_id
+			);
+			conversation.messages = [...conversation.messages, message];
 			return { ...prev, conversations };
 		});
 	};

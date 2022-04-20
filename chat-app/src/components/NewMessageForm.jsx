@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { API_ROOT, HEADERS } from "../constants";
 
-export default function NewConversationForm(props) {
+export default function NewMessageForm(props) {
+	const { conversation_id, logged_in_user, friend_id } = props;
 	const [state, setState] = useState({
 		text: "",
-		conversation_id: props.conversation_id,
-		sender_id: props.logged_in_user.id,
-		receiver_id: props.friend_id,
+		conversation_id: null,
+		sender_id: null,
+		receiver_id: null,
 	});
 
-	// componentWillReceiveProps = nextProps => {
-	// 	this.setState({ conversation_id: nextProps.conversation_id });
-	// };
-
-	// useEffect(() => {
-	// 	setState(prev => {
-	// 		return { ...prev, conversation_id: props.conversation_id };
-	// 	});
-	// }, []);
+	useEffect(() => {
+		setState(prev => {
+			return {
+				...prev,
+				conversation_id: conversation_id,
+				sender_id: logged_in_user.id,
+				receiver_id: friend_id,
+			};
+		});
+	}, [props]);
 
 	const handleChange = e => {
 		setState(prev => {
@@ -40,6 +42,7 @@ export default function NewConversationForm(props) {
 
 	return (
 		<div className="newMessageForm">
+			<h2>{props.conversation_id}</h2>
 			<form onSubmit={handleSubmit}>
 				<label>New Message:</label>
 				<br />

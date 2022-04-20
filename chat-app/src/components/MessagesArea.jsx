@@ -15,7 +15,8 @@ const MessagesArea = ({
 }) => {
 	return (
 		<div className="messagesArea">
-			<h2>{friend_id}</h2>
+			<h2>Friend id: {friend_id}</h2>
+			<h2>Conversation id: {id}</h2>
 			<MessagesList
 				messages={messages}
 				friend_id={friend_id}
@@ -34,5 +35,3 @@ const MessagesArea = ({
 };
 
 export default MessagesArea;
-
-// helpers

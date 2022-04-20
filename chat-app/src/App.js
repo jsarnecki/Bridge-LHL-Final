@@ -12,7 +12,6 @@ import Login3 from "./components/Login3";
 
 function App(props) {
 	const { cableApp } = props;
-	// console.log("cableApp", cableApp);
 
 	const [state, setState] = useState({
 		isLoggedIn: false,
@@ -37,7 +36,6 @@ function App(props) {
 		});
 	};
 	const loginStatus = () => {
-		console.log("loginStatus");
 		axios
 			.get("http://localhost:3000/logged_in", {
 				withCredentials: true,
