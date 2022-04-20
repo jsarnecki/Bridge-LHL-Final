@@ -168,7 +168,7 @@ const userInformation = [
       first_name: "Tony",
       last_name: "Fu",
       image: tony,
-      bio: "Hi, I can teach Hindi!",
+      bio: "Lorem Ipsum is simply dummy text of. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
       created_at: "2022-04-19T15:48:40.854Z",
       updated_at: "2022-04-19T15:48:40.854Z",
     },
