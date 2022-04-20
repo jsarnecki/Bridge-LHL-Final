@@ -75,9 +75,6 @@ export default function Profiles() {
 
   return (
     <main style={{ padding: "1rem 0" }}>
-			<>
-				<Example />
-      </>
       <h2>Profiles</h2>
       <ul className="cards" >{usersMapped}</ul>
 

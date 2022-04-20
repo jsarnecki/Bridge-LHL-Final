@@ -6,11 +6,13 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import React, { useState, useEffect } from "react";
+import ProfilePopup from "./ProfilePopup";
 
 
 
 const style = {
   position: 'absolute',
+  height: '70vh',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -56,14 +58,7 @@ export default function Profile(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Here is the first name: {props.firstName}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-          {/* ProfilePopup Component will probably go here, will need to pass user detail props */}
+          <ProfilePopup firstName={props.firstName} />
         </Box>
       </Modal>
     </div>
