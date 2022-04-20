@@ -81,12 +81,6 @@ export default function Profiles() {
       <h2>Profiles</h2>
       <ul className="cards" >{usersMapped}</ul>
 
-{/* 
-			<>
-				<Example />
-      </> */}
-
-			
     </main>
   );
 }
