@@ -19,7 +19,6 @@ export default function Profile(props) {
       <div className="my-card__media">
         <img className="profile-img" src={props.image} />
       </div>
-      <div>{props.bio}</div>
       <div>{props.langauages}</div>
       {/* <button className="mdc-button mdc-card__action mdc-card__action--button ">
         <span className="mdc-button__label">Action 1</span>
@@ -34,14 +33,21 @@ export default function Profile(props) {
         Message
       </Button>
       <div> ______________________</div>
-      <Button onClick={handleOpen}>Expand Profile</Button>
+      <Button variant="contained" onClick={handleOpen}>Expand Profile</Button>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <ProfilePopup firstName={props.firstName} />
+        <ProfilePopup 
+        id={props.id}
+        firstName={props.firstName}
+        lastName={props.lastName}
+        image={props.image}
+        bio={props.bio}
+        languages={props.languages}
+        />
       </Modal>
     </div>
   );

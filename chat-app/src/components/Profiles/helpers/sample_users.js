@@ -179,7 +179,7 @@ const userInformation = [
         language_id: 1,
         language_name: "English",
         skill_level: 5,
-        learning: false,
+        learning: true,
       },
       {
         id: 13,
