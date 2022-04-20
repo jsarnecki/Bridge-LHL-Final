@@ -32,7 +32,11 @@ export default function Chat(props) {
 			.then(res => res.json())
 			.then(conversations =>
 				setState(prev => {
-					return { ...prev, conversations };
+					return {
+						...prev,
+						conversations,
+						activeConversation: conversations[0].id,
+					};
 				})
 			)
 			.then(() => {

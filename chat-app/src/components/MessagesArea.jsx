@@ -13,6 +13,11 @@ const MessagesArea = ({
 	},
 	logged_in_user,
 }) => {
+	// console.log("conversation", conversation);
+	// if (conversation) {
+	// 	const { id, friend_id, messages, friend_first_name, friend_last_name } =
+	// 		conversation;
+	// }
 	return (
 		<div className="messagesArea">
 			<h2>Friend id: {friend_id}</h2>
