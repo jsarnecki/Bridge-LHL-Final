@@ -33,6 +33,8 @@ class ConversationsController < ApplicationController
 					friend_first_name: friend.first_name,
 					friend_last_name: friend.last_name,
 					accepted: friendship.accepted,
+					requester_id: friendship.requester_id,
+					accepter_id: friendship.accepter_id,
 					messages: messages,
 				}
 			end

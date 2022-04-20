@@ -2,6 +2,7 @@ import React from "react";
 import NewMessageForm from "./NewMessageForm";
 import "./MessagesArea.scss";
 import MessagesList from "./Chat/MessagesList";
+import ConversationRequestForm from "./Chat/ConversationRequestForm";
 
 const MessagesArea = ({
 	conversation: {
@@ -11,6 +12,8 @@ const MessagesArea = ({
 		friend_first_name,
 		friend_last_name,
 		accepted,
+		requester_id,
+		accepter_id,
 	},
 	logged_in_user,
 }) => {
@@ -23,7 +26,14 @@ const MessagesArea = ({
 		<div className="messagesArea">
 			<h2>Friend id: {friend_id}</h2>
 			<h2>Conversation id: {id}</h2>
-			{!accepted && <h2>Not accepted yet</h2>}
+			{!accepted && (
+				<ConversationRequestForm
+					friend_id={friend_id}
+					accepted={accepted}
+					requester_id={requester_id}
+					accepter_id={accepter_id}
+				></ConversationRequestForm>
+			)}
 			{accepted && (
 				<MessagesList
 					messages={messages}
