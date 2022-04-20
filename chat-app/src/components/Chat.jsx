@@ -91,6 +91,9 @@ export default function Chat(props) {
 					: conversation.requester.last_name,
 
 			messages: conversation.messages,
+			accepted: conversation.accepted,
+			requester_id: conversation.requester_id,
+			accepter_id: conversation.accepter_id,
 		};
 
 		setState(prev => {

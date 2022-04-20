@@ -1,6 +1,6 @@
 import AcceptConversationRequest from "./AcceptConversationRequest";
 import PendingConversationRequest from "./PendingConversationRequest";
-export default function AcceptConversationForm(props) {
+export default function ConversationRequestForm(props) {
 	const { accepted, requester_id, accepter_id, friend_id } = props;
 
 	return (
