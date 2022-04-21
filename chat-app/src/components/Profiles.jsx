@@ -29,7 +29,6 @@ export default function Profiles() {
 
   console.log("state.users:", state.users);
 
-
   const { logged_in_user } = useOutletContext();
 
   // // Save the learning: true languages into array for the current_user --> language id
