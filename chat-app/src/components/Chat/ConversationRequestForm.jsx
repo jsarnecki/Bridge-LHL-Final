@@ -7,7 +7,9 @@ export default function ConversationRequestForm(props) {
 	return (
 		<div className="accept-conversation-form">
 			{friend_id === requester_id && (
-				<AcceptConversationRequest></AcceptConversationRequest>
+				<AcceptConversationRequest
+					conversation_id={conversation_id}
+				></AcceptConversationRequest>
 			)}
 			{friend_id !== requester_id && (
 				<PendingConversationRequest
