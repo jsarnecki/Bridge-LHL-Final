@@ -187,7 +187,7 @@ export default function Chat(props) {
 				conversation => conversation.id === message.conversation_id
 			);
 			conversation.messages = [...conversation.messages, message];
-			return { ...prev, conversations };
+			return { ...prev, conversations: sortConversations(conversations) };
 		});
 	};
 
