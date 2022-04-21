@@ -1,8 +1,8 @@
-import userInformation from "./Profiles/helpers/sample_users";
+import * as React from 'react';
+
 import Profile from "./Profiles/Profile";
 import "./Profiles.scss";
 
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -13,6 +13,9 @@ import { useState } from "react";
 import Example from "./Profiles/ProfilePopup";
 
 import { useOutletContext } from "react-router-dom";
+import userInformation from "./Profiles/helpers/sample_users";
+
+import useApplicationData from '../hooks/useAppData';
 
 export default function Profiles() {
 	const [languageId, setLanguageId] = useState(0);
@@ -20,6 +23,10 @@ export default function Profiles() {
   const handleChange = (event) => {
     setLanguageId(event.target.value);
   };
+
+  const { state } = useApplicationData();
+
+  console.log("state.users:", state.users);
 	
   // State will keep track of which profiles to render, based on user logged in
   // We can use useOuletContext hook to obtain logged in users id
@@ -82,17 +89,15 @@ export default function Profiles() {
       }
     }
 
-    // console.log("languages", offeredLanguages);
     let match = false;
 
     if (languageId === 0) {  
 
-          for (let lang of offeredLanguages) {
-            if (learningLanguagesIds.includes(lang)) {
-              match = true;
-            }
-          }
-
+      for (let lang of offeredLanguages) {
+        if (learningLanguagesIds.includes(lang)) {
+          match = true;
+        }
+      }
     } else {
 
       for (let lang of offeredLanguages) {
@@ -102,7 +107,6 @@ export default function Profiles() {
           match = true;
         }
       }
-
     }
 
 
