@@ -80,30 +80,29 @@ export default function Chat(props) {
 	const handleReceivedConversation = response => {
 		const { conversation, action } = response;
 
+		const friend_id =
+			conversation.requester_id === logged_in_user.id
+				? conversation.accepter_id
+				: conversation.requester_id;
+		const newConversation = {
+			id: conversation.id,
+			friend_id,
+			friend_first_name:
+				friend_id === conversation.accepter_id
+					? conversation.accepter.first_name
+					: conversation.requester.first_name,
+			friend_last_name:
+				friend_id === conversation.accepter_id
+					? conversation.accepter.last_name
+					: conversation.requester.last_name,
+
+			messages: conversation.messages,
+			accepted: conversation.accepted,
+			requester_id: conversation.requester_id,
+			accepter_id: conversation.accepter_id,
+			deleted: conversation.deleted,
+		};
 		if (action === "create") {
-			const friend_id =
-				conversation.requester_id === logged_in_user.id
-					? conversation.accepter_id
-					: conversation.requester_id;
-			const newConversation = {
-				id: conversation.id,
-				friend_id,
-				friend_first_name:
-					friend_id === conversation.accepter_id
-						? conversation.accepter.first_name
-						: conversation.requester.first_name,
-				friend_last_name:
-					friend_id === conversation.accepter_id
-						? conversation.accepter.last_name
-						: conversation.requester.last_name,
-
-				messages: conversation.messages,
-				accepted: conversation.accepted,
-				requester_id: conversation.requester_id,
-				accepter_id: conversation.accepter_id,
-				deleted: conversation.deleted,
-			};
-
 			setState(prev => {
 				return {
 					...prev,
@@ -120,7 +119,7 @@ export default function Chat(props) {
 				const updatedConversations = prev.conversations.map(
 					prevConversation => {
 						if (prevConversation.id === conversation.id) {
-							return conversation;
+							return newConversation;
 						}
 						return prevConversation;
 					}
@@ -132,6 +131,22 @@ export default function Chat(props) {
 						prev.activeConversation === conversation.id
 							? null
 							: prev.activeConversation,
+				};
+			});
+		}
+		if (action === "update") {
+			setState(prev => {
+				const updatedConversations = prev.conversations.map(
+					prevConversation => {
+						if (prevConversation.id === conversation.id) {
+							return newConversation;
+						}
+						return prevConversation;
+					}
+				);
+				return {
+					...prev,
+					conversations: updatedConversations,
 				};
 			});
 		}

@@ -19,9 +19,13 @@ export default function AcceptConversationRequest(props) {
 	const handleAcceptRequest = e => {
 		e.preventDefault();
 		axios
-			.delete(`http://localhost:3000/conversations/${conversation_id}`, {
-				withCredentials: true,
-			})
+			.put(
+				`http://localhost:3000/conversations/${conversation_id}`,
+				{},
+				{
+					withCredentials: true,
+				}
+			)
 
 			.then(response => {
 				console.log(
@@ -33,7 +37,7 @@ export default function AcceptConversationRequest(props) {
 	return (
 		<>
 			<h3>You have a friend request, do you wish to accept?</h3>
-			<button>Accept</button>
+			<button onClick={handleAcceptRequest}>Accept</button>
 			<button onClick={handleDeclineRequest}>Decline</button>
 		</>
 	);
