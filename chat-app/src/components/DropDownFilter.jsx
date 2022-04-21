@@ -20,7 +20,7 @@ export default function DropDownFilter(props) {
   // Using learningLanguages, map thru and add id + name to Menuitem template
 	const dropDownArray = props.learningLanguages.map((language)=>{
 		return (
-			<MenuItem value={language.language_id}>{language.language_name}</MenuItem>
+			<MenuItem key={language.language_id} value={language.language_id}>{language.language_name}</MenuItem>
 		)
 	});
 

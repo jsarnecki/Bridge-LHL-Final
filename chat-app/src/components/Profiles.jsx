@@ -26,8 +26,8 @@ export default function Profiles() {
   };
 
   const { state } = useApplicationData();
-
-  console.log("state.users:", state.users);
+  console.log("+++++++++++++++", state.users);
+  // console.log("state.users:", state.users);
 
   const { logged_in_user } = useOutletContext();
 
@@ -38,11 +38,16 @@ export default function Profiles() {
   // // Render these filteredUsers for this current user
 
   const loggedInId = logged_in_user.id || 1;
+  // alert(loggedInId);
   console.log("loggedInId", loggedInId);
 
-  const targetLanguages = userInformation.find(
+  const targetUser = userInformation.find(
     (u) => loggedInId === u.user.id
-  ).languages;
+  );
+
+  const targetLanguages = targetUser?.languages || [];
+  console.log("----------", targetLanguages);
+
   // convert a list of language objects, into list of language_ids
 
   const learningLanguages = targetLanguages.filter(

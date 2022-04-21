@@ -55,7 +55,8 @@ export default function useApplicationData(initial) {
     axios.get(urlUsers)
     .then((response)=>{
       console.log("Axios response:", response.data);
-      setState(prev => ({...prev, users: response.data}))
+      // setState(prev => ({...prev, users: response.data}))
+      setState({users: response.data})
     })
     .catch(err => console.log("catch error:", err));
   }, []);
