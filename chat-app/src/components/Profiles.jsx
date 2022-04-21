@@ -16,6 +16,7 @@ import { useOutletContext } from "react-router-dom";
 import userInformation from "./Profiles/helpers/sample_users";
 
 import useApplicationData from '../hooks/useAppData';
+import DropDownFilter from './DropDownFilter';
 
 export default function Profiles() {
 	const [languageId, setLanguageId] = useState(0);
@@ -27,11 +28,7 @@ export default function Profiles() {
   const { state } = useApplicationData();
 
   console.log("state.users:", state.users);
-	
-  // State will keep track of which profiles to render, based on user logged in
-  // We can use useOuletContext hook to obtain logged in users id
-  // hardcoding users_languages
-  // Filter toggle button
+
 
   const { logged_in_user } = useOutletContext();
 
@@ -46,44 +43,20 @@ export default function Profiles() {
     (u) => loggedInId === u.user.id
   ).languages;
   // convert a list of language objects, into list of language_ids
+
   const learningLanguages = targetLanguages.filter(
     (language) => language.learning === true
   );
+
   const learningLanguagesIds = learningLanguages.map(
     (language) => language.language_id
   );
 
-  const dropDownValue = function(userLanguageIds) {
-    if (userLanguageIds.length > 1) {
-      return languageId;
-    }
-    return userLanguageIds[0];
-  }
-  const dropDownShow = dropDownValue(learningLanguagesIds);
-
-  // Using learningLanguages, map thru and add id + name to Menuitem template
-	const dropDownArray = learningLanguages.map((languages)=>{
-		return (
-			<MenuItem value={languages.language_id}>{languages.language_name}</MenuItem>
-		)
-	});
-
-  if (dropDownArray.length !== 1) {
-    dropDownArray.unshift(<MenuItem value={0}>All</MenuItem>)
-  }
-
-
   const usersMapped = userInformation.map((information) => {
-    // Drop down which holds learning languages of current user
-    // Default is to load all users
-    // When filtered/choose language: add condition in mapped users to only grab users that are native
-    // ex. All, Japanese, Hindi
-
-
     
-		//offeredLanguages of each userInformation
     let offeredLanguages = [];
     for (const language of information.languages) {
+      // Create array of native languages per mapped user
       if (language.learning === false) {
         offeredLanguages.push(language.language_id);
       }
@@ -91,18 +64,17 @@ export default function Profiles() {
 
     let match = false;
 
-    if (languageId === 0) {  
-
+    if (languageId === 0) {
+      // If langId is 0 search all users
       for (let lang of offeredLanguages) {
         if (learningLanguagesIds.includes(lang)) {
+          // If mapped user is native to currentUser's learning language, add profile
           match = true;
         }
       }
     } else {
-
+      // If any other langId than 0, only filter based on native speakers of that language
       for (let lang of offeredLanguages) {
-        console.log("mapped lang id:", lang);
-        console.log("langaugeId:", languageId);
         if (languageId === lang && learningLanguagesIds.includes(lang)) {
           match = true;
         }
@@ -131,28 +103,12 @@ export default function Profiles() {
   return (
     <main style={{ padding: "1rem 0" }}>
       <h2>Profiles</h2>
-			<Box sx={{ maxWidth: 120 }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Language</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={dropDownShow}
-          label="Language"
-          onChange={handleChange}
-        >
-					{dropDownArray}
-          {/* <MenuItem value={1}>English</MenuItem>
-          <MenuItem value={2}>Korean</MenuItem>
-					<MenuItem value={3}>Japanese</MenuItem>
-          <MenuItem value={4}>Chinese</MenuItem>
-					<MenuItem value={5}>French</MenuItem>
-          <MenuItem value={6}>Spanish</MenuItem>
-					<MenuItem value={7}>German</MenuItem>
-					<MenuItem value={8}>Hindi</MenuItem> */}
-        </Select>
-      </FormControl>
-    </Box>
+		<DropDownFilter 
+      languageId={languageId} 
+      learningLanguages={learningLanguages} 
+      learningLanguagesIds={learningLanguagesIds} 
+      handleChange={handleChange}
+    />
       <ul className="cards">{usersMapped}</ul>
     </main>
   );

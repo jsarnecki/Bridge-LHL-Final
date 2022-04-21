@@ -40,7 +40,8 @@ export default function Profile(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <ProfilePopup 
+        <ProfilePopup
+        key={props.id} 
         id={props.id}
         firstName={props.firstName}
         lastName={props.lastName}
