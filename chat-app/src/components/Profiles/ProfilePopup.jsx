@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 
 export default function ProfilePopup(props) {
+  
   const languages = props.languages.map((lang) => {
     const stars = function (level) {
       let star = "⭐";

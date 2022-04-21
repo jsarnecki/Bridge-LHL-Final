@@ -46,14 +46,35 @@ export default function Profiles() {
     (language) => language.language_id
   );
 
+  const dropDownValue = function(userLanguageIds) {
+    if (userLanguageIds.length > 1) {
+      return languageId;
+    }
+    return userLanguageIds[0];
+  }
+  const dropDownShow = dropDownValue(learningLanguagesIds);
+
+  // Using learningLanguages, map thru and add id + name to Menuitem template
+	const dropDownArray = learningLanguages.map((languages)=>{
+		return (
+			<MenuItem value={languages.language_id}>{languages.language_name}</MenuItem>
+		)
+	});
+
+  if (dropDownArray.length !== 1) {
+    dropDownArray.unshift(<MenuItem value={0}>All</MenuItem>)
+  }
+
+
   const usersMapped = userInformation.map((information) => {
     // Drop down which holds learning languages of current user
     // Default is to load all users
     // When filtered/choose language: add condition in mapped users to only grab users that are native
     // ex. All, Japanese, Hindi
 
-		
 
+    
+		//offeredLanguages of each userInformation
     let offeredLanguages = [];
     for (const language of information.languages) {
       if (language.learning === false) {
@@ -61,17 +82,32 @@ export default function Profiles() {
       }
     }
 
-    console.log("languages", offeredLanguages);
+    // console.log("languages", offeredLanguages);
     let match = false;
 
-    for (let lang of offeredLanguages) {
-      if (learningLanguagesIds.includes(lang)) {
-        match = true;
+    if (languageId === 0) {  
+
+          for (let lang of offeredLanguages) {
+            if (learningLanguagesIds.includes(lang)) {
+              match = true;
+            }
+          }
+
+    } else {
+
+      for (let lang of offeredLanguages) {
+        console.log("mapped lang id:", lang);
+        console.log("langaugeId:", languageId);
+        if (languageId === lang && learningLanguagesIds.includes(lang)) {
+          match = true;
+        }
       }
+
     }
 
+
     console.log("match", match, "languages", offeredLanguages);
-    console.log("learnLangId", learningLanguagesIds);
+    // console.log("learnLangId", learningLanguagesIds);
 
     if (match) {
       return (
@@ -91,25 +127,25 @@ export default function Profiles() {
   return (
     <main style={{ padding: "1rem 0" }}>
       <h2>Profiles</h2>
-			<Box sx={{ minWidth: 120 }}>
+			<Box sx={{ maxWidth: 120 }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Language</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={languageId}
+          value={dropDownShow}
           label="Language"
           onChange={handleChange}
         >
-          <MenuItem value={0}>All</MenuItem>
-          <MenuItem value={1}>English</MenuItem>
+					{dropDownArray}
+          {/* <MenuItem value={1}>English</MenuItem>
           <MenuItem value={2}>Korean</MenuItem>
 					<MenuItem value={3}>Japanese</MenuItem>
           <MenuItem value={4}>Chinese</MenuItem>
 					<MenuItem value={5}>French</MenuItem>
           <MenuItem value={6}>Spanish</MenuItem>
 					<MenuItem value={7}>German</MenuItem>
-					<MenuItem value={8}>Hindi</MenuItem>
+					<MenuItem value={8}>Hindi</MenuItem> */}
         </Select>
       </FormControl>
     </Box>
