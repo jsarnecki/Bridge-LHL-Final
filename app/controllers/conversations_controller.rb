@@ -32,6 +32,10 @@ class ConversationsController < ApplicationController
 					friend_id: friend_id,
 					friend_first_name: friend.first_name,
 					friend_last_name: friend.last_name,
+					accepted: friendship.accepted,
+					deleted: friendship.deleted,
+					requester_id: friendship.requester_id,
+					accepter_id: friendship.accepter_id,
 					messages: messages,
 				}
 			end
@@ -42,7 +46,10 @@ class ConversationsController < ApplicationController
 	end
 
 	def create
-		conversation = Conversation.new(conversation_params)
+		conversation =
+			Conversation.new(
+				{ **conversation_params, accepted: false, deleted: false },
+			)
 		if conversation.save
 			serialized_data =
 				ActiveModelSerializers::Adapter::Json.new(
@@ -52,13 +59,73 @@ class ConversationsController < ApplicationController
 			ActionCable.server.broadcast(
 				# 'conversations_channel',
 				"current_user_#{current_user.id}",
-				serialized_data,
+				{ **serialized_data, action: 'create' },
 			)
 
 			ActionCable.server.broadcast(
 				# Broadcast to user/receiver private channel
 				"current_user_#{params['accepter_id']}",
-				serialized_data,
+				{ **serialized_data, action: 'create' },
+			)
+			head :ok
+		end
+	end
+
+	def destroy
+		conversation = Conversation.find(params[:id])
+		conversation.deleted = true
+
+		if current_user.id != conversation.requester_id &&
+				current_user.id != conversation.accepter_id
+			conversation.deleted = false
+			puts 'unable to delete a conversation you do not own'
+		end
+		if conversation.save
+			serialized_data =
+				ActiveModelSerializers::Adapter::Json.new(
+					ConversationSerializer.new(conversation),
+				).serializable_hash
+
+			ActionCable.server.broadcast(
+				# Broadcast to accepter private channel
+				"current_user_#{conversation.accepter_id}",
+				{ **serialized_data, action: 'delete' },
+			)
+
+			ActionCable.server.broadcast(
+				# Broadcast to requester private channel
+				"current_user_#{conversation.requester_id}",
+				{ **serialized_data, action: 'delete' },
+			)
+			head :ok
+		end
+	end
+
+	def update
+		conversation = Conversation.find(params[:id])
+		conversation.accepted = true
+
+		if current_user.id != conversation.requester_id &&
+				current_user.id != conversation.accepter_id
+			conversation.accepted = false
+			puts 'unable to update a conversation you do not own'
+		end
+		if conversation.save
+			serialized_data =
+				ActiveModelSerializers::Adapter::Json.new(
+					ConversationSerializer.new(conversation),
+				).serializable_hash
+
+			ActionCable.server.broadcast(
+				# Broadcast to accepter private channel
+				"current_user_#{conversation.accepter_id}",
+				{ **serialized_data, action: 'update' },
+			)
+
+			ActionCable.server.broadcast(
+				# Broadcast to requester private channel
+				"current_user_#{conversation.requester_id}",
+				{ **serialized_data, action: 'update' },
 			)
 			head :ok
 		end

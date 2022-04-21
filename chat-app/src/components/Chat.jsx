@@ -32,7 +32,16 @@ export default function Chat(props) {
 			.then(res => res.json())
 			.then(conversations =>
 				setState(prev => {
-					return { ...prev, conversations };
+					const filteredConversations = conversations.filter(conversation => {
+						return !conversation.deleted;
+					});
+					return {
+						...prev,
+						conversations,
+						activeConversation: filteredConversations[0]
+							? filteredConversations[0].id
+							: null,
+					};
 				})
 			)
 			.then(() => {
@@ -69,7 +78,8 @@ export default function Chat(props) {
 	};
 
 	const handleReceivedConversation = response => {
-		const { conversation } = response;
+		const { conversation, action } = response;
+
 		const friend_id =
 			conversation.requester_id === logged_in_user.id
 				? conversation.accepter_id
@@ -87,14 +97,59 @@ export default function Chat(props) {
 					: conversation.requester.last_name,
 
 			messages: conversation.messages,
+			accepted: conversation.accepted,
+			requester_id: conversation.requester_id,
+			accepter_id: conversation.accepter_id,
+			deleted: conversation.deleted,
 		};
-
-		setState(prev => {
-			return {
-				...prev,
-				conversations: [...prev.conversations, newConversation],
-			};
-		});
+		if (action === "create") {
+			setState(prev => {
+				return {
+					...prev,
+					conversations: [...prev.conversations, newConversation],
+					activeConversation:
+						prev.activeConversation === null
+							? newConversation.id
+							: prev.activeConversation,
+				};
+			});
+		}
+		if (action === "delete") {
+			setState(prev => {
+				const updatedConversations = prev.conversations.map(
+					prevConversation => {
+						if (prevConversation.id === conversation.id) {
+							return newConversation;
+						}
+						return prevConversation;
+					}
+				);
+				return {
+					...prev,
+					conversations: updatedConversations,
+					activeConversation:
+						prev.activeConversation === conversation.id
+							? null
+							: prev.activeConversation,
+				};
+			});
+		}
+		if (action === "update") {
+			setState(prev => {
+				const updatedConversations = prev.conversations.map(
+					prevConversation => {
+						if (prevConversation.id === conversation.id) {
+							return newConversation;
+						}
+						return prevConversation;
+					}
+				);
+				return {
+					...prev,
+					conversations: updatedConversations,
+				};
+			});
+		}
 	};
 
 	const handleReceivedMessage = response => {
@@ -111,6 +166,10 @@ export default function Chat(props) {
 	};
 
 	const { conversations, activeConversation } = state;
+
+	const filteredConversations = conversations.filter(conversation => {
+		return !conversation.deleted;
+	});
 
 	return (
 		<div className="chat">
@@ -132,7 +191,7 @@ export default function Chat(props) {
 			) : null} */}
 			<div className="chat-display">
 				<ConversationsArea
-					conversations={conversations}
+					conversations={filteredConversations}
 					handleClick={handleClick}
 					logged_in_user={logged_in_user}
 					handleReceivedMessage={handleReceivedMessage}
@@ -141,7 +200,7 @@ export default function Chat(props) {
 				{activeConversation ? (
 					<MessagesArea
 						conversation={findActiveConversation(
-							conversations,
+							filteredConversations,
 							activeConversation
 						)}
 						logged_in_user={logged_in_user}
