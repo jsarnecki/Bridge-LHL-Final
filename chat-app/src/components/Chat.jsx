@@ -18,6 +18,30 @@ const findActiveConversation = (conversations, activeConversation) => {
 	);
 };
 
+const sortConversations = conversations => {
+	const sortedMessagesConversations = conversations.map(conversation => {
+		const sortedMessagesLatestFirst = conversation.messages.sort(
+			(a, b) => new Date(b.created_at) - new Date(a.created_at)
+		);
+		return { ...conversation, messages: sortedMessagesLatestFirst };
+	});
+	const sortedConversations = sortedMessagesConversations.sort((a, b) => {
+		if (!b.messages.length && !a.messages.length) {
+			return 0;
+		}
+		if (!b.messages.length) {
+			return -1;
+		}
+		if (!a.messages.length) {
+			return 1;
+		}
+		return (
+			new Date(b.messages[0].created_at) - new Date(a.messages[0].created_at)
+		);
+	});
+	return sortedConversations;
+};
+
 export default function Chat(props) {
 	const { logged_in_user, isLoggedIn, cableApp } = useOutletContext();
 
@@ -30,20 +54,25 @@ export default function Chat(props) {
 	useEffect(() => {
 		fetch(`${API_ROOT}/conversations`, { credentials: "include" })
 			.then(res => res.json())
-			.then(conversations =>
+			.then(conversations => {
+				const sortedConversations = sortConversations(conversations);
+
 				setState(prev => {
-					const filteredConversations = conversations.filter(conversation => {
-						return !conversation.deleted;
-					});
+					const filteredConversations = sortedConversations.filter(
+						conversation => {
+							return !conversation.deleted;
+						}
+					);
+
 					return {
 						...prev,
-						conversations,
+						conversations: sortedConversations,
 						activeConversation: filteredConversations[0]
 							? filteredConversations[0].id
 							: null,
 					};
-				})
-			)
+				});
+			})
 			.then(() => {
 				if (isLoggedIn) {
 					cableApp.cable.subscriptions.create(
@@ -170,6 +199,7 @@ export default function Chat(props) {
 	const filteredConversations = conversations.filter(conversation => {
 		return !conversation.deleted;
 	});
+	console.log("final filtered", filteredConversations);
 
 	return (
 		<div className="chat">
