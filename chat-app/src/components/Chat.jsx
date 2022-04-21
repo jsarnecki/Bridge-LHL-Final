@@ -67,9 +67,9 @@ export default function Chat(props) {
 					return {
 						...prev,
 						conversations: sortedConversations,
-						activeConversation: filteredConversations[0]
-							? filteredConversations[0].id
-							: null,
+						// activeConversation: filteredConversations[0]
+						// 	? filteredConversations[0].id
+						// 	: null,
 					};
 				});
 			})
@@ -136,10 +136,10 @@ export default function Chat(props) {
 				return {
 					...prev,
 					conversations: [newConversation, ...prev.conversations],
-					activeConversation:
-						prev.activeConversation === null
-							? newConversation.id
-							: prev.activeConversation,
+					// activeConversation:
+					// 	prev.activeConversation === null
+					// 		? newConversation.id
+					// 		: prev.activeConversation,
 				};
 			});
 		}
