@@ -51,7 +51,8 @@ export default function ConversationsListItem(props) {
 				(lastMessage.sender_id === conversation.friend_id
 					? conversation.friend_first_name + ":"
 					: "You:")}
-			{lastMessage && lastMessage.text}
+			{lastMessage &&
+				lastMessage.text.slice(0, Math.min(lastMessage.text.length, 20))}
 			{/* <ActionCableConsumer
 							key={conversation.id}
 							channel={{
