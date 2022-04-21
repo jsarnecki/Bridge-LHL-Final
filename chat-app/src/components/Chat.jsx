@@ -135,7 +135,7 @@ export default function Chat(props) {
 				? conversation.accepter_id
 				: conversation.requester_id;
 		const newConversation = {
-			id: conversation.id,
+			...conversation,
 			friend_id,
 			friend_first_name:
 				friend_id === conversation.accepter_id
@@ -145,23 +145,16 @@ export default function Chat(props) {
 				friend_id === conversation.accepter_id
 					? conversation.accepter.last_name
 					: conversation.requester.last_name,
-
-			messages: conversation.messages,
-			accepted: conversation.accepted,
-			requester_id: conversation.requester_id,
-			accepter_id: conversation.accepter_id,
-			deleted: conversation.deleted,
-			seen: conversation.seen,
 		};
 		if (action === "create") {
 			setState(prev => {
 				return {
 					...prev,
 					conversations: [newConversation, ...prev.conversations],
-					// activeConversation:
-					// 	prev.activeConversation === null
-					// 		? newConversation.id
-					// 		: prev.activeConversation,
+					activeConversation:
+						newConversation.requester_id !== friend_id
+							? newConversation.id
+							: prev.activeConversation,
 				};
 			});
 		}

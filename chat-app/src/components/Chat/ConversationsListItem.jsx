@@ -30,13 +30,18 @@ export default function ConversationsListItem(props) {
 			}
 		);
 	}, []);
+	const unseen =
+		!conversation.accepted &&
+		conversation.friend_id !== conversation.requester_id
+			? false
+			: !conversation.seen;
 
 	return (
 		<li
 			key={conversation.id}
 			onClick={() => handleClick(conversation.id)}
 			className={classNames("conversations-list-item", {
-				seen: !conversation.seen,
+				unseen,
 			})}
 		>
 			{conversation.friend_first_name} {conversation.friend_last_name} id:{" "}
