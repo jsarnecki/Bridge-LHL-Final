@@ -25,7 +25,7 @@ end
 		password: '123456',
 		bio:
 			'Hi, I am Yuki, I am half Japanese and half Indian. My other first name is Sathvik!',
-		image: open_asset('yuki.png'),
+		image: '/seed_assets/yuki.png',
 	)
 @user2 =
 	User.create!(
@@ -34,7 +34,7 @@ end
 		email: 'admin2@admin.com',
 		password: '123456',
 		bio: 'Hi, I am Josh! I like snowboarding and learning Korean!',
-		image: open_asset('josh.png'),
+		image: '/seed_assets/josh.png',
 	)
 @user3 =
 	User.create!(
@@ -43,7 +43,7 @@ end
 		email: 'admin3@admin.com',
 		password: '123456',
 		bio: 'Hi, I am Tony and I have lived on 3 continents!',
-		image: open_asset('tony.png'),
+		image: '/seed_assets/tony.png',
 	)
 @user4 =
 	User.create!(
@@ -52,7 +52,7 @@ end
 		email: 'admin4@admin.com',
 		password: '123456',
 		bio: 'Hi, I am Andy and I am a teaching wizard',
-		image: open_asset('andy.png'),
+		image: '/seed_assets/andy.png',
 	)
 @user5 =
 	User.create!(
@@ -61,7 +61,7 @@ end
 		email: 'admin5@admin.com',
 		password: '123456',
 		bio: 'Hi, I am Christian and I like physics',
-		image: open_asset('christian.png'),
+		image: '/seed_assets/christian.png',
 	)
 @user6 =
 	User.create!(
@@ -70,7 +70,7 @@ end
 		email: 'admin6@admin.com',
 		password: '123456',
 		bio: 'Hi, I am Gary and I love Betty White',
-		image: open_asset('gary.png'),
+		image: '/seed_assets/gary.png',
 	)
 @user7 =
 	User.create!(
@@ -79,7 +79,7 @@ end
 		email: 'admin7@admin.com',
 		password: '123456',
 		bio: 'Hi, I am Kelsi and I am a bootcamper!',
-		image: open_asset('kelsi.png'),
+		image: '/seed_assets/kelsi.png',
 	)
 @user8 =
 	User.create!(
@@ -88,7 +88,7 @@ end
 		email: 'admin8@admin.com',
 		password: '123456',
 		bio: 'Hi, I am Pablo and I am a bootcamper!',
-		image: open_asset('pablo.png'),
+		image: '/seed_assets/pablo.png',
 	)
 @user9 =
 	User.create!(
@@ -97,7 +97,7 @@ end
 		email: 'admin9@admin.com',
 		password: '123456',
 		bio: 'Hi, I am Reid and I am a bootcamper!',
-		image: open_asset('reid.png'),
+		image: '/seed_assets/reid.png',
 	)
 @user10 =
 	User.create!(
@@ -106,7 +106,7 @@ end
 		email: 'admin10@admin.com',
 		password: '123456',
 		bio: 'Hi, I am Ryan and I am a bootcamper!',
-		image: open_asset('ryan.png'),
+		image: '/seed_assets/ryan.png',
 	)
 # @conversation1 =
 # 	Conversation.create!(

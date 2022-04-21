@@ -13,7 +13,7 @@ import { useState } from "react";
 import Example from "./Profiles/ProfilePopup";
 
 import { useOutletContext } from "react-router-dom";
-import userInformation from "./Profiles/helpers/sample_users";
+// import userInformation from "./Profiles/helpers/sample_users";
 
 import useApplicationData from '../hooks/useAppData';
 import DropDownFilter from './DropDownFilter';
@@ -30,6 +30,8 @@ export default function Profiles() {
   console.log("state.users:", state.users);
 
   const { logged_in_user } = useOutletContext();
+
+  const userInformation = state.users;
 
   // // Save the learning: true languages into array for the current_user --> language id
   // // Go thru usersMapped, filtering the "learning: false" matching current_users true learning languages
@@ -74,11 +76,13 @@ export default function Profiles() {
     } else {
       // If any other langId than 0, only filter based on native speakers of that language
       for (let lang of offeredLanguages) {
-        if (languageId === lang && learningLanguagesIds.includes(lang)) {
+        if (languageId === lang) {
           match = true;
         }
       }
     }
+
+    //&& learningLanguagesIds.includes(lang)
 
 
     console.log("match", match, "languages", offeredLanguages);
