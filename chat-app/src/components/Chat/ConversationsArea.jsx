@@ -1,5 +1,6 @@
 import ConversationsList from "./ConversationsList";
 import NewConversationForm from "../NewConversationForm";
+import "./ConversationsArea.scss";
 export default function ConversationsArea(props) {
 	const {
 		conversations,

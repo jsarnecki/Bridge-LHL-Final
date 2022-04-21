@@ -25,8 +25,10 @@ const MessagesArea = ({
 	return (
 		<div className="messagesArea">
 			<div className="message-area-banner">
-				Friend id: {friend_id} : {friend_first_name + " " + friend_last_name}{" "}
-				Conversation id: {id}
+				{/* Friend id: {friend_id} :  */}
+				{friend_first_name + " " + friend_last_name}
+				{/* {" "}
+				Conversation id: {id} */}
 			</div>
 			{!accepted && (
 				<ConversationRequestForm

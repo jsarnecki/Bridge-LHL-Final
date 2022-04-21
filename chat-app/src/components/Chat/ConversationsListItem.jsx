@@ -44,8 +44,9 @@ export default function ConversationsListItem(props) {
 				unseen,
 			})}
 		>
-			{conversation.friend_first_name} {conversation.friend_last_name} id:{" "}
-			{conversation.friend_id} Conversation id: {conversation.id}
+			{conversation.friend_first_name} {conversation.friend_last_name}
+			{/* id:{" "}
+			{conversation.friend_id} Conversation id: {conversation.id} */}
 			<br></br>
 			{lastMessage &&
 				(lastMessage.sender_id === conversation.friend_id
