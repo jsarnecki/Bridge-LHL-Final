@@ -211,12 +211,27 @@ export default function Chat(props) {
 	const handleReceivedMessage = response => {
 		const { message } = response;
 
+		// const { message, action } = response;
+		// if (action === "seen") {
+		// 	return setState(prev => {
+		// 		const conversations = [...prev.conversations];
+		// 		const conversation = conversations.find(
+		// 			conversation => conversation.id === message.conversation_id
+		// 		);
+		// 		conversation.seen = true;
+		// 		return { ...prev, conversations };
+		// 	});
+		// }
 		setState(prev => {
 			const conversations = [...prev.conversations];
 			const conversation = conversations.find(
 				conversation => conversation.id === message.conversation_id
 			);
 			conversation.messages = [...conversation.messages, message];
+			if (prev.activeConversation !== conversation.id) {
+				conversation.seen = false;
+			}
+
 			return { ...prev, conversations: sortConversations(conversations) };
 		});
 	};

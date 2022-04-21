@@ -122,18 +122,18 @@ class ConversationsController < ApplicationController
 			if params[:action_type] == 'seen'
 				conversation.messages.each do |message|
 					message.seen = true
-					if message.save
-						message_serialized_data =
-							ActiveModelSerializers::Adapter::Json.new(
-								MessageSerializer.new(message),
-							).serializable_hash
-						MessagesChannel.broadcast_to conversation,
-						                             {
-								**message_serialized_data,
-								action: 'seen',
-						                             }
-						head :ok
-					end
+					message.save!
+					# if message.save
+					# 	message_serialized_data =
+					# 		ActiveModelSerializers::Adapter::Json.new(
+					# 			MessageSerializer.new(message),
+					# 		).serializable_hash
+					# 	MessagesChannel.broadcast_to conversation,
+					# 	                             {
+					# 			**message_serialized_data,
+					# 			action: 'seen',
+					# 	                             }
+					# end
 				end
 			end
 			serialized_data =
