@@ -87,14 +87,14 @@ class ConversationsController < ApplicationController
 				).serializable_hash
 
 			ActionCable.server.broadcast(
-				# Broadcast to user private channel
-				"current_user_#{current_user.id}",
+				# Broadcast to accepter private channel
+				"current_user_#{conversation.accepter_id}",
 				{ **serialized_data, action: 'delete' },
 			)
 
 			ActionCable.server.broadcast(
-				# Broadcast to receiver private channel
-				"current_user_#{params['accepter_id']}",
+				# Broadcast to requester private channel
+				"current_user_#{conversation.requester_id}",
 				{ **serialized_data, action: 'delete' },
 			)
 			head :ok
