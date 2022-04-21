@@ -101,9 +101,22 @@ export default function Chat(props) {
 	}, [logged_in_user]);
 
 	const handleClick = id => {
+		//sets state now instead of waiting for axios call to resolve to speed up user display
 		setState(prev => {
 			return { ...prev, activeConversation: id };
 		});
+		//if logged in user is the requester, then click should not send an axios request as we want the
+		//user with pending request to not have conversation unbolded.
+		const conversation = [...conversations].find(
+			conversation => conversation.id === id
+		);
+		if (
+			!conversation.accepted &&
+			logged_in_user.id === conversation.requester_id
+		) {
+			return;
+		}
+		//axios request to the server telling it that the latest message for the conversation has now been seen
 		axios
 			.put(
 				`http://localhost:3000/conversations/${id}`,
