@@ -6,6 +6,8 @@ class Conversation < ApplicationRecord
 	validates_uniqueness_of :requester, scope: [:accepter]
 	validate :users_are_not_already_friends, on: :create
 
+	validate :cannot_add_self, on: :create
+
 	private
 
 	def users_are_not_already_friends
@@ -15,5 +17,9 @@ class Conversation < ApplicationRecord
 					.exists?
 			self.errors.add(:requester_id, 'Already friends!')
 		end
+	end
+
+	def cannot_add_self
+		errors.add(:requester_id, "can't add self!") if accepter_id == requester_id
 	end
 end
