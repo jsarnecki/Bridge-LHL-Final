@@ -74,6 +74,10 @@ class ConversationsController < ApplicationController
 	def destroy
 		conversation = Conversation.find(params[:id])
 		conversation.deleted = true
+		if current_user.id != conversation.requester_id &&
+				current_user.id != conversation.accepter_id
+			conversation.deleted = false
+		end
 		if conversation.save
 			serialized_data =
 				ActiveModelSerializers::Adapter::Json.new(
