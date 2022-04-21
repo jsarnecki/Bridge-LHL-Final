@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 	resources :rooms, only: %i[index create]
-	resources :conversations, only: %i[index create]
+	resources :conversations, only: %i[index create destroy]
 	resources :messages, only: [:create]
 
 	post 'sign_up', to: 'users#create'

@@ -67,6 +67,8 @@ class ConversationsController < ApplicationController
 		end
 	end
 
+	def destroy; end
+
 	private
 
 	def conversation_params
