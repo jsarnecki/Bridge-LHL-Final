@@ -25,13 +25,12 @@ export default function Profiles() {
     setLanguageId(event.target.value);
   };
 
-  const { state } = useApplicationData();
-  console.log("+++++++++++++++", state.users);
-  // console.log("state.users:", state.users);
+  const { users } = useApplicationData();
+
 
   const { logged_in_user } = useOutletContext();
 
-  const userInformation = state.users;
+  const userInformation = users.users;
 
   // // Save the learning: true languages into array for the current_user --> language id
   // // Go thru usersMapped, filtering the "learning: false" matching current_users true learning languages
@@ -46,7 +45,6 @@ export default function Profiles() {
   );
 
   const targetLanguages = targetUser?.languages || [];
-  console.log("----------", targetLanguages);
 
   // convert a list of language objects, into list of language_ids
 
@@ -90,7 +88,7 @@ export default function Profiles() {
     //&& learningLanguagesIds.includes(lang)
 
 
-    console.log("match", match, "languages", offeredLanguages);
+    // console.log("match", match, "languages", offeredLanguages);
     // console.log("learnLangId", learningLanguagesIds);
 
     if (match) {

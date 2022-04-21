@@ -16,13 +16,14 @@ export default function Login(props) {
 				"http://localhost:3000/login",
 				{
 					user: {
-						email: "admin@admin.com",
+						email: "admin1@admin.com",
 						password: "123456",
 					},
 				},
 				{ withCredentials: true }
 			)
 			.then(response => {
+				console.log("response", response);
 				if (response.data.logged_in) {
 					props.handleLogin(response.data);
 					// alert("logged in");

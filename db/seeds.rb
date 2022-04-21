@@ -21,7 +21,7 @@ end
 	User.create!(
 		first_name: 'Yuki',
 		last_name: 'Fujiwara',
-		email: 'admin@admin.com',
+		email: 'admin1@admin.com',
 		password: '123456',
 		bio:
 			'Hi, I am Yuki, I am half Japanese and half Indian. My other first name is Sathvik!',

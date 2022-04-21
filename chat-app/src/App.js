@@ -10,7 +10,8 @@ import Login2 from "./components/Login2";
 import axios from "axios";
 import Login3 from "./components/Login3";
 
-import userInformation from "./components/Profiles/helpers/sample_users";
+import useApplicationData from './hooks/useAppData';
+// import userInformation from "./components/Profiles/helpers/sample_users";
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -25,8 +26,10 @@ function App(props) {
 		user: {id: 1}, // Figure this out later
 	});
 
-	
-	
+	const { users } = useApplicationData();
+
+	const userInformation = users.users;
+
 	
 	const handleLogin = data => {
 		setState(prev => {
@@ -37,7 +40,7 @@ function App(props) {
 			};
 		});
 	};
-
+	
 	const handleLogout = data => {
 		setState(prev => {
 			return {
@@ -61,31 +64,48 @@ function App(props) {
 				}
 			})
 			.catch(error => console.log("api errors:", error));
-	};
+		};
+		
+		useEffect(() => {
+			loginStatus();
+		}, []);
+		
+		const handleChange = event => {
+			axios
+				.post(
+					"http://localhost:3000/login",
+					{
+						user: {
+							email: `admin${event.target.value}@admin.com`,
+							password: "123456",
+						},
+					},
+					{ withCredentials: true }
+				)
+				.then(response => {
+					console.log("response", response);
+					if (response.data.logged_in) {
+						handleLogin(response.data);
+						window.location.reload(false);
+					} else {
+						alert("error logging in");
+					}
+				})
+				.catch(error => console.log("api errors:", error));
+		};
 
-	useEffect(() => {
-		loginStatus();
-	}, []);
 
-	console.log("state.user.id:", state.user.id);
+		const dropDownArray = userInformation.map((information)=>{
+			return <MenuItem key={information.user.id} value={information.user.id}>{information.user.first_name}</MenuItem>
+	});
+
 
 	// map thru userInfo to create dropDownArr
 	// dropDownArr = all the users <MenuItems>
-
-	const dropDownArray = userInformation.map((information)=>{
-		return <MenuItem key={information.user.id} value={information.user.id}>{information.user.first_name}</MenuItem>
-	});
 	// bring in state - setState on handleChange
 	// value === current loggedin user
 	// (Stretch) add imgs next to names in list
 	//
-
-	// const handleChange = (event) => {
-  //   setState({
-	// 		...prev,
-	// 		user: {id: event.target.value}
-	// 	});
-  // };
 
 
 	return (
@@ -107,7 +127,7 @@ function App(props) {
 							id="demo-simple-select"
 							value={state.user.id}
 							label="Language"
-							// onChange={handleChange}
+							onChange={handleChange}
 						>
 							{dropDownArray}
 						</Select>

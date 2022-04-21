@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function useApplicationData(initial) {
   //Will we need this state? Maybe later with stretch
-  const [state, setState] = useState({
+  const [users, setUsers] = useState({
     users: [{
       user: {
         id: 1,
@@ -56,11 +56,11 @@ export default function useApplicationData(initial) {
     .then((response)=>{
       console.log("Axios response:", response.data);
       // setState(prev => ({...prev, users: response.data}))
-      setState({users: response.data})
+      setUsers({users: response.data})
     })
     .catch(err => console.log("catch error:", err));
   }, []);
 
   
-  return { state }
+  return { users }
 }

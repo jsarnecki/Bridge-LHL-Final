@@ -25,7 +25,7 @@ export default function DropDownFilter(props) {
 	});
 
   if (dropDownArray.length !== 1) {
-    dropDownArray.unshift(<MenuItem value={0}>All</MenuItem>)
+    dropDownArray.unshift(<MenuItem key={0} value={0}>All</MenuItem>)
   }
 
 
