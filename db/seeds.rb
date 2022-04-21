@@ -273,6 +273,7 @@ UsersLanguage.create!(
 		title: 'second_friends',
 		accepted: false,
 		deleted: false,
+		seen: false,
 	)
 
 @conversation3 =
@@ -282,6 +283,7 @@ UsersLanguage.create!(
 		title: 'last_friends',
 		deleted: false,
 		accepted: true,
+		seen: false,
 	)
 
 # @conversation1.messages.create!(

@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import classNames from "classnames";
+import "./ConversationsListItem.scss";
 
 export default function ConversationsListItem(props) {
 	const {
@@ -30,7 +32,13 @@ export default function ConversationsListItem(props) {
 	}, []);
 
 	return (
-		<li key={conversation.id} onClick={() => handleClick(conversation.id)}>
+		<li
+			key={conversation.id}
+			onClick={() => handleClick(conversation.id)}
+			className={classNames("conversations-list-item", {
+				seen: !conversation.seen,
+			})}
+		>
 			{conversation.friend_first_name} {conversation.friend_last_name} id:{" "}
 			{conversation.friend_id}
 			<br></br>

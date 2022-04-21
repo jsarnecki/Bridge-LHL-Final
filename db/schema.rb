@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_19_025515) do
     t.integer "accepter_id"
     t.boolean "accepted"
     t.boolean "deleted"
+    t.boolean "seen"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_19_025515) do
     t.integer "conversation_id", null: false
     t.integer "sender_id"
     t.integer "receiver_id"
+    t.boolean "seen"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"

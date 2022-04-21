@@ -101,9 +101,22 @@ export default function Chat(props) {
 	}, [logged_in_user]);
 
 	const handleClick = id => {
-		setState(prev => {
-			return { ...prev, activeConversation: id };
-		});
+		axios
+			.put(
+				`http://localhost:3000/conversations/${id}`,
+				{ action_type: "seen" },
+				{
+					withCredentials: true,
+				}
+			)
+
+			.then(response => {
+				console.log(`conversation id ${id} was successfully seen`);
+				setState(prev => {
+					return { ...prev, activeConversation: id };
+				});
+			})
+			.catch(error => console.log("api errors:", error));
 	};
 
 	const handleReceivedConversation = response => {
@@ -130,6 +143,7 @@ export default function Chat(props) {
 			requester_id: conversation.requester_id,
 			accepter_id: conversation.accepter_id,
 			deleted: conversation.deleted,
+			seen: conversation.seen,
 		};
 		if (action === "create") {
 			setState(prev => {
@@ -163,7 +177,7 @@ export default function Chat(props) {
 				};
 			});
 		}
-		if (action === "update") {
+		if (action === "accept") {
 			setState(prev => {
 				const nonUpdatedConversations = prev.conversations.filter(
 					prevConversation => {
@@ -173,6 +187,22 @@ export default function Chat(props) {
 				return {
 					...prev,
 					conversations: [newConversation, ...nonUpdatedConversations],
+				};
+			});
+		}
+		if (action === "seen") {
+			setState(prev => {
+				const updatedConversations = prev.conversations.map(
+					prevConversation => {
+						if (prevConversation.id === conversation.id) {
+							return newConversation;
+						}
+						return prevConversation;
+					}
+				);
+				return {
+					...prev,
+					conversations: updatedConversations,
 				};
 			});
 		}
