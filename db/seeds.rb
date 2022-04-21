@@ -183,7 +183,7 @@ UsersLanguage.create!(
 )
 UsersLanguage.create!(
 	language_id: @language4.id,
-	learning: false,
+	learning: true,
 	user_id: @user4.id,
 	skill_level: 2,
 )
@@ -196,7 +196,7 @@ UsersLanguage.create!(
 )
 UsersLanguage.create!(
 	language_id: @language3.id,
-	learning: false,
+	learning: true,
 	user_id: @user5.id,
 	skill_level: 3,
 )
@@ -209,7 +209,7 @@ UsersLanguage.create!(
 )
 UsersLanguage.create!(
 	language_id: @language1.id,
-	learning: false,
+	learning: true,
 	user_id: @user6.id,
 	skill_level: 1,
 )
@@ -222,7 +222,7 @@ UsersLanguage.create!(
 )
 UsersLanguage.create!(
 	language_id: @language4.id,
-	learning: false,
+	learning: true,
 	user_id: @user7.id,
 	skill_level: 2,
 )
@@ -235,7 +235,7 @@ UsersLanguage.create!(
 )
 UsersLanguage.create!(
 	language_id: @language1.id,
-	learning: false,
+	learning: true,
 	user_id: @user8.id,
 	skill_level: 1,
 )
@@ -248,7 +248,7 @@ UsersLanguage.create!(
 )
 UsersLanguage.create!(
 	language_id: @language8.id,
-	learning: false,
+	learning: true,
 	user_id: @user9.id,
 	skill_level: 3,
 )
@@ -261,7 +261,7 @@ UsersLanguage.create!(
 )
 UsersLanguage.create!(
 	language_id: @language7.id,
-	learning: false,
+	learning: true,
 	user_id: @user10.id,
 	skill_level: 4,
 )
