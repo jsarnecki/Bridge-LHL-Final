@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.drop-down-main {
+  max-height: 2em; /* Not working - make shorter*/
+}

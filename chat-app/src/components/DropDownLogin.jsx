@@ -78,13 +78,20 @@ export default function DropDownLogin(props) {
 
 
 		const dropDownArray = props.userInformation.map((information)=>{
-			return <MenuItem key={information.user.id} value={information.user.id}>{information.user.first_name}</MenuItem>
+			return <MenuItem key={information.user.id} value={information.user.id}>
+        <img src={information.user.image} style={
+          {"max-height" : "1.5em", "border-radius" : "35%", "margin" : "-5px, 10px"}
+          }
+        />
+        {information.user.first_name}
+
+        </MenuItem>
 	});
 
 
 
   return (
-    <Box sx={{ maxWidth: 170 }}>
+    <Box sx={{ maxWidth: 170, height: 45 }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Logged In User</InputLabel>
         <Select

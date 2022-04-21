@@ -10,6 +10,11 @@ import Login2 from "./components/Login2";
 import axios from "axios";
 import Login3 from "./components/Login3";
 import DropDownLogin from "./components/DropDownLogin";
+import ProfilePopup from "./components/Profiles/ProfilePopup";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+
+
 
 import useApplicationData from './hooks/useAppData';
 // import userInformation from "./components/Profiles/helpers/sample_users";
@@ -23,31 +28,49 @@ function App(props) {
 		user: {id: 1}, // Figure this out later
 	});
 
+	const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
 	const { users } = useApplicationData();
 	const userInformation = users.users;
 
+	const targetUser = userInformation.find(
+    (u) => state.user.id === u.user.id
+  ); // This is used in Profiles, create helper to make DRY
+  const targetLanguages = targetUser?.languages || [];
+	console.log("targetLanguages, ", targetLanguages)
+
+
 	
 
-
-	// map thru userInfo to create dropDownArr
-	// dropDownArr = all the users <MenuItems>
-	// bring in state - setState on handleChange
-	// value === current loggedin user
-	// (Stretch) add imgs next to names in list
-	//
-
-
 	return (
-		<div className="App">
-			<nav>
-				<Link to="/profiles">Profiles</Link>
-				<DropDownLogin state={state} setState={setState} userInformation={userInformation} />
-				<Link to="/chat">Chat</Link>
-				{/* {/* <Login handleLogin={handleLogin} />
-				<Login2 handleLogin={handleLogin} />
-				<Login3 handleLogin={handleLogin} /> */} 
+		<div>
+			<nav className="nav"> 
+				<Button variant="contained" href="/profiles">Profiles</Button>
+				<Button
+          variant="contained"
+          onClick={handleOpen}
+        >Current User</Button>
+				<Button variant="contained" href="/chat">Chat</Button>
+				<DropDownLogin className="drop-down-main" state={state} setState={setState} userInformation={userInformation} />
 
-
+				<Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <ProfilePopup
+        key={state.user.id} 
+        id={state.user.id}
+        firstName={state.user.firstName}
+        lastName={state.user.lastName}
+        image={state.user.image}
+        bio={state.user.bio}
+        languages={targetLanguages}
+        />
+      </Modal>
 
 
 
