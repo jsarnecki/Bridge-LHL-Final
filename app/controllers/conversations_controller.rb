@@ -33,6 +33,7 @@ class ConversationsController < ApplicationController
 					friend_first_name: friend.first_name,
 					friend_last_name: friend.last_name,
 					accepted: friendship.accepted,
+					deleted: friendship.deleted,
 					requester_id: friendship.requester_id,
 					accepter_id: friendship.accepter_id,
 					messages: messages,
@@ -45,7 +46,10 @@ class ConversationsController < ApplicationController
 	end
 
 	def create
-		conversation = Conversation.new({ **conversation_params, accepted: false })
+		conversation =
+			Conversation.new(
+				{ **conversation_params, accepted: false, deleted: false },
+			)
 		if conversation.save
 			serialized_data =
 				ActiveModelSerializers::Adapter::Json.new(

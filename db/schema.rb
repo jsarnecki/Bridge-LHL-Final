@@ -16,6 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_19_025515) do
     t.integer "requester_id"
     t.integer "accepter_id"
     t.boolean "accepted"
+    t.boolean "deleted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
