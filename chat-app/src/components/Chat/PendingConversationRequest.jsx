@@ -1,26 +1,26 @@
 import axios from "axios";
+import { HEADERS } from "../../constants";
 
-export default function PendingConversationRequest() {
-	const handleCancelRequest = () => {
+export default function PendingConversationRequest(props) {
+	const { conversation_id } = props;
+	const handleCancelRequest = e => {
+		e.preventDefault();
 		axios
 			.delete(
-				"http://localhost:3000/login",
-				{
-					user: {
-						email: "admin@admin.com",
-						password: "123456",
-					},
-				},
+				`http://localhost:3000/conversations/${conversation_id}`,
+
 				{ withCredentials: true }
 			)
+			// fetch(`http://localhost:3000/conversations/${conversation_id}`, {
+			// 	method: "DELETE",
+			// 	headers: HEADERS,
+
+			// 	credentials: "include",
+			// })
 			.then(response => {
-				if (response.data.logged_in) {
-					props.handleLogin(response.data);
-					// alert("logged in");
-					window.location.reload(false);
-				} else {
-					alert("error logging in");
-				}
+				console.log(
+					`conversation id ${conversation_id} was successfully deleted`
+				);
 			})
 			.catch(error => console.log("api errors:", error));
 	};
@@ -29,7 +29,7 @@ export default function PendingConversationRequest() {
 			<h3>
 				You have sent this person a friend request, do you wish to cancel?
 			</h3>
-			<button>cancel</button>
+			<button onClick={handleCancelRequest}>cancel</button>
 		</>
 	);
 }

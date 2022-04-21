@@ -59,13 +59,13 @@ class ConversationsController < ApplicationController
 			ActionCable.server.broadcast(
 				# 'conversations_channel',
 				"current_user_#{current_user.id}",
-				serialized_data,
+				{ **serialized_data, action: 'create' },
 			)
 
 			ActionCable.server.broadcast(
 				# Broadcast to user/receiver private channel
 				"current_user_#{params['accepter_id']}",
-				serialized_data,
+				{ **serialized_data, action: 'create' },
 			)
 			head :ok
 		end
@@ -74,9 +74,11 @@ class ConversationsController < ApplicationController
 	def destroy
 		conversation = Conversation.find(params[:id])
 		conversation.deleted = true
+
 		if current_user.id != conversation.requester_id &&
 				current_user.id != conversation.accepter_id
 			conversation.deleted = false
+			puts 'unable to delete a conversation you do not own'
 		end
 		if conversation.save
 			serialized_data =
@@ -85,15 +87,15 @@ class ConversationsController < ApplicationController
 				).serializable_hash
 
 			ActionCable.server.broadcast(
-				# 'conversations_channel',
+				# Broadcast to user private channel
 				"current_user_#{current_user.id}",
-				serialized_data,
+				{ **serialized_data, action: 'delete' },
 			)
 
 			ActionCable.server.broadcast(
-				# Broadcast to user/receiver private channel
+				# Broadcast to receiver private channel
 				"current_user_#{params['accepter_id']}",
-				serialized_data,
+				{ **serialized_data, action: 'delete' },
 			)
 			head :ok
 		end

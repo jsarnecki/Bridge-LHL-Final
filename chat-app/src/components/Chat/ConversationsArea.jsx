@@ -9,14 +9,10 @@ export default function ConversationsArea(props) {
 		handleReceivedMessage,
 	} = props;
 
-	const filteredConversations = conversations.filter(conversation => {
-		return !conversation.deleted;
-	});
-
 	return (
 		<div className="conversations">
 			<ConversationsList
-				conversations={filteredConversations}
+				conversations={conversations}
 				handleClick={handleClick}
 				cableApp={cableApp}
 				handleReceivedMessage={handleReceivedMessage}

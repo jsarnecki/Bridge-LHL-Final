@@ -32,10 +32,15 @@ export default function Chat(props) {
 			.then(res => res.json())
 			.then(conversations =>
 				setState(prev => {
+					const filteredConversations = conversations.filter(conversation => {
+						return !conversation.deleted;
+					});
 					return {
 						...prev,
 						conversations,
-						activeConversation: conversations[0] ? conversations[0].id : null,
+						activeConversation: filteredConversations[0]
+							? filteredConversations[0].id
+							: null,
 					};
 				})
 			)
@@ -94,6 +99,7 @@ export default function Chat(props) {
 			accepted: conversation.accepted,
 			requester_id: conversation.requester_id,
 			accepter_id: conversation.accepter_id,
+			deleted: conversation.deleted,
 		};
 
 		setState(prev => {
@@ -119,6 +125,10 @@ export default function Chat(props) {
 
 	const { conversations, activeConversation } = state;
 
+	const filteredConversations = conversations.filter(conversation => {
+		return !conversation.deleted;
+	});
+
 	return (
 		<div className="chat">
 			{/* {isLoggedIn && (
@@ -139,7 +149,7 @@ export default function Chat(props) {
 			) : null} */}
 			<div className="chat-display">
 				<ConversationsArea
-					conversations={conversations}
+					conversations={filteredConversations}
 					handleClick={handleClick}
 					logged_in_user={logged_in_user}
 					handleReceivedMessage={handleReceivedMessage}
@@ -148,7 +158,7 @@ export default function Chat(props) {
 				{activeConversation ? (
 					<MessagesArea
 						conversation={findActiveConversation(
-							conversations,
+							filteredConversations,
 							activeConversation
 						)}
 						logged_in_user={logged_in_user}

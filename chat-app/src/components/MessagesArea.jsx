@@ -32,6 +32,7 @@ const MessagesArea = ({
 					accepted={accepted}
 					requester_id={requester_id}
 					accepter_id={accepter_id}
+					conversation_id={id}
 				></ConversationRequestForm>
 			)}
 			{accepted && (
