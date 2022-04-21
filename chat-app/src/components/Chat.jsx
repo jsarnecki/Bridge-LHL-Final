@@ -135,7 +135,7 @@ export default function Chat(props) {
 			setState(prev => {
 				return {
 					...prev,
-					conversations: [...prev.conversations, newConversation],
+					conversations: [newConversation, ...prev.conversations],
 					activeConversation:
 						prev.activeConversation === null
 							? newConversation.id
@@ -165,17 +165,14 @@ export default function Chat(props) {
 		}
 		if (action === "update") {
 			setState(prev => {
-				const updatedConversations = prev.conversations.map(
+				const nonUpdatedConversations = prev.conversations.filter(
 					prevConversation => {
-						if (prevConversation.id === conversation.id) {
-							return newConversation;
-						}
-						return prevConversation;
+						return prevConversation.id !== conversation.id;
 					}
 				);
 				return {
 					...prev,
-					conversations: updatedConversations,
+					conversations: [newConversation, ...nonUpdatedConversations],
 				};
 			});
 		}
@@ -199,7 +196,6 @@ export default function Chat(props) {
 	const filteredConversations = conversations.filter(conversation => {
 		return !conversation.deleted;
 	});
-	console.log("final filtered", filteredConversations);
 
 	return (
 		<div className="chat">
