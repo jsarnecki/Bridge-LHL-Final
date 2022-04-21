@@ -101,6 +101,9 @@ export default function Chat(props) {
 	}, [logged_in_user]);
 
 	const handleClick = id => {
+		setState(prev => {
+			return { ...prev, activeConversation: id };
+		});
 		axios
 			.put(
 				`http://localhost:3000/conversations/${id}`,
@@ -112,11 +115,16 @@ export default function Chat(props) {
 
 			.then(response => {
 				console.log(`conversation id ${id} was successfully seen`);
-				setState(prev => {
-					return { ...prev, activeConversation: id };
-				});
+				// setState(prev => {
+				// 	return { ...prev, activeConversation: id };
+				// });
 			})
-			.catch(error => console.log("api errors:", error));
+			.catch(error => {
+				console.log("api errors:", error);
+				setState(prev => {
+					return { ...prev };
+				});
+			});
 	};
 
 	const handleReceivedConversation = response => {
