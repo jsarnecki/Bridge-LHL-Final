@@ -33,9 +33,14 @@ export default function ConversationsListItem(props) {
 			messageChannel.unsubscribe();
 		};
 	}, []);
+
+	//if friendship not accepted yet and you are the requester, always seen
+	//if you are the sender of the latest message, always seen
 	const unseen =
 		!conversation.accepted &&
 		conversation.friend_id !== conversation.requester_id
+			? false
+			: lastMessage.sender_id !== conversation.friend_id
 			? false
 			: !conversation.seen;
 

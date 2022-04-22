@@ -126,6 +126,15 @@ export default function Chat(props) {
 		) {
 			return;
 		}
+
+		const latestMessage = conversation.messages.sort(
+			(a, b) => new Date(b.created_at) - new Date(a.created_at)
+		)[0];
+		//skip axios put if the sender is clicking the conversation
+		if (logged_in_user.id === latestMessage.sender_id) {
+			return;
+		}
+
 		//axios request to the server telling it that the latest message for the conversation has now been seen
 		axios
 			.put(
@@ -282,6 +291,7 @@ export default function Chat(props) {
 		// 		return { ...prev, conversations };
 		// 	});
 		// }
+
 		setState(prev => {
 			const conversations = [...prev.conversations];
 			const conversation = conversations.find(
@@ -292,6 +302,28 @@ export default function Chat(props) {
 				conversation.seen = false;
 			}
 
+			// If on that conversation, tell server message is read
+			if (
+				message.conversation_id === prev.activeConversation &&
+				logged_in_user.id !== message.sender_id
+			) {
+				axios
+					.put(
+						`http://localhost:3000/conversations/${message.conversation_id}`,
+						{ action_type: "seen" },
+						{
+							withCredentials: true,
+						}
+					)
+					.then(response => {
+						console.log(
+							`conversation id ${message.conversation_id} was successfully seen`
+						);
+					})
+					.catch(error => {
+						console.log("api errors:", error);
+					});
+			}
 			return { ...prev, conversations: sortConversations(conversations) };
 		});
 	};
