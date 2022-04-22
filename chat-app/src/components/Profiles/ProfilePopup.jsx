@@ -1,9 +1,19 @@
 import "./ProfilePopup.scss";
 import Button from "@mui/material/Button";
 import { useState } from "react";
+import Switch from '@mui/material/Switch';
 
 export default function ProfilePopup(props) {
-  
+  // const [checked, setChecked] = useState(true);
+
+  // const handleChange = (event) => {
+  //   setChecked(event.target.checked);
+  // };
+
+  const currentUser = props.currentUser; //Flag for enabling editing 
+  // Add darkmode toggle?
+
+
   const languages = props.languages.map((lang) => {
     const stars = function (level) {
       let star = "⭐";
@@ -24,7 +34,7 @@ export default function ProfilePopup(props) {
   });
 
   return (
-    <div className="popup-box">
+    <div style={{"background-color" : props.toggle.bgColor}} className="popup-box">
       
       <div id="modal-modal-title" variant="h6" component="h2">
         {props.firstName} {props.lastName}
@@ -39,15 +49,26 @@ export default function ProfilePopup(props) {
         {props.bio}
       </div>
       <div className="popup-button">
-        <Button
+        
+        {!currentUser && <Button
           variant="contained"
           onClick={() => {
             console.log("Messaging button clicked!");
           }}
         >
           Add Friend
-        </Button>
+        </Button>}
       </div>
+
+
+      <Switch
+      checked={props.toggle.checked}
+      onChange={props.handleChange}
+      inputProps={{ 'aria-label': 'controlled' }}
+    />
+
+
+
     </div>
   );
 }
