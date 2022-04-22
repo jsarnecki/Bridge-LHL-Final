@@ -34,7 +34,7 @@ export default function ProfilePopup(props) {
   });
 
   return (
-    <div style={{"background-color" : props.toggle.bgColor}} className="popup-box">
+    <div style={{"background-color" : props.checked ? "#2e2d2d" : "white"}} className="popup-box">
       
       <div id="modal-modal-title" variant="h6" component="h2">
         {props.firstName} {props.lastName}
@@ -62,8 +62,8 @@ export default function ProfilePopup(props) {
 
 
       <Switch
-      checked={props.toggle.checked}
-      onChange={props.handleChange}
+      checked={props.isDarkTheme}
+      onChange={props.onChange}
       inputProps={{ 'aria-label': 'controlled' }}
     />
 

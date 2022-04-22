@@ -20,18 +20,18 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import useApplicationData from './hooks/useAppData';
 // import userInformation from "./components/Profiles/helpers/sample_users";
 
-// // Define theme settings
-// const light = {
-//   palette: {
-//     mode: "light",
-//   },
-// };
+// Define theme settings
+const light = {
+  palette: {
+    mode: "light",
+  },
+};
 
-// const dark = {
-//   palette: {
-//     mode: "dark",
-//   },
-// };
+const dark = {
+  palette: {
+    mode: "dark",
+  },
+};
 
 function App(props) {
 	const { cableApp } = props;
@@ -45,25 +45,13 @@ function App(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-	const [toggle, setToggle] = useState({
-		checked: true,
-		bgColor: "white"});
 
-  const handleChange = (event) => {
-
-		if (toggle.bgColor === "white") {
-			setToggle({
-				checked: true,
-				bgColor: "#2e2d2d"
-			});
-		} else {
-			setToggle({
-				checked: false,
-				bgColor: "white"
-			});
-		}
-
-  };
+	// The light theme is used by default
+	const [isDarkTheme, setIsDarkTheme] = useState(false);
+	// This function is triggered when the Switch component is toggled
+	const changeTheme = () => {
+		setIsDarkTheme(!isDarkTheme);
+	};
 
 	const { users } = useApplicationData();
 	const userInformation = users.users;
@@ -78,7 +66,7 @@ function App(props) {
 	
 
 	return (
-		<div>
+		<div style={{"background-color" : isDarkTheme ? "#2e2d2d" : "white"}}>
 			<nav className="nav"> 
 				<Button variant="contained" href="/profiles">Profiles</Button>
 				<Button
@@ -94,6 +82,7 @@ function App(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
+			
         <ProfilePopup
 					key={state.user.id} 
 					currentUser={true}
@@ -103,9 +92,9 @@ function App(props) {
 					image={state.user.image}
 					bio={state.user.bio}
 					languages={targetLanguages}
-					toggle={toggle}
-					setToggle={setToggle}
 					handleChange={handleChange}
+					checked={isDarkTheme}
+					onChange={changeTheme}
         />
       </Modal>
 
