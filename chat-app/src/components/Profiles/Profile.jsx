@@ -11,6 +11,28 @@ export default function Profile(props) {
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
+
+	const flags = function (languageId) {
+		switch (languageId) {
+			case 1:
+				return "🇬🇧";
+			case 2:
+				return "🇰🇷";
+			case 3:
+				return "🇯🇵";
+			case 4:
+				return "🇨🇳";
+			case 5:
+				return "🇫🇷";
+			case 6:
+				return "🇪🇸";
+			case 7:
+				return "🇵🇹";
+			case 8:
+				return "🇮🇳";
+		}
+	};
+
 	return (
 		<div className="mdc-card mdc-card--outlined">
 			<div>
@@ -20,6 +42,19 @@ export default function Profile(props) {
 				<img className="profile-img" src={props.image} />
 			</div>
 			<div>{props.langauages}</div>
+			<div className="languages-container">
+				<span className="native">
+					{props.languages
+						.filter(language => !language.learning)
+						.map(language => flags(language.language_id))}
+				</span>
+				<i class="fa-solid fa-right-left"></i>
+				<span className="learning">
+					{props.languages
+						.filter(language => language.learning)
+						.map(language => flags(language.language_id))}
+				</span>
+			</div>
 			{/* <button className="mdc-button mdc-card__action mdc-card__action--button ">
         <span className="mdc-button__label">Action 1</span>
       </button> */}
@@ -50,6 +85,7 @@ export default function Profile(props) {
 					image={props.image}
 					bio={props.bio}
 					languages={props.languages}
+					loggedInUser={props.loggedInUser}
 				/>
 			</Modal>
 		</div>

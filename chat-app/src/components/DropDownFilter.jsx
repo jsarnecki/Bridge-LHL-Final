@@ -8,7 +8,7 @@ import Select from "@mui/material/Select";
 export default function DropDownFilter(props) {
 	console.log("props.languageId: ", props.languageId);
 
-	const maps = function (languageId) {
+	const flags = function (languageId) {
 		switch (languageId) {
 			case 1:
 				return "🇬🇧";
@@ -40,11 +40,11 @@ export default function DropDownFilter(props) {
 	const dropDownArray = props.learningLanguages.map(language => {
 		return (
 			<MenuItem key={language.language_id} value={language.language_id}>
+				{flags(language.language_id)}
 				{language.language_name}
 			</MenuItem>
 		);
 	});
-	u;
 
 	if (dropDownArray.length !== 1) {
 		dropDownArray.unshift(
