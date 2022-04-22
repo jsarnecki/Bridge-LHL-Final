@@ -62,11 +62,11 @@ export default function Chat(props) {
 				const sortedConversations = sortConversations(conversations);
 
 				setState(prev => {
-					const filteredConversations = sortedConversations.filter(
-						conversation => {
-							return !conversation.deleted;
-						}
-					);
+					// const filteredConversations = sortedConversations.filter(
+					// 	conversation => {
+					// 		return !conversation.deleted;
+					// 	}
+					// );
 
 					return {
 						...prev,
