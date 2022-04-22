@@ -5,6 +5,7 @@ import Switch from "@mui/material/Switch";
 import { API_ROOT, HEADERS } from "../../constants";
 
 export default function ProfilePopup(props) {
+	const { friendRequest, setFriendRequest, id } = props;
 	// const [checked, setChecked] = useState(true);
 
 	// const handleChange = (event) => {
@@ -18,8 +19,6 @@ export default function ProfilePopup(props) {
 
 	const [clickEdit, setClickEdit] = useState(false);
 
-	const [friendRequest, setFriendRequest] = useState(false);
-
 	const handleChange = function (event) {
 		// setClickEdit(clickEdit ? false : true);
 		setEdit(event.target.value);
@@ -32,14 +31,18 @@ export default function ProfilePopup(props) {
 			method: "POST",
 			headers: HEADERS,
 			body: JSON.stringify({
-				accepter_id: props.id,
+				accepter_id: id,
 				requester_id: props.loggedInUser.id,
 			}),
 			credentials: "include",
 		})
 			.then(res => {
 				console.log("API_root/convo res.data", res.data);
-				setFriendRequest(true);
+				setFriendRequest(prev => {
+					const newState = { ...prev };
+					newState[id] = true;
+					return newState;
+				});
 			})
 			.catch(err => console.log("API_root/convo err:", err));
 	};
@@ -105,14 +108,14 @@ export default function ProfilePopup(props) {
 			)}
 
 			<div className="popup-button">
-				{!currentUser && !friendRequest && (
+				{!currentUser && !friendRequest[id] && (
 					<Button variant="contained" onClick={handleClick}>
 						Add Friend
 					</Button>
 				)}
 			</div>
 
-			{friendRequest && <div className="popup-button">Requested!</div>}
+			{friendRequest[id] && <div className="popup-button">Requested!</div>}
 
 			{currentUser && (
 				<Switch

@@ -25,7 +25,7 @@ export default function Profiles() {
 		setLanguageId(event.target.value);
 	};
 
-	const { users } = useApplicationData();
+	const { users, friendRequest, setFriendRequest } = useApplicationData();
 
 	const { logged_in_user } = useOutletContext();
 
@@ -97,6 +97,8 @@ export default function Profiles() {
 					bio={information.user.bio}
 					languages={information.languages}
 					loggedInUser={logged_in_user}
+					friendRequest={friendRequest}
+					setFriendRequest={setFriendRequest}
 				/>
 			);
 		}

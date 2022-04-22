@@ -86,6 +86,8 @@ export default function Profile(props) {
 					bio={props.bio}
 					languages={props.languages}
 					loggedInUser={props.loggedInUser}
+					friendRequest={props.friendRequest}
+					setFriendRequest={props.setFriendRequest}
 				/>
 			</Modal>
 		</div>
