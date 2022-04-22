@@ -266,25 +266,25 @@ UsersLanguage.create!(
 	skill_level: 4,
 )
 
-@conversation2 =
-	Conversation.create!(
-		requester_id: @user2.id,
-		accepter_id: @user3.id,
-		title: 'second_friends',
-		accepted: false,
-		deleted: false,
-		seen: false,
-	)
+# @conversation2 =
+# 	Conversation.create!(
+# 		requester_id: @user2.id,
+# 		accepter_id: @user3.id,
+# 		title: 'second_friends',
+# 		accepted: false,
+# 		deleted: false,
+# 		seen: false,
+# 	)
 
-@conversation3 =
-	Conversation.create!(
-		requester_id: @user4.id,
-		accepter_id: @user5.id,
-		title: 'last_friends',
-		deleted: false,
-		accepted: true,
-		seen: false,
-	)
+# @conversation3 =
+# 	Conversation.create!(
+# 		requester_id: @user4.id,
+# 		accepter_id: @user5.id,
+# 		title: 'last_friends',
+# 		deleted: false,
+# 		accepted: true,
+# 		seen: false,
+# 	)
 
 # @conversation1.messages.create!(
 # 	sender_id: @user1.id,

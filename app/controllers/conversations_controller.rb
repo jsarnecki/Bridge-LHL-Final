@@ -68,6 +68,17 @@ class ConversationsController < ApplicationController
 				"current_user_#{params['accepter_id']}",
 				{ **serialized_data, action: 'create' },
 			)
+
+			message =
+				conversation.messages.new(
+					text: 'request',
+					sender_id: conversation.requester_id,
+					receiver_id: conversation.accepter_id,
+					seen: false,
+					initializer: true,
+				)
+			message.save!
+
 			head :ok
 		end
 	end
@@ -135,6 +146,17 @@ class ConversationsController < ApplicationController
 					# 	                             }
 					# end
 				end
+			end
+			if params[:action_type] == 'accept'
+				message =
+					conversation.messages.new(
+						text: 'accept',
+						sender_id: conversation.accepter_id,
+						receiver_id: conversation.requester_id,
+						seen: false,
+						initializer: true,
+					)
+				message.save!
 			end
 			serialized_data =
 				ActiveModelSerializers::Adapter::Json.new(

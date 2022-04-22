@@ -170,6 +170,21 @@ export default function Chat(props) {
 					: conversation.requester.last_name,
 		};
 		if (action === "create") {
+			//Difficult to send a separate message through message channel, so while initializer message is
+			//saved in the db, on receiving empty conversation, create a placeholder initializer message in react
+			//until conversation is clicked on and rerendered with response from axios call
+			newConversation.messages = [
+				{
+					id: 0,
+					text: "request",
+					conversation_id: newConversation.id,
+					sender_id: newConversation.requester_id,
+					receiver_id: newConversation.accepter_id,
+					seen: false,
+					initializer: true,
+					created_at: new Date(),
+				},
+			];
 			setState(prev => {
 				return {
 					...prev,
@@ -202,7 +217,28 @@ export default function Chat(props) {
 			});
 		}
 		if (action === "accept") {
+			//Difficult to send a separate message through message channel, so while initializer message is
+			//saved in the db, on receiving empty conversation, create a placeholder initializer message in react
+			//until conversation is clicked on and rerendered with response from axios call
+			newConversation.messages = [
+				{
+					id: 0,
+					text: "accept",
+					conversation_id: newConversation.id,
+					sender_id: newConversation.accepter_id,
+					receiver_id: newConversation.requester_id,
+					seen: false,
+					initializer: true,
+					created_at: new Date(),
+				},
+			];
 			setState(prev => {
+				if (
+					newConversation.requester_id === logged_in_user.id &&
+					prev.activeConversation !== newConversation.id
+				) {
+					newConversation.seen = false;
+				}
 				const nonUpdatedConversations = prev.conversations.filter(
 					prevConversation => {
 						return prevConversation.id !== conversation.id;

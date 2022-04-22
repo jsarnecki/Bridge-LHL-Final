@@ -5,5 +5,6 @@ class MessageSerializer < ActiveModel::Serializer
 	           :created_at,
 	           :sender_id,
 	           :receiver_id,
-	           :seen
+	           :seen,
+	           :initializer
 end
