@@ -61,6 +61,14 @@ export default function useApplicationData(initial) {
     .catch(err => console.log("catch error:", err));
   }, []);
 
+//  function updateBio(userId, bio) {
+//    // setUsers for user with updated bio
+//    return axios.put(`http://localhost:3000/users/${userId}`, {
+    
+//   })
+//     .then(() => { setState([])
+//  }
+
   
   return { users }
 }

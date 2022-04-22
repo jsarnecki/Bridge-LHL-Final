@@ -66,7 +66,7 @@ function App(props) {
 	
 
 	return (
-		<div style={{"background-color" : isDarkTheme ? "#2e2d2d" : "white"}}>
+		<div style={{"background-color" : isDarkTheme ? "#2e2d2d" : "white", "color" : isDarkTheme ? "white" : "black"}}>
 			<nav className="nav"> 
 				<Button variant="contained" href="/profiles">Profiles</Button>
 				<Button
@@ -87,12 +87,11 @@ function App(props) {
 					key={state.user.id} 
 					currentUser={true}
 					id={state.user.id}
-					firstName={state.user.firstName}
-					lastName={state.user.lastName}
+					firstName={state.user.first_name}
+					lastName={state.user.last_name}
 					image={state.user.image}
 					bio={state.user.bio}
 					languages={targetLanguages}
-					handleChange={handleChange}
 					checked={isDarkTheme}
 					onChange={changeTheme}
         />

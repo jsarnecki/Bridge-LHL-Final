@@ -13,6 +13,15 @@ export default function ProfilePopup(props) {
   const currentUser = props.currentUser; //Flag for enabling editing 
   // Add darkmode toggle?
 
+  const [edit, setEdit] = useState(props.bio);
+  
+  const [clickEdit, setClickEdit] = useState(false);
+  
+  const handleChange = function(event) {
+    // setClickEdit(clickEdit ? false : true);
+    setEdit(event.target.value);
+  };
+
 
   const languages = props.languages.map((lang) => {
     const stars = function (level) {
@@ -34,7 +43,7 @@ export default function ProfilePopup(props) {
   });
 
   return (
-    <div style={{"background-color" : props.checked ? "#2e2d2d" : "white"}} className="popup-box">
+    <div style={{"background-color" : props.checked ? "#2e2d2d" : "white", "color" : props.checked ? "white" : "black"}} className="popup-box">
       
       <div id="modal-modal-title" variant="h6" component="h2">
         {props.firstName} {props.lastName}
@@ -45,9 +54,21 @@ export default function ProfilePopup(props) {
         <ul>{languages}</ul>
       </div>
 
+
+    <Button variant="contained" onClick={() => setClickEdit(clickEdit ? false : true)} >Edit</Button>
+
+      {currentUser && clickEdit && 
+      <form>
+        <textarea type="text" name="edit" value={edit} onChange={(e) => handleChange(e)} />
+      </form>}
+
+    {!clickEdit && 
       <div id="modal-modal-description" sx={{ mt: 2 }}>
         {props.bio}
-      </div>
+      </div>}
+
+
+
       <div className="popup-button">
         
         {!currentUser && <Button
@@ -61,11 +82,11 @@ export default function ProfilePopup(props) {
       </div>
 
 
-      <Switch
+      {currentUser && <Switch
       checked={props.isDarkTheme}
       onChange={props.onChange}
       inputProps={{ 'aria-label': 'controlled' }}
-    />
+    />}
 
 
 
