@@ -18,6 +18,30 @@ const findActiveConversation = (conversations, activeConversation) => {
 	);
 };
 
+const sortConversations = conversations => {
+	const sortedMessagesConversations = conversations.map(conversation => {
+		const sortedMessagesLatestFirst = conversation.messages.sort(
+			(a, b) => new Date(b.created_at) - new Date(a.created_at)
+		);
+		return { ...conversation, messages: sortedMessagesLatestFirst };
+	});
+	const sortedConversations = sortedMessagesConversations.sort((a, b) => {
+		if (!b.messages.length && !a.messages.length) {
+			return 0;
+		}
+		if (!b.messages.length) {
+			return -1;
+		}
+		if (!a.messages.length) {
+			return 1;
+		}
+		return (
+			new Date(b.messages[0].created_at) - new Date(a.messages[0].created_at)
+		);
+	});
+	return sortedConversations;
+};
+
 export default function Chat(props) {
 	const { logged_in_user, isLoggedIn, cableApp } = useOutletContext();
 
@@ -28,25 +52,34 @@ export default function Chat(props) {
 	});
 
 	useEffect(() => {
+		if (!isLoggedIn) {
+			return;
+		}
+		let conversationsChannel;
 		fetch(`${API_ROOT}/conversations`, { credentials: "include" })
 			.then(res => res.json())
-			.then(conversations =>
+			.then(conversations => {
+				const sortedConversations = sortConversations(conversations);
+
 				setState(prev => {
-					const filteredConversations = conversations.filter(conversation => {
-						return !conversation.deleted;
-					});
+					// const filteredConversations = sortedConversations.filter(
+					// 	conversation => {
+					// 		return !conversation.deleted;
+					// 	}
+					// );
+
 					return {
 						...prev,
-						conversations,
-						activeConversation: filteredConversations[0]
-							? filteredConversations[0].id
-							: null,
+						conversations: sortedConversations,
+						// activeConversation: filteredConversations[0]
+						// 	? filteredConversations[0].id
+						// 	: null,
 					};
-				})
-			)
+				});
+			})
 			.then(() => {
 				if (isLoggedIn) {
-					cableApp.cable.subscriptions.create(
+					conversationsChannel = cableApp.cable.subscriptions.create(
 						{
 							channel: "ConversationsChannel",
 						},
@@ -69,12 +102,61 @@ export default function Chat(props) {
 		// 		});
 		// 	})
 		// 	.catch(error => console.log("api errors:", error));
+
+		return () => {
+			if (conversationsChannel) {
+				conversationsChannel.unsubscribe();
+			}
+		};
 	}, [logged_in_user]);
 
 	const handleClick = id => {
+		//sets state now instead of waiting for axios call to resolve to speed up user display
 		setState(prev => {
 			return { ...prev, activeConversation: id };
 		});
+		//if logged in user is the requester, then click should not send an axios request as we want the
+		//user with pending request to not have conversation unbolded.
+		const conversation = [...conversations].find(
+			conversation => conversation.id === id
+		);
+		if (
+			!conversation.accepted &&
+			logged_in_user.id === conversation.requester_id
+		) {
+			return;
+		}
+
+		const latestMessage = conversation.messages.sort(
+			(a, b) => new Date(b.created_at) - new Date(a.created_at)
+		)[0];
+		//skip axios put if the sender is clicking the conversation
+		if (logged_in_user.id === latestMessage.sender_id) {
+			return;
+		}
+
+		//axios request to the server telling it that the latest message for the conversation has now been seen
+		axios
+			.put(
+				`http://localhost:3000/conversations/${id}`,
+				{ action_type: "seen" },
+				{
+					withCredentials: true,
+				}
+			)
+
+			.then(response => {
+				console.log(`conversation id ${id} was successfully seen`);
+				// setState(prev => {
+				// 	return { ...prev, activeConversation: id };
+				// });
+			})
+			.catch(error => {
+				console.log("api errors:", error);
+				setState(prev => {
+					return { ...prev };
+				});
+			});
 	};
 
 	const handleReceivedConversation = response => {
@@ -85,7 +167,7 @@ export default function Chat(props) {
 				? conversation.accepter_id
 				: conversation.requester_id;
 		const newConversation = {
-			id: conversation.id,
+			...conversation,
 			friend_id,
 			friend_first_name:
 				friend_id === conversation.accepter_id
@@ -95,20 +177,29 @@ export default function Chat(props) {
 				friend_id === conversation.accepter_id
 					? conversation.accepter.last_name
 					: conversation.requester.last_name,
-
-			messages: conversation.messages,
-			accepted: conversation.accepted,
-			requester_id: conversation.requester_id,
-			accepter_id: conversation.accepter_id,
-			deleted: conversation.deleted,
 		};
 		if (action === "create") {
+			//Difficult to send a separate message through message channel, so while initializer message is
+			//saved in the db, on receiving empty conversation, create a placeholder initializer message in react
+			//until conversation is clicked on and rerendered with response from axios call
+			newConversation.messages = [
+				{
+					id: 0,
+					text: "request",
+					conversation_id: newConversation.id,
+					sender_id: newConversation.requester_id,
+					receiver_id: newConversation.accepter_id,
+					seen: false,
+					initializer: true,
+					created_at: new Date(),
+				},
+			];
 			setState(prev => {
 				return {
 					...prev,
-					conversations: [...prev.conversations, newConversation],
+					conversations: [newConversation, ...prev.conversations],
 					activeConversation:
-						prev.activeConversation === null
+						newConversation.requester_id !== friend_id
 							? newConversation.id
 							: prev.activeConversation,
 				};
@@ -134,7 +225,41 @@ export default function Chat(props) {
 				};
 			});
 		}
-		if (action === "update") {
+		if (action === "accept") {
+			//Difficult to send a separate message through message channel, so while initializer message is
+			//saved in the db, on receiving empty conversation, create a placeholder initializer message in react
+			//until conversation is clicked on and rerendered with response from axios call
+			newConversation.messages = [
+				{
+					id: 0,
+					text: "accept",
+					conversation_id: newConversation.id,
+					sender_id: newConversation.accepter_id,
+					receiver_id: newConversation.requester_id,
+					seen: false,
+					initializer: true,
+					created_at: new Date(),
+				},
+			];
+			setState(prev => {
+				if (
+					newConversation.requester_id === logged_in_user.id &&
+					prev.activeConversation !== newConversation.id
+				) {
+					newConversation.seen = false;
+				}
+				const nonUpdatedConversations = prev.conversations.filter(
+					prevConversation => {
+						return prevConversation.id !== conversation.id;
+					}
+				);
+				return {
+					...prev,
+					conversations: [newConversation, ...nonUpdatedConversations],
+				};
+			});
+		}
+		if (action === "seen") {
 			setState(prev => {
 				const updatedConversations = prev.conversations.map(
 					prevConversation => {
@@ -155,13 +280,51 @@ export default function Chat(props) {
 	const handleReceivedMessage = response => {
 		const { message } = response;
 
+		// const { message, action } = response;
+		// if (action === "seen") {
+		// 	return setState(prev => {
+		// 		const conversations = [...prev.conversations];
+		// 		const conversation = conversations.find(
+		// 			conversation => conversation.id === message.conversation_id
+		// 		);
+		// 		conversation.seen = true;
+		// 		return { ...prev, conversations };
+		// 	});
+		// }
+
 		setState(prev => {
 			const conversations = [...prev.conversations];
 			const conversation = conversations.find(
 				conversation => conversation.id === message.conversation_id
 			);
 			conversation.messages = [...conversation.messages, message];
-			return { ...prev, conversations };
+			if (prev.activeConversation !== conversation.id) {
+				conversation.seen = false;
+			}
+
+			// If on that conversation, tell server message is read
+			if (
+				message.conversation_id === prev.activeConversation &&
+				logged_in_user.id !== message.sender_id
+			) {
+				axios
+					.put(
+						`http://localhost:3000/conversations/${message.conversation_id}`,
+						{ action_type: "seen" },
+						{
+							withCredentials: true,
+						}
+					)
+					.then(response => {
+						console.log(
+							`conversation id ${message.conversation_id} was successfully seen`
+						);
+					})
+					.catch(error => {
+						console.log("api errors:", error);
+					});
+			}
+			return { ...prev, conversations: sortConversations(conversations) };
 		});
 	};
 

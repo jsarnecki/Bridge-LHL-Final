@@ -21,7 +21,7 @@ export default function AcceptConversationRequest(props) {
 		axios
 			.put(
 				`http://localhost:3000/conversations/${conversation_id}`,
-				{},
+				{ action_type: "accept" },
 				{
 					withCredentials: true,
 				}

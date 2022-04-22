@@ -1,6 +1,8 @@
 import React from "react";
 import { API_ROOT, HEADERS } from "../constants";
 import { useState } from "react";
+import "./NewConversationForm.scss";
+
 export default function NewConversationForm(props) {
 	const { logged_in_user } = props;
 	const [state, setState] = useState({ title: "always", accepter_id: "" });
@@ -25,7 +27,7 @@ export default function NewConversationForm(props) {
 	};
 
 	return (
-		<div className="newConversationForm">
+		<div className="new-conversation-form">
 			<form onSubmit={handleSubmit}>
 				<label>New Conversation:</label>
 				<br />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API_ROOT, HEADERS } from "../constants";
-
+import "./NewMessageForm.scss";
 export default function NewMessageForm(props) {
 	const { conversation_id, logged_in_user, friend_id } = props;
 	const [state, setState] = useState({
@@ -42,12 +42,11 @@ export default function NewMessageForm(props) {
 
 	return (
 		<div className="newMessageForm">
-			<h2>{props.conversation_id}</h2>
 			<form onSubmit={handleSubmit}>
 				<label>New Message:</label>
 				<br />
 				<input type="text" value={state.text} onChange={handleChange} />
-				<input type="submit" />
+				<input type="submit" value="send" />
 			</form>
 		</div>
 	);

@@ -4,13 +4,13 @@
 	.conversations {
 		width: 30%;
 		border: black solid 1px;
+		.conversations-list {
+			height: 60vh;
+			overflow-y: scroll;
+		}
 		li {
 			border: black solid 1px;
 			height: 50px;
 		}
-	}
-	.messagesArea {
-		border: black solid 1px;
-		width: 70%;
 	}
 }

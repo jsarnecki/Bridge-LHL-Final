@@ -17,7 +17,7 @@ export default function MessagesList(props) {
 		logged_in_user
 	) => {
 		const sortedMessages = messages.sort(
-			(a, b) => new Date(a.created_at) - new Date(b.created_at)
+			(a, b) => new Date(b.created_at) - new Date(a.created_at)
 		);
 		return sortedMessages.map(message => {
 			let sender;

@@ -36,6 +36,7 @@ class ConversationsController < ApplicationController
 					deleted: friendship.deleted,
 					requester_id: friendship.requester_id,
 					accepter_id: friendship.accepter_id,
+					seen: friendship.seen,
 					messages: messages,
 				}
 			end
@@ -48,7 +49,7 @@ class ConversationsController < ApplicationController
 	def create
 		conversation =
 			Conversation.new(
-				{ **conversation_params, accepted: false, deleted: false },
+				{ **conversation_params, accepted: false, deleted: false, seen: false },
 			)
 		if conversation.save
 			serialized_data =
@@ -67,6 +68,17 @@ class ConversationsController < ApplicationController
 				"current_user_#{params['accepter_id']}",
 				{ **serialized_data, action: 'create' },
 			)
+
+			message =
+				conversation.messages.new(
+					text: 'request',
+					sender_id: conversation.requester_id,
+					receiver_id: conversation.accepter_id,
+					seen: false,
+					initializer: true,
+				)
+			message.save!
+
 			head :ok
 		end
 	end
@@ -103,14 +115,49 @@ class ConversationsController < ApplicationController
 
 	def update
 		conversation = Conversation.find(params[:id])
-		conversation.accepted = true
+
+		if params[:action_type] == 'accept'
+			puts 'action type is accept'
+			conversation.accepted = true
+		elsif params[:action_type] == 'seen'
+			puts 'action type is seen'
+			conversation.seen = true
+		end
 
 		if current_user.id != conversation.requester_id &&
 				current_user.id != conversation.accepter_id
-			conversation.accepted = false
-			puts 'unable to update a conversation you do not own'
+			return puts 'unable to update a conversation you do not own'
 		end
+
 		if conversation.save
+			if params[:action_type] == 'seen'
+				conversation.messages.each do |message|
+					message.seen = true
+					message.save!
+					# if message.save
+					# 	message_serialized_data =
+					# 		ActiveModelSerializers::Adapter::Json.new(
+					# 			MessageSerializer.new(message),
+					# 		).serializable_hash
+					# 	MessagesChannel.broadcast_to conversation,
+					# 	                             {
+					# 			**message_serialized_data,
+					# 			action: 'seen',
+					# 	                             }
+					# end
+				end
+			end
+			if params[:action_type] == 'accept'
+				message =
+					conversation.messages.new(
+						text: 'accept',
+						sender_id: conversation.accepter_id,
+						receiver_id: conversation.requester_id,
+						seen: false,
+						initializer: true,
+					)
+				message.save!
+			end
 			serialized_data =
 				ActiveModelSerializers::Adapter::Json.new(
 					ConversationSerializer.new(conversation),
@@ -119,13 +166,13 @@ class ConversationsController < ApplicationController
 			ActionCable.server.broadcast(
 				# Broadcast to accepter private channel
 				"current_user_#{conversation.accepter_id}",
-				{ **serialized_data, action: 'update' },
+				{ **serialized_data, action: params[:action_type] },
 			)
 
 			ActionCable.server.broadcast(
 				# Broadcast to requester private channel
 				"current_user_#{conversation.requester_id}",
-				{ **serialized_data, action: 'update' },
+				{ **serialized_data, action: params[:action_type] },
 			)
 			head :ok
 		end

@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import classNames from "classnames";
+import "./ConversationsListItem.scss";
 
 export default function ConversationsListItem(props) {
 	const {
@@ -9,7 +11,7 @@ export default function ConversationsListItem(props) {
 		handleReceivedMessage,
 	} = props;
 	useEffect(() => {
-		cableApp.cable.subscriptions.create(
+		const messageChannel = cableApp.cable.subscriptions.create(
 			{
 				channel: "MessagesChannel",
 				conversation: conversation.id,
@@ -27,18 +29,53 @@ export default function ConversationsListItem(props) {
 					),
 			}
 		);
+		return () => {
+			messageChannel.unsubscribe();
+		};
 	}, []);
 
+	//if friendship not accepted yet and you are the requester, always seen
+	//if you are the sender of the latest message, always seen
+	const unseen =
+		!conversation.accepted &&
+		conversation.friend_id !== conversation.requester_id
+			? false
+			: lastMessage.sender_id !== conversation.friend_id
+			? false
+			: !conversation.seen;
+
 	return (
-		<li key={conversation.id} onClick={() => handleClick(conversation.id)}>
-			{conversation.friend_first_name} {conversation.friend_last_name} id:{" "}
-			{conversation.friend_id}
+		<li
+			key={conversation.id}
+			onClick={() => handleClick(conversation.id)}
+			className={classNames("conversations-list-item", {
+				unseen,
+			})}
+		>
+			{conversation.friend_first_name} {conversation.friend_last_name}
+			{/* id:{" "}
+			{conversation.friend_id} Conversation id: {conversation.id} */}
 			<br></br>
-			{lastMessage &&
+			{lastMessage.initializer &&
+				lastMessage.text === "request" &&
 				(lastMessage.sender_id === conversation.friend_id
-					? conversation.friend_first_name + ":"
-					: "You:")}
-			{lastMessage && lastMessage.text}
+					? conversation.friend_first_name + " has sent you a friend request"
+					: "You have sent a friend request ")}
+			{lastMessage.initializer &&
+				lastMessage.text === "accept" &&
+				(lastMessage.sender_id === conversation.friend_id
+					? conversation.friend_first_name + " has accepted your friend request"
+					: `You have accepted ${conversation.friend_first_name}'s friend request`)}
+			{lastMessage &&
+				!lastMessage.initializer &&
+				(lastMessage.sender_id === conversation.friend_id
+					? conversation.friend_first_name + ": "
+					: "You: ")}
+			{lastMessage &&
+				!lastMessage.initializer &&
+				(lastMessage.text.length > 20
+					? lastMessage.text.slice(0, 20) + "..."
+					: lastMessage.text)}
 			{/* <ActionCableConsumer
 							key={conversation.id}
 							channel={{

@@ -4,7 +4,7 @@ export default function ConversationsList(props) {
 	const { conversations, handleClick, handleReceivedMessage, cableApp } = props;
 
 	return (
-		<ul>
+		<ul className="conversations-list">
 			{conversations.map(conversation => {
 				const sortedMessages = conversation.messages.sort(
 					(a, b) => new Date(a.created_at) - new Date(b.created_at)

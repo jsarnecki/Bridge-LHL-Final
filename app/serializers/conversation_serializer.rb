@@ -6,6 +6,7 @@ class ConversationSerializer < ActiveModel::Serializer
 	           :requester,
 	           :accepter,
 	           :accepted,
-	           :deleted
+	           :deleted,
+	           :seen
 	has_many :messages
 end
