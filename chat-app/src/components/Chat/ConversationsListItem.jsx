@@ -11,7 +11,7 @@ export default function ConversationsListItem(props) {
 		handleReceivedMessage,
 	} = props;
 	useEffect(() => {
-		cableApp.cable.subscriptions.create(
+		const messageChannel = cableApp.cable.subscriptions.create(
 			{
 				channel: "MessagesChannel",
 				conversation: conversation.id,
@@ -29,6 +29,9 @@ export default function ConversationsListItem(props) {
 					),
 			}
 		);
+		return () => {
+			messageChannel.unsubscribe();
+		};
 	}, []);
 	const unseen =
 		!conversation.accepted &&

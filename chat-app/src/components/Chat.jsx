@@ -52,6 +52,10 @@ export default function Chat(props) {
 	});
 
 	useEffect(() => {
+		if (!isLoggedIn) {
+			return;
+		}
+		let conversationsChannel;
 		fetch(`${API_ROOT}/conversations`, { credentials: "include" })
 			.then(res => res.json())
 			.then(conversations => {
@@ -75,7 +79,7 @@ export default function Chat(props) {
 			})
 			.then(() => {
 				if (isLoggedIn) {
-					cableApp.cable.subscriptions.create(
+					conversationsChannel = cableApp.cable.subscriptions.create(
 						{
 							channel: "ConversationsChannel",
 						},
@@ -98,6 +102,12 @@ export default function Chat(props) {
 		// 		});
 		// 	})
 		// 	.catch(error => console.log("api errors:", error));
+
+		return () => {
+			if (conversationsChannel) {
+				conversationsChannel.unsubscribe();
+			}
+		};
 	}, [logged_in_user]);
 
 	const handleClick = id => {
