@@ -48,7 +48,7 @@ export default function Chat(props) {
 	const [state, setState] = useState({
 		conversations: [],
 		activeConversation: null,
-		friends: {},
+		// friends: {},
 	});
 
 	useEffect(() => {
@@ -76,21 +76,21 @@ export default function Chat(props) {
 						// 	: null,
 					};
 				});
-			})
-			.then(() => {
-				if (isLoggedIn) {
-					conversationsChannel = cableApp.cable.subscriptions.create(
-						{
-							channel: "ConversationsChannel",
-						},
-						{
-							connected: () => console.log("connected with this"),
-							received: handleReceivedConversation,
-							disconnected: () => console.log("disconnected with this"),
-						}
-					);
-				}
 			});
+		// .then(() => {
+		if (isLoggedIn) {
+			conversationsChannel = cableApp.cable.subscriptions.create(
+				{
+					channel: "ConversationsChannel",
+				},
+				{
+					connected: () => console.log("connected with this"),
+					received: handleReceivedConversation,
+					disconnected: () => console.log("disconnected with this"),
+				}
+			);
+		}
+		// });
 
 		// axios
 		// 	.get("http://localhost:3000/friends", {

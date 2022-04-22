@@ -27,7 +27,7 @@ export default function Profiles() {
 
 	const { users, friendRequest, setFriendRequest } = useApplicationData();
 
-	const { logged_in_user } = useOutletContext();
+	const { logged_in_user, cableApp } = useOutletContext();
 
 	const userInformation = users.users;
 
