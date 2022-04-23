@@ -302,11 +302,35 @@ function App(props) {
 				) {
 					newConversation.seen = false;
 				}
+
+				if (
+					newConversation.requester_id === logged_in_user.id &&
+					prev.activeConversation === newConversation.id
+				) {
+					newConversation.seen = true;
+					axios
+						.put(
+							`http://localhost:3000/conversations/${conversation.id}`,
+							{ action_type: "seen" },
+							{
+								withCredentials: true,
+							}
+						)
+						.then(response => {
+							console.log(
+								`conversation id ${conversation.id} was successfully seen`
+							);
+						})
+						.catch(error => {
+							console.log("api errors:", error);
+						});
+				}
 				const nonUpdatedConversations = prev.conversations.filter(
 					prevConversation => {
 						return prevConversation.id !== conversation.id;
 					}
 				);
+
 				return {
 					...prev,
 					conversations: [newConversation, ...nonUpdatedConversations],
@@ -349,6 +373,12 @@ function App(props) {
 		const { message } = response;
 
 		setState(prev => {
+			setAlert(prevAlert => {
+				return message.sender_id !== logged_in_user.id &&
+					prev.activeConversation !== message.conversation_id
+					? true
+					: prevAlert;
+			});
 			const conversations = [...prev.conversations];
 			const conversation = conversations.find(
 				conversation => conversation.id === message.conversation_id

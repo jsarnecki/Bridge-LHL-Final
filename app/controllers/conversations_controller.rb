@@ -118,6 +118,7 @@ class ConversationsController < ApplicationController
 
 		if params[:action_type] == 'accept'
 			puts 'action type is accept'
+			conversation.seen = false
 			conversation.accepted = true
 		elsif params[:action_type] == 'seen'
 			puts 'action type is seen'
