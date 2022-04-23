@@ -58,9 +58,12 @@ function App(props) {
 
 	const [userState, setUserState] = useState({
 		isLoggedIn: false,
-		user: { id: 1 }, // Figure this out later
+		user: { id: 1 }, 
+		// Auto logins in user 1
 	});
 
+
+	//State for handling modal open and close
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
@@ -73,9 +76,11 @@ function App(props) {
 	};
 
 	const { users } = useApplicationData();
+	// Retreives user data from server
 	const userInformation = users.users;
 
-	const targetUser = userInformation.find(u => userState.user.id === u.user.id); // This is used in Profiles, create helper to make DRY
+	const targetUser = userInformation.find(u => userState.user.id === u.user.id); 
+	// This is used in Profiles, create helper to make DRY
 	const targetLanguages = targetUser?.languages || [];
 	console.log("targetLanguages, ", targetLanguages);
 
