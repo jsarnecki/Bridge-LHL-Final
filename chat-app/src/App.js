@@ -434,11 +434,16 @@ function App(props) {
 			}}
 		>
 			<nav className="nav">
-				<Button variant="contained" href="/profiles">
-					Profiles
+
+
+			<img src="/bridge.png" />
+
+
+				<Button className="home-button" variant="contained" href="/profiles">
+					Home
 				</Button>
 				<Button variant="contained" onClick={handleOpen}>
-					Current User
+					My Profile
 				</Button>
 				<Button
 					variant="contained"

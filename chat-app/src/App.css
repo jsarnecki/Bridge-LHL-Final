@@ -59,3 +59,8 @@
 	border-color: red;
 	background-color: white;
 }
+
+.nav .home-button {
+	font-size: x-large;
+	background-color: red;
+}
