@@ -30,9 +30,9 @@ export default function DropDownFilter(props) {
 		}
 	};
 
-		if (props.learningLanguagesIds.length === 1) {
-			props.setLanguageId(props.learningLanguagesIds[0]);
-		}
+	if (props.learningLanguagesIds.length === 1) {
+		props.setLanguageId(props.learningLanguagesIds[0]);
+	}
 
 	//Attempt to override glitch where language filter shows 'All' briefly before changing
 	// if (props.learningLanguagesIds.length === 1) {
@@ -67,7 +67,7 @@ export default function DropDownFilter(props) {
 	}
 
 	return (
-		<Box sx={{ maxWidth: 120 }}>
+		<Box sx={{ maxWidth: 120 }} className="drop-down-filter">
 			<FormControl fullWidth>
 				<InputLabel id="demo-simple-select-label">Languages</InputLabel>
 				<Select

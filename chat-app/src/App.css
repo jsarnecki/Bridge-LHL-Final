@@ -39,23 +39,59 @@
 
 .nav {
 	display: flex;
-	justify-content: space-around;
+	justify-content: flex-start;
 	border-bottom: 1px rgb(35, 33, 33);
 	background-color: white;
+	align-items: center;
+	position: fixed;
+	opacity: 100%;
+	z-index: 50;
+	width: 100%;
 }
 
 .Button {
 	background-color: #5accfd;
 	color: #5accfd;
 }
-.nav-bar-link p .alert {
+.nav .alert {
 	color: red;
+	font-weight: bold;
 }
 
 .drop-down-main {
 	max-height: 2em; /* Not working - make shorter*/
+	position: fixed;
+	right: 20px;
+	top: 20px;
+	width: 120px;
 }
 
+.drop-down-filter {
+	position: fixed;
+	left: 20px;
+	top: 130px;
+	width: 90px;
+}
+
+.nav a {
+	text-decoration: none;
+}
 .nav-bar-link {
 	color: #30343f;
+	padding-bottom: 20px;
+	padding-left: 50px;
+}
+
+#nav-bar-links {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#id {
+	justify-self: flex-end;
+}
+
+main {
+	padding-top: 500px;
 }

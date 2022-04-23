@@ -438,15 +438,16 @@ function App(props) {
 					<img src="/bridge_logo_font.png"></img>
 				</a>
 
-				<p className="nav-bar-link" onClick={handleOpen}>
-					Account Information
-				</p>
-				<a href="/chat">
-					<p className="nav-bar-link">Chat</p>
-				</a>
+				<div id="nav-bar-links">
+					<p className="nav-bar-link" onClick={handleOpen}>
+						Account Information
+					</p>
+					<a href="/chat">
+						<p className={classNames("nav-bar-link", { alert })}>Chat</p>
+					</a>
+				</div>
 
 				<DropDownLogin
-					className="drop-down-main"
 					state={userState}
 					setState={setUserState}
 					userInformation={userInformation}
