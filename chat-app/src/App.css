@@ -14,18 +14,18 @@
 }
 
 .App-header {
-	background-color: #282c34;
+	background-color: #5accfd;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	font-size: calc(10px + 2vmin);
-	color: white;
+	color: #5accfd;
 }
 
 .App-link {
-	color: #61dafb;
+	color: #5accfd;
 }
 
 @keyframes App-logo-spin {
@@ -40,14 +40,22 @@
 .nav {
 	display: flex;
 	justify-content: space-around;
-	border: 5px rgb(35, 33, 33);
-	background-color: purple;
+	border-bottom: 1px rgb(35, 33, 33);
+	background-color: white;
 }
 
-.nav .alert {
-	background-color: red;
+.Button {
+	background-color: #5accfd;
+	color: #5accfd;
+}
+.nav-bar-link p .alert {
+	color: red;
 }
 
 .drop-down-main {
 	max-height: 2em; /* Not working - make shorter*/
+}
+
+.nav-bar-link {
+	color: #30343f;
 }

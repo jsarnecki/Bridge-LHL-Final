@@ -434,19 +434,17 @@ function App(props) {
 			}}
 		>
 			<nav className="nav">
-				<Button variant="contained" href="/profiles">
-					Profiles
-				</Button>
-				<Button variant="contained" onClick={handleOpen}>
-					Current User
-				</Button>
-				<Button
-					variant="contained"
-					href="/chat"
-					className={classNames({ alert })}
-				>
-					Chat
-				</Button>
+				<a href="/profiles">
+					<img src="/bridge_logo_font.png"></img>
+				</a>
+
+				<p className="nav-bar-link" onClick={handleOpen}>
+					Account Information
+				</p>
+				<a href="/chat">
+					<p className="nav-bar-link">Chat</p>
+				</a>
+
 				<DropDownLogin
 					className="drop-down-main"
 					state={userState}
