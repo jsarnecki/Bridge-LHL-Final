@@ -4,4 +4,11 @@
 }
 .conversations-list-item {
 	list-style-type: none;
+	display: flex;
+	flex-direction: row;
+}
+
+.profile-picture {
+	width: 50px;
+	border-radius: 50%;
 }

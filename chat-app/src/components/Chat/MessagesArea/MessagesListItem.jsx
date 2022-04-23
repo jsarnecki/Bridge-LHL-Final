@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import "./styles/MessagesListItem.scss";
 export default function MessagesListItem(props) {
-	const { message, current_user } = props;
+	const { message, current_user, friend_first_name } = props;
 	return (
 		<li
 			className={classNames("messages-list-item", {
@@ -9,7 +9,14 @@ export default function MessagesListItem(props) {
 				initializer: message.initializer,
 			})}
 		>
-			{message.text}
+			{!current_user && (
+				<img
+					class="profile-picture"
+					src={`/seed_assets/${friend_first_name}.png`}
+				></img>
+			)}
+
+			<p class="message-text">{message.text}</p>
 		</li>
 	);
 }

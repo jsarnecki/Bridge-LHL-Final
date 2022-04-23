@@ -31,6 +31,7 @@ export default function MessagesList(props) {
 						sender={sender}
 						current_user={false}
 						key={message.id}
+						friend_first_name={friend_first_name}
 					></MessagesListItem>
 				);
 			} else {
@@ -41,6 +42,7 @@ export default function MessagesList(props) {
 						sender={sender}
 						current_user={true}
 						key={message.id}
+						friend_first_name={friend_first_name}
 					></MessagesListItem>
 				);
 			}
