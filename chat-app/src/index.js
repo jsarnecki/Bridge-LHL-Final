@@ -17,6 +17,7 @@ root.render(
 			<Route path="/" element={<App cableApp={CableApp} />}>
 				<Route path="chat" element={<Chat />} />
 				<Route path="profiles" element={<Profiles />} />
+				<Route index element={<Profiles />} />
 			</Route>
 		</Routes>
 	</BrowserRouter>

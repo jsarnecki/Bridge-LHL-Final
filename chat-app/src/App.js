@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import axios from "axios";
 import DropDownLogin from "./components/DropDownLogin";
 import ProfilePopup from "./components/Profiles/ProfilePopup";
@@ -11,7 +11,6 @@ import classNames from "classnames";
 
 import useApplicationData from "./hooks/useAppData";
 import Cable from "./components/Cable";
-
 
 // Helper for chat
 //Sorts conversations by latest message, latest first
@@ -44,12 +43,13 @@ const sortConversations = conversations => {
 function App(props) {
 	const { cableApp } = props;
 
+	const location = useLocation();
+
 	const [userState, setUserState] = useState({
 		isLoggedIn: false,
-		user: { id: 1 }, 
+		user: { id: 1 },
 		// Auto logins in user 1
 	});
-
 
 	//State for handling modal open and close
 	const [open, setOpen] = useState(false);
@@ -67,7 +67,7 @@ function App(props) {
 	// Retreives user data from server
 	const userInformation = users.users;
 
-	const targetUser = userInformation.find(u => userState.user.id === u.user.id); 
+	const targetUser = userInformation.find(u => userState.user.id === u.user.id);
 	// This is used in Profiles, create helper to make DRY
 	const targetLanguages = targetUser?.languages || [];
 	console.log("targetLanguages, ", targetLanguages);
@@ -231,6 +231,7 @@ function App(props) {
 					//Set as most recent conversation
 					conversations: [newConversation, ...prev.conversations],
 					activeConversation:
+						location.pathname === "/chat" &&
 						newConversation.requester_id !== friend_id
 							? newConversation.id
 							: prev.activeConversation,
