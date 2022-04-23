@@ -75,6 +75,11 @@
 	top: -20px;
 }
 
+a, a:hover, a:focus, a:active {
+	text-decoration: none;
+	color: inherit;
+}
+
 .home-logo p {
 	/* z-index: 0; */
 	/* background-color: palevioletred; */

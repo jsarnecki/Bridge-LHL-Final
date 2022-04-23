@@ -436,18 +436,24 @@ function App(props) {
 			<nav className="nav">
 
 
-			<div className="home-logo" > 
-				<img id="bridge-logo" src="/bridge.png" />
-				<p>Bridge</p>
-			</div>
+			<a href="/profiles">
+				<div className="home-logo" > 
+					<img id="bridge-logo" src="/bridge.png" />
+					<p>Bridge</p>
+				</div>
+			</a>
 
 
-				<Button className="home-button" variant="contained" href="/profiles">
+				{/* <Button className="home-button" variant="contained" href="/profiles">
 					Home
-				</Button>
+				</Button> */}
+
+
 				<Button variant="contained" onClick={handleOpen}>
 					My Profile
 				</Button>
+
+
 				<Button
 					variant="contained"
 					href="/chat"
