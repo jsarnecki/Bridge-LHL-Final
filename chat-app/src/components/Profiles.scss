@@ -1,5 +1,27 @@
-main {
-  background-image: url(../../public/world-flags.jpg);
+#main-container {
+  background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(../../public/world-flags.jpg);
+  // background-image: rgba(255,255,255,0.9);
+  // opacity: 70%;
+
+  
+  /* darkmode ideas:  */
+  /* background-blend-mode: color;
+  background-color: rgba(66, 6, 6, 0.55);  */
+  
+    /* background-blend-mode: multiply;
+  background-color: rgba(5, 4, 36, 0.85);  */
+
+  /* background-blend-mode: saturation;
+  background-color: rgba(0, 0, 0, 0.85);  */
+
+
+  /* two light mode ideas: */
+
+  /* background-blend-mode: luminosity;
+  background-color: rgba(221, 20, 20, 0.15);  */
+
+  /* background-color: rgba(6, 27, 69, 0.2);
+  background-blend-mode: color-dodge; */
 }
 
 
