@@ -8,7 +8,7 @@ export default function ProfilePopup(props) {
 	const { friendRequest, setFriendRequest, id } = props;
 
 	//Flag for enabling editing
-	const currentUser = props.currentUser; 
+	const currentUser = props.currentUser;
 
 	// State for editing bio
 	const [edit, setEdit] = useState(props.bio);
@@ -81,12 +81,14 @@ export default function ProfilePopup(props) {
 				<ul>{languages}</ul>
 			</div>
 
-			<Button
-				variant="contained"
-				onClick={() => setClickEdit(clickEdit ? false : true)}
-			>
-				Edit
-			</Button>
+			{currentUser && (
+				<Button
+					variant="contained"
+					onClick={() => setClickEdit(clickEdit ? false : true)}
+				>
+					Edit
+				</Button>
+			)}
 
 			{currentUser && clickEdit && (
 				<form>
@@ -113,7 +115,9 @@ export default function ProfilePopup(props) {
 				)}
 			</div>
 
-			{!currentUser && friendRequest[id] && <div className="popup-button">Requested!</div>}
+			{!currentUser && friendRequest[id] && (
+				<div className="popup-button">Requested!</div>
+			)}
 
 			{currentUser && (
 				<Switch
