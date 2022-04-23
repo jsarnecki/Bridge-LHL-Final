@@ -5,7 +5,7 @@ import "./styles/NewConversationForm.scss";
 
 export default function NewConversationForm(props) {
 	const { logged_in_user } = props;
-	const [state, setState] = useState({ title: "always", accepter_id: "" });
+	const [state, setState] = useState({ accepter_id: "" });
 
 	//Form control
 	const handleChange = e => {

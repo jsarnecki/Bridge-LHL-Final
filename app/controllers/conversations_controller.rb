@@ -178,6 +178,6 @@ class ConversationsController < ApplicationController
 	private
 
 	def conversation_params
-		params.require(:conversation).permit(:title, :requester_id, :accepter_id)
+		params.require(:conversation).permit(:requester_id, :accepter_id)
 	end
 end
