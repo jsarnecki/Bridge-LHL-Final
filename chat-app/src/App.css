@@ -62,5 +62,29 @@
 
 .nav .home-button {
 	font-size: x-large;
-	background-color: red;
+	background-color: forestgreen;
+}
+
+.nav .home-logo {
+
+	position: relative;
+
+	background-color: palevioletred;
+	font-family: 'Six Caps', sans-serif;
+	top: -15px;
+}
+
+.home-logo p {
+	z-index: 0;
+	background-color: palevioletred;
+	text-align: center;
+	position: relative;
+	top: -90px;
+	font-size: 3em;
+}
+
+#bridge-logo {
+	z-index: 8;
+	width: 6em;
+	top: -5px;
 }

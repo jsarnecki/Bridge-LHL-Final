@@ -436,7 +436,10 @@ function App(props) {
 			<nav className="nav">
 
 
-			<img src="/bridge.png" />
+			<div className="home-logo" > 
+				<img id="bridge-logo" src="/bridge.png" />
+				<p>Bridge</p>
+			</div>
 
 
 				<Button className="home-button" variant="contained" href="/profiles">
