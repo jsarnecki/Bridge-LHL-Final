@@ -18,18 +18,20 @@
 
   /* two light mode ideas: */
 
-  /* background-blend-mode: luminosity;
-  background-color: rgba(221, 20, 20, 0.15);  */
+  //  background-blend-mode: luminosity;
+  //  //Makes colors quite vibrant
+  // background-color: rgba(221, 20, 20, 0.15); 
 
-  /* background-color: rgba(6, 27, 69, 0.2);
-  background-blend-mode: color-dodge; */
+  //  background-color: rgba(6, 27, 69, 0.2);
+  //  //This is better with less opacity, is quite soft with a light blue
+  // background-blend-mode: color-dodge; 
 }
 
 
 ul.cards {
   display: flex;
   flex-wrap: wrap;
-
+  
   //hardcoded for now, come back later
   padding-left: 120px;
   // justify-content: space-evenly;
