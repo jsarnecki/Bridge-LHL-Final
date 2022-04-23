@@ -1,5 +1,5 @@
 #main-container {
-  background-image: linear-gradient(rgba(63, 52, 165, 0.85), rgba(178, 168, 218, 0.45)), url(../../public/world-flags.jpg);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.45), rgba(178, 168, 218, 0.85)), url(../../public/world-flags.jpg);
 
   // opacity: 70%;
 
@@ -11,8 +11,9 @@
   // background-blend-mode: multiply;
   // background-color: rgba(5, 4, 36, 0.85);
 
-  /* background-blend-mode: saturation;
-  background-color: rgba(0, 0, 0, 0.85);  */
+  //  background-blend-mode: saturation;
+  //  //With image white or slightly gradient up to light color
+  // background-color: rgba(0, 0, 0, 0.85);
 
 
   /* two light mode ideas: */
