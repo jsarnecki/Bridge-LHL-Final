@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import axios from "axios";
 import DropDownLogin from "./components/DropDownLogin";
 import ProfilePopup from "./components/Profiles/ProfilePopup";
@@ -55,6 +55,8 @@ const sortConversations = conversations => {
 
 function App(props) {
 	const { cableApp } = props;
+
+	const location = useLocation();
 
 	const [userState, setUserState] = useState({
 		isLoggedIn: false,
@@ -233,11 +235,13 @@ function App(props) {
 				},
 			];
 			setState(prev => {
+				console.log("location:", location.pathname);
 				return {
 					...prev,
 					//Set as most recent conversation
 					conversations: [newConversation, ...prev.conversations],
 					activeConversation:
+						location.pathname === "/chat" &&
 						newConversation.requester_id !== friend_id
 							? newConversation.id
 							: prev.activeConversation,
