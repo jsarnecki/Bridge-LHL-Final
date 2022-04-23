@@ -190,7 +190,6 @@ function App(props) {
 					withCredentials: true,
 				}
 			)
-
 			.then(response => {
 				console.log(`conversation id ${id} was successfully seen`);
 			})
@@ -320,30 +319,25 @@ function App(props) {
 						return prevConversation;
 					}
 				);
+
+				const conversationChecked = updatedConversations.some(conversation => {
+					const sortedMessagesLatestFirst = conversation.messages.sort(
+						(a, b) => new Date(b.created_at) - new Date(a.created_at)
+					);
+					const lastMessage = sortedMessagesLatestFirst[0];
+					const lastSenderId = lastMessage.sender_id;
+					if (lastSenderId === logged_in_user.id) {
+						return false;
+					}
+
+					return !conversation.deleted && !conversation.seen;
+				});
+				setAlert(conversationChecked);
 				return {
 					...prev,
 					conversations: updatedConversations,
 				};
 			});
-			const updatedConversations = state.conversations.map(prevConversation => {
-				if (prevConversation.id === conversation.id) {
-					return newConversation;
-				}
-				return prevConversation;
-			});
-			const conversationChecked = updatedConversations.some(conversation => {
-				const sortedMessagesLatestFirst = conversation.messages.sort(
-					(a, b) => new Date(b.created_at) - new Date(a.created_at)
-				);
-				const lastMessage = sortedMessagesLatestFirst[0];
-				const lastSenderId = lastMessage.sender_id;
-				if (lastSenderId === logged_in_user.id) {
-					return false;
-				}
-
-				return !conversation.deleted && !conversation.seen;
-			});
-			setAlert(conversationChecked);
 		}
 	};
 
