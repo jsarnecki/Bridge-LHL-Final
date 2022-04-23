@@ -18,7 +18,6 @@ root.render(
 				<Route path="chat" element={<Chat />} />
 				<Route path="profiles" element={<Profiles />} />
 			</Route>
-			<Route path="/logout" />
 		</Routes>
 	</BrowserRouter>
 );

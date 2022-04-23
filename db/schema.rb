@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema[7.0].define(version: 2022_04_19_025515) do
   create_table "conversations", force: :cascade do |t|
-    t.string "title"
     t.integer "requester_id"
     t.integer "accepter_id"
     t.boolean "accepted"

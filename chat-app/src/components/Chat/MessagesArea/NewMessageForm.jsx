@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { API_ROOT, HEADERS } from "../constants";
-import "./NewMessageForm.scss";
+import { API_ROOT, HEADERS } from "../../../constants";
+import "./styles/NewMessageForm.scss";
 export default function NewMessageForm(props) {
 	const { conversation_id, logged_in_user, friend_id } = props;
 	const [state, setState] = useState({

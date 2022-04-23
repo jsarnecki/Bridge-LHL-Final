@@ -20,6 +20,8 @@ class ConversationsController < ApplicationController
 				friend = User.find(friend_id)
 
 				messages = friendship.messages
+
+				#Returns information needed for each conversation
 				{
 					id: friendship.id,
 					friend_id: friend_id,
@@ -38,11 +40,13 @@ class ConversationsController < ApplicationController
 	end
 
 	def create
+		#Creates a new conversation with accept, deleted, and seen defaulted to false
 		conversation =
 			Conversation.new(
 				{ **conversation_params, accepted: false, deleted: false, seen: false },
 			)
 		if conversation.save
+			#Sends cable to user with action: create
 			serialized_data =
 				ActiveModelSerializers::Adapter::Json.new(
 					ConversationSerializer.new(conversation),
@@ -60,6 +64,7 @@ class ConversationsController < ApplicationController
 				{ **serialized_data, action: 'create' },
 			)
 
+			#Saves a initializer message for sorting and message preview purposes
 			message =
 				conversation.messages.new(
 					text: 'request',
@@ -78,11 +83,14 @@ class ConversationsController < ApplicationController
 		conversation = Conversation.find(params[:id])
 		conversation.deleted = true
 
+		#Do not proceed if current user is not part of conversation
 		if current_user.id != conversation.requester_id &&
 				current_user.id != conversation.accepter_id
 			conversation.deleted = false
 			puts 'unable to delete a conversation you do not own'
 		end
+
+		#Sends cable to both users with action: delete
 		if conversation.save
 			serialized_data =
 				ActiveModelSerializers::Adapter::Json.new(
@@ -104,9 +112,11 @@ class ConversationsController < ApplicationController
 		end
 	end
 
+	#On seen or accept actions
 	def update
 		conversation = Conversation.find(params[:id])
 
+		#Depending on action type, sets conversation columns
 		if params[:action_type] == 'accept'
 			puts 'action type is accept'
 			conversation.seen = false
@@ -116,6 +126,7 @@ class ConversationsController < ApplicationController
 			conversation.seen = true
 		end
 
+		#Do not proceed if current user is not part of conversation
 		if current_user.id != conversation.requester_id &&
 				current_user.id != conversation.accepter_id
 			return puts 'unable to update a conversation you do not own'
@@ -123,23 +134,15 @@ class ConversationsController < ApplicationController
 
 		if conversation.save
 			if params[:action_type] == 'seen'
+				#Change all messages to seen
 				conversation.messages.each do |message|
 					message.seen = true
 					message.save!
-					# if message.save
-					# 	message_serialized_data =
-					# 		ActiveModelSerializers::Adapter::Json.new(
-					# 			MessageSerializer.new(message),
-					# 		).serializable_hash
-					# 	MessagesChannel.broadcast_to conversation,
-					# 	                             {
-					# 			**message_serialized_data,
-					# 			action: 'seen',
-					# 	                             }
-					# end
 				end
 			end
+
 			if params[:action_type] == 'accept'
+				#Creates initializer message for sorting and message preview
 				message =
 					conversation.messages.new(
 						text: 'accept',
@@ -150,6 +153,8 @@ class ConversationsController < ApplicationController
 					)
 				message.save!
 			end
+
+			#Sends cable to both users with action: action_type (accept/seen)
 			serialized_data =
 				ActiveModelSerializers::Adapter::Json.new(
 					ConversationSerializer.new(conversation),
@@ -173,6 +178,6 @@ class ConversationsController < ApplicationController
 	private
 
 	def conversation_params
-		params.require(:conversation).permit(:title, :requester_id, :accepter_id)
+		params.require(:conversation).permit(:requester_id, :accepter_id)
 	end
 end
