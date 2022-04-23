@@ -161,7 +161,7 @@ UsersLanguage.create!(
 	user_id: @user2.id,
 	skill_level: 3,
 )
-u
+
 UsersLanguage.create!(
 	language_id: @language1.id,
 	learning: false,

@@ -247,7 +247,10 @@ function App(props) {
 							: prev.activeConversation,
 				};
 			});
+
+			setAlert(newConversation.requester_id === friend_id);
 		}
+
 		if (action === "delete") {
 			setState(prev => {
 				const updatedConversations = prev.conversations.map(
@@ -284,7 +287,12 @@ function App(props) {
 					created_at: new Date(),
 				},
 			];
+
 			setState(prev => {
+				setAlert(
+					conversation.requester_id !== friend_id &&
+						prev.activeConversation !== conversation.id
+				);
 				if (
 					newConversation.requester_id === logged_in_user.id &&
 					prev.activeConversation !== newConversation.id
