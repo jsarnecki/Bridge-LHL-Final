@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import "./DropDownLogin.scss";
 
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
@@ -76,13 +77,13 @@ export default function DropDownLogin(props) {
 
   const dropDownArray = props.userInformation.map((information) => {
     return (
-      <MenuItem key={information.user.id} value={information.user.id}>
+      <MenuItem key={information.user.id} className="login-drop-down-item" value={information.user.id}>
         <img
           src={information.user.image}
           style={{
             "max-height": "1.5em",
             "border-radius": "35%",
-            margin: "-5px, 10px",
+            margin: "-5px, 5px",
           }}
         />
         {information.user.first_name}
@@ -93,9 +94,10 @@ export default function DropDownLogin(props) {
   return (
     <Box className="drop-down-box" >
       <FormControl  fullWidth>
-        <InputLabel className="drop-down-label" /* sx={{top: 10, fontSize: 20, maxWidth: 200, font  }} */ id="demo-simple-select-label">Logged In User</InputLabel>
+        <InputLabel id="demo-simple-select-label" >LoggedIn</InputLabel>
         <Select
-          sx={{ marginTop: 3, maxWidth: 200, maxHeight: 45, backgroundColor: "white"}}
+
+          className="login-select"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={props.state.user.id}

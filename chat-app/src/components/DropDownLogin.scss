@@ -1,6 +1,18 @@
 
+.login-select {
+  margin-top: 25px;
+  max-width: 200px;
+  max-height: 35px;
+  background-color: peru;
+}
 
-// .drop-down-box .drop-down-label {
-//   top: 10px;
-//   font-size: x-large;
-// }
+#demo-simple-select-label {
+  color: white;
+  top: 10px;
+  font-size: x-large;
+  max-width: 300px;
+}
+
+.login-drop-down-item {
+  font-size: 1.05em;
+}
