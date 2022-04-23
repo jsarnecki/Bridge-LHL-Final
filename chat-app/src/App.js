@@ -247,7 +247,9 @@ function App(props) {
 				};
 			});
 
-			setAlert(newConversation.requester_id === friend_id);
+			setAlert(prev => {
+				return newConversation.requester_id === friend_id ? true : prev;
+			});
 		}
 
 		if (action === "delete") {
@@ -288,9 +290,11 @@ function App(props) {
 			];
 
 			setState(prev => {
-				setAlert(
+				setAlert(prevAlert =>
 					conversation.requester_id !== friend_id &&
-						prev.activeConversation !== conversation.id
+					prev.activeConversation !== conversation.id
+						? true
+						: prevAlert
 				);
 				if (
 					newConversation.requester_id === logged_in_user.id &&
