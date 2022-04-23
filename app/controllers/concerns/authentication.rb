@@ -1,3 +1,4 @@
+#Not used, from a different tutorial
 module Authentication
 	extend ActiveSupport::Concern
 

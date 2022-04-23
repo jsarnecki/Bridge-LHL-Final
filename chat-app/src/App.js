@@ -1,25 +1,16 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { ActionCable } from "react-actioncable-provider";
 import { useState, useEffect } from "react";
-import { Link, Outlet, BrowserRouter, Routes, Route } from "react-router-dom";
-import { ActionCableProvider } from "react-actioncable-provider";
-import Chat from "./components/Chat";
-import Login from "./components/Login";
-import Login2 from "./components/Login2";
+import { Outlet } from "react-router-dom";
 import axios from "axios";
-import Login3 from "./components/Login3";
 import DropDownLogin from "./components/DropDownLogin";
 import ProfilePopup from "./components/Profiles/ProfilePopup";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { API_ROOT } from "./constants";
 import classNames from "classnames";
 
 import useApplicationData from "./hooks/useAppData";
 import Cable from "./components/Cable";
-// import userInformation from "./components/Profiles/helpers/sample_users";
 
 // Define theme settings
 const light = {
@@ -34,15 +25,17 @@ const dark = {
 	},
 };
 
-//helpers for chat
-
+//helper for chat
+//Sorts conversations by latest message, latest first
 const sortConversations = conversations => {
+	//Sorts messages first
 	const sortedMessagesConversations = conversations.map(conversation => {
 		const sortedMessagesLatestFirst = conversation.messages.sort(
 			(a, b) => new Date(b.created_at) - new Date(a.created_at)
 		);
 		return { ...conversation, messages: sortedMessagesLatestFirst };
 	});
+	//User sorted messages to sort conversations
 	const sortedConversations = sortedMessagesConversations.sort((a, b) => {
 		if (!b.messages.length && !a.messages.length) {
 			return 0;
@@ -101,8 +94,8 @@ function App(props) {
 		activeConversation: null,
 	});
 
-	//seen is false, alert should become true
 	useEffect(() => {
+		//Skip if not logged in
 		if (!isLoggedIn) {
 			return;
 		}
@@ -115,12 +108,13 @@ function App(props) {
 				setState(prev => {
 					return {
 						...prev,
+						//Conversations are stored as sorted by last message
 						conversations: sortedConversations,
 					};
 				});
 
-				// first check sorted conversations for deleted false
-				// then check for seen to be false
+				// check sorted conversations for deleted false
+				// and seen to be false
 				// if satisfies both conditions, setAlert to true
 
 				const conversationChecked = sortedConversations.some(conversation => {
@@ -129,6 +123,7 @@ function App(props) {
 					);
 					const lastMessage = sortedMessagesLatestFirst[0];
 					const lastSenderId = lastMessage.sender_id;
+					//If logged in user is the sender of the message, then they have seen it
 					if (lastSenderId === logged_in_user.id) {
 						return false;
 					}
@@ -137,7 +132,7 @@ function App(props) {
 				});
 				setAlert(conversationChecked);
 			});
-
+		//Creates subscription to the conversations channel
 		conversationsChannel = cableApp.cable.subscriptions.create(
 			{
 				channel: "ConversationsChannel",
@@ -150,6 +145,7 @@ function App(props) {
 		);
 
 		return () => {
+			//Unsubscribe on unmount
 			if (conversationsChannel) {
 				conversationsChannel.unsubscribe();
 			}
@@ -203,7 +199,7 @@ function App(props) {
 
 	const handleReceivedConversation = response => {
 		const { conversation, action } = response;
-
+		//Create fields not in the cable communication but required in state
 		const friend_id =
 			conversation.requester_id === logged_in_user.id
 				? conversation.accepter_id
@@ -239,6 +235,7 @@ function App(props) {
 			setState(prev => {
 				return {
 					...prev,
+					//Set as most recent conversation
 					conversations: [newConversation, ...prev.conversations],
 					activeConversation:
 						newConversation.requester_id !== friend_id
@@ -248,12 +245,14 @@ function App(props) {
 			});
 
 			setAlert(prev => {
+				//If the request is from someone else, you should be alerted
 				return newConversation.requester_id === friend_id ? true : prev;
 			});
 		}
 
 		if (action === "delete") {
 			setState(prev => {
+				//replace the deleted conversation with the one from cable
 				const updatedConversations = prev.conversations.map(
 					prevConversation => {
 						if (prevConversation.id === conversation.id) {
@@ -290,19 +289,21 @@ function App(props) {
 			];
 
 			setState(prev => {
+				//alerted if friend accepts your request and you are not already on that conversation
 				setAlert(prevAlert =>
 					conversation.requester_id !== friend_id &&
 					prev.activeConversation !== conversation.id
 						? true
 						: prevAlert
 				);
+				//Set seen to false if friend accepts your request and you are not already on that conversation
 				if (
 					newConversation.requester_id === logged_in_user.id &&
 					prev.activeConversation !== newConversation.id
 				) {
 					newConversation.seen = false;
 				}
-
+				//Set seen to true and tell server if your friend accepts your request and you ARE on that conversation
 				if (
 					newConversation.requester_id === logged_in_user.id &&
 					prev.activeConversation === newConversation.id
@@ -333,12 +334,14 @@ function App(props) {
 
 				return {
 					...prev,
+					//Put newly accepted conversation first in line
 					conversations: [newConversation, ...nonUpdatedConversations],
 				};
 			});
 		}
 		if (action === "seen") {
 			setState(prev => {
+				//Updates the conversations state with the updated conversation from cable
 				const updatedConversations = prev.conversations.map(
 					prevConversation => {
 						if (prevConversation.id === conversation.id) {
@@ -347,7 +350,9 @@ function App(props) {
 						return prevConversation;
 					}
 				);
-
+				//conversationChecked is used to set alert
+				//True if conversation is not deleted and not seen
+				//False if you are the sender of the last message
 				const conversationChecked = updatedConversations.some(conversation => {
 					const sortedMessagesLatestFirst = conversation.messages.sort(
 						(a, b) => new Date(b.created_at) - new Date(a.created_at)
@@ -373,17 +378,21 @@ function App(props) {
 		const { message } = response;
 
 		setState(prev => {
+			//Set alert to true if sender is someone else and you are not on that conversation
+			//Else keep previous state
 			setAlert(prevAlert => {
 				return message.sender_id !== logged_in_user.id &&
 					prev.activeConversation !== message.conversation_id
 					? true
 					: prevAlert;
 			});
+			//prepend new message
 			const conversations = [...prev.conversations];
 			const conversation = conversations.find(
 				conversation => conversation.id === message.conversation_id
 			);
 			conversation.messages = [...conversation.messages, message];
+			//Set seen status to false if not on that conversation
 			if (prev.activeConversation !== conversation.id) {
 				conversation.seen = false;
 			}
@@ -416,6 +425,7 @@ function App(props) {
 
 	const { conversations, activeConversation } = state;
 
+	//Filter non-deleted messages
 	const filteredConversations = conversations.filter(conversation => {
 		return !conversation.deleted;
 	});
