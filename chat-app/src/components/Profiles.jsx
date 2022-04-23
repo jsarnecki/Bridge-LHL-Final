@@ -21,15 +21,15 @@ import DropDownFilter from "./DropDownFilter";
 export default function Profiles() {
 	const [languageId, setLanguageId] = useState(0);
 
-	const handleChange = event => {
-		setLanguageId(event.target.value);
-	};
-
 	const { users, friendRequest, setFriendRequest } = useApplicationData();
 
 	const { logged_in_user, cableApp } = useOutletContext();
 
 	const userInformation = users.users;
+
+	const handleChange = function(event) {
+		setLanguageId(event.target.value);
+	}
 
 	// // Save the learning: true languages into array for the current_user --> language id
 	// // Go thru usersMapped, filtering the "learning: false" matching current_users true learning languages
@@ -49,9 +49,7 @@ export default function Profiles() {
 		language => language.learning === true
 	);
 
-	const learningLanguagesIds = learningLanguages.map(
-		language => language.language_id
-	);
+	const learningLanguagesIds = learningLanguages.map(language => language.language_id);
 
 	const usersMapped = userInformation.map(information => {
 		let offeredLanguages = [];
@@ -109,6 +107,7 @@ export default function Profiles() {
 			<h2>Profiles</h2>
 			<DropDownFilter
 				languageId={languageId}
+				setLanguageId={setLanguageId}
 				learningLanguages={learningLanguages}
 				learningLanguagesIds={learningLanguagesIds}
 				handleChange={handleChange}

@@ -28,13 +28,26 @@ export default function DropDownFilter(props) {
 				return "🇮🇳";
 		}
 	};
-	const dropDownValue = function (userLanguageIds) {
-		if (userLanguageIds.length > 1) {
-			return props.languageId;
+
+		if (props.learningLanguagesIds.length === 1) {
+			props.setLanguageId(props.learningLanguagesIds[0]);
 		}
-		return userLanguageIds[0];
-	};
-	const dropDownShow = dropDownValue(props.learningLanguagesIds);
+
+	//Attempt to override glitch where language filter shows 'All' briefly before changing
+	// if (props.learningLanguagesIds.length === 1) {
+	// 	props.setLanguageId({
+	// 		id: props.learningLanguagesIds[0],
+	// 		initial: false,
+	// 	});
+	// }
+	// if (props.languageId.intial) {
+	// 	props.setLanguageId({
+	// 		id: 0,
+	// 		initial: false,
+	// 	});
+	// }
+
+
 
 	// Using learningLanguages, map thru and add id + name to Menuitem template
 	const dropDownArray = props.learningLanguages.map(language => {
@@ -57,11 +70,11 @@ export default function DropDownFilter(props) {
 	return (
 		<Box sx={{ maxWidth: 120 }}>
 			<FormControl fullWidth>
-				<InputLabel id="demo-simple-select-label">Language</InputLabel>
+				<InputLabel id="demo-simple-select-label">Languages</InputLabel>
 				<Select
 					labelId="demo-simple-select-label"
 					id="demo-simple-select"
-					value={dropDownShow}
+					value={props.languageId}
 					label="Language"
 					onChange={props.handleChange}
 				>

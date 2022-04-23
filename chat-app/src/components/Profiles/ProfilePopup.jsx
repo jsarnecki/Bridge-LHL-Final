@@ -115,7 +115,7 @@ export default function ProfilePopup(props) {
 				)}
 			</div>
 
-			{friendRequest[id] && <div className="popup-button">Requested!</div>}
+			{!currentUser && friendRequest[id] && <div className="popup-button">Requested!</div>}
 
 			{currentUser && (
 				<Switch
