@@ -1,25 +1,29 @@
-import React, { Fragment } from "react";
-// import { ActionCable } from "react-actioncable-provider";
-import { ActionCableConsumer } from "@thrash-industries/react-actioncable-provider";
+import { React, useEffect } from "react";
 
-const Cable = ({ conversations, handleReceivedMessage }) => {
-	return (
-		<Fragment>
-			{conversations.map(conversation => {
-				return (
-					<ActionCableConsumer
-						key={conversation.id}
-						channel={{
-							channel: "MessagesChannel",
-							conversation: conversation.id,
-						}}
-						onReceived={handleReceivedMessage}
-						onConnected={() => alert("message connected")}
-					/>
-				);
-			})}
-		</Fragment>
-	);
-};
-
-export default Cable;
+export default function Cable(props) {
+	const { cableApp, conversation, handleReceivedMessage } = props;
+	useEffect(() => {
+		const messageChannel = cableApp.cable.subscriptions.create(
+			{
+				channel: "MessagesChannel",
+				conversation: conversation.id,
+			},
+			{
+				connected: () => {
+					console.log(
+						`message connected here with friend: ${conversation.friend_first_name}`
+					);
+				},
+				received: handleReceivedMessage,
+				disconnected: () =>
+					console.log(
+						`message disconnected here with friend: ${conversation.friend_first_name}`
+					),
+			}
+		);
+		return () => {
+			messageChannel.unsubscribe();
+		};
+	}, []);
+	return;
+}

@@ -48,7 +48,7 @@ export default function Profile(props) {
 						.filter(language => !language.learning)
 						.map(language => flags(language.language_id))}
 				</span>
-				<i class="fa-solid fa-right-left"></i>
+				<i className="fa-solid fa-right-left"></i>
 				<span className="learning">
 					{props.languages
 						.filter(language => language.learning)

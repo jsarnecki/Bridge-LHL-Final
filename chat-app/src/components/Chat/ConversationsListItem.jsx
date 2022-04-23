@@ -10,29 +10,29 @@ export default function ConversationsListItem(props) {
 		lastMessage,
 		handleReceivedMessage,
 	} = props;
-	useEffect(() => {
-		const messageChannel = cableApp.cable.subscriptions.create(
-			{
-				channel: "MessagesChannel",
-				conversation: conversation.id,
-			},
-			{
-				connected: () => {
-					console.log(
-						`message connected here with friend: ${conversation.friend_first_name}`
-					);
-				},
-				received: handleReceivedMessage,
-				disconnected: () =>
-					console.log(
-						`message disconnected here with friend: ${conversation.friend_first_name}`
-					),
-			}
-		);
-		return () => {
-			messageChannel.unsubscribe();
-		};
-	}, []);
+	// useEffect(() => {
+	// 	const messageChannel = cableApp.cable.subscriptions.create(
+	// 		{
+	// 			channel: "MessagesChannel",
+	// 			conversation: conversation.id,
+	// 		},
+	// 		{
+	// 			connected: () => {
+	// 				console.log(
+	// 					`message connected here with friend: ${conversation.friend_first_name}`
+	// 				);
+	// 			},
+	// 			received: handleReceivedMessage,
+	// 			disconnected: () =>
+	// 				console.log(
+	// 					`message disconnected here with friend: ${conversation.friend_first_name}`
+	// 				),
+	// 		}
+	// 	);
+	// 	return () => {
+	// 		messageChannel.unsubscribe();
+	// 	};
+	// }, []);
 
 	//if friendship not accepted yet and you are the requester, always seen
 	//if you are the sender of the latest message, always seen
