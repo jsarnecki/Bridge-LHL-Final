@@ -448,7 +448,7 @@ function App(props) {
 					Chat
 				</Button>
 				<DropDownLogin
-					className="drop-down-main"
+					className={"dropDownMenu"}
 					state={userState}
 					setState={setUserState}
 					userInformation={userInformation}

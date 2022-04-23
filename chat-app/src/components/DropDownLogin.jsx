@@ -6,6 +6,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { red } from "@mui/material/colors";
 
 export default function DropDownLogin(props) {
 
@@ -90,10 +91,11 @@ export default function DropDownLogin(props) {
   });
 
   return (
-    <Box sx={{ maxWidth: 170, height: 45 }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Logged In User</InputLabel>
+    <Box className="drop-down-box" >
+      <FormControl  fullWidth>
+        <InputLabel className="drop-down-label" /* sx={{top: 10, fontSize: 20, maxWidth: 200, font  }} */ id="demo-simple-select-label">Logged In User</InputLabel>
         <Select
+          sx={{ marginTop: 3, maxWidth: 200, maxHeight: 45, backgroundColor: "white"}}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={props.state.user.id}

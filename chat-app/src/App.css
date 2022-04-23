@@ -44,8 +44,9 @@
 	height: 75px;
 	display: flex;
 	justify-content: space-around;
-	border: 5px rgb(35, 33, 33);
-	background-color: purple;
+	border-bottom: 5px solid rgb(35, 33, 33);
+	background-color: rgb(18, 18, 105);
+	opacity: 80%;
 	z-index: 99;
 }
 
@@ -53,6 +54,8 @@
 	background-color: red;
 }
 
-.drop-down-main {
+.nav .dropDownMain {
 	max-height: 2em; /* Not working - make shorter*/
+	border-color: red;
+	background-color: white;
 }
