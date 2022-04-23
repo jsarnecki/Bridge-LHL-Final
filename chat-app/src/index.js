@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Profiles from "./components/Profiles";
-import Login from "./components/Login";
 import Chat from "./components/Chat";
 import actionCable from "actioncable";
 
@@ -19,7 +18,6 @@ root.render(
 				<Route path="chat" element={<Chat />} />
 				<Route path="profiles" element={<Profiles />} />
 			</Route>
-			<Route path="/login" element={<Login />} />
 			<Route path="/logout" />
 		</Routes>
 	</BrowserRouter>

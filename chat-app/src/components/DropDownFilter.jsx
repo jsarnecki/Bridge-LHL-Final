@@ -8,6 +8,7 @@ import Select from "@mui/material/Select";
 export default function DropDownFilter(props) {
 	console.log("props.languageId: ", props.languageId);
 
+	// Add to helpers
 	const flags = function (languageId) {
 		switch (languageId) {
 			case 1:
@@ -46,8 +47,6 @@ export default function DropDownFilter(props) {
 	// 		initial: false,
 	// 	});
 	// }
-
-
 
 	// Using learningLanguages, map thru and add id + name to Menuitem template
 	const dropDownArray = props.learningLanguages.map(language => {

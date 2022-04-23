@@ -6,25 +6,22 @@ import { API_ROOT, HEADERS } from "../../constants";
 
 export default function ProfilePopup(props) {
 	const { friendRequest, setFriendRequest, id } = props;
-	// const [checked, setChecked] = useState(true);
 
-	// const handleChange = (event) => {
-	//   setChecked(event.target.checked);
-	// };
+	//Flag for enabling editing
+	const currentUser = props.currentUser; 
 
-	const currentUser = props.currentUser; //Flag for enabling editing
-	// Add darkmode toggle?
-
+	// State for editing bio
 	const [edit, setEdit] = useState(props.bio);
 
+	// State for editing bio button click
 	const [clickEdit, setClickEdit] = useState(false);
 
 	const handleChange = function (event) {
-		// setClickEdit(clickEdit ? false : true);
 		setEdit(event.target.value);
 	};
 
 	const handleClick = event => {
+		// Handles sending friend request
 		event.preventDefault();
 
 		fetch(`${API_ROOT}/conversations`, {
@@ -47,6 +44,7 @@ export default function ProfilePopup(props) {
 			.catch(err => console.log("API_root/convo err:", err));
 	};
 
+	// Maps over the languages to return learning or native, language name along with skill lvl
 	const languages = props.languages.map(lang => {
 		const stars = function (level) {
 			let star = "⭐";

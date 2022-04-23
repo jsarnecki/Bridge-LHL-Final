@@ -12,20 +12,8 @@ import classNames from "classnames";
 import useApplicationData from "./hooks/useAppData";
 import Cable from "./components/Cable";
 
-// Define theme settings
-const light = {
-	palette: {
-		mode: "light",
-	},
-};
 
-const dark = {
-	palette: {
-		mode: "dark",
-	},
-};
-
-//helper for chat
+// Helper for chat
 //Sorts conversations by latest message, latest first
 const sortConversations = conversations => {
 	//Sorts messages first

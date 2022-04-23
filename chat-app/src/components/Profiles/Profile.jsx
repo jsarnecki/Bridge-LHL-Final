@@ -1,17 +1,19 @@
+import React, { useState, useEffect } from "react";
 import "./Profile.scss";
-//change Button to MUI component later- before meeting
-// import Button from 'react-bootstrap/Button';
+
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import Typography from "@mui/material/Typography";
-import React, { useState, useEffect } from "react";
 import ProfilePopup from "./ProfilePopup";
 
 export default function Profile(props) {
+
+	// State for handling open and closing profilePopup feature
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
+
+	// Make DRY by adding to helper function folder
 	const flags = function (languageId) {
 		switch (languageId) {
 			case 1:
@@ -55,18 +57,6 @@ export default function Profile(props) {
 						.map(language => flags(language.language_id))}
 				</span>
 			</div>
-			{/* <button className="mdc-button mdc-card__action mdc-card__action--button ">
-        <span className="mdc-button__label">Action 1</span>
-      </button> */}
-			<div> ______________________</div>
-			{/* <Button
-				variant="contained"
-				onClick={() => {
-					console.log("Messaging button clicked!");
-				}}
-			
-				Add Friend
-			</Button> */}
 			<div> ______________________</div>
 			<Button variant="contained" onClick={handleOpen}>
 				Expand Profile
