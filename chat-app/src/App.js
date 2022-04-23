@@ -15,6 +15,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { API_ROOT } from "./constants";
+import classNames from "classnames";
 
 import useApplicationData from "./hooks/useAppData";
 import Cable from "./components/Cable";
@@ -85,6 +86,9 @@ function App(props) {
 	const targetLanguages = targetUser?.languages || [];
 	console.log("targetLanguages, ", targetLanguages);
 
+	//Alert state
+	const [alert, setAlert] = useState(false);
+
 	//
 	//Chat functions
 	//
@@ -97,6 +101,7 @@ function App(props) {
 		activeConversation: null,
 	});
 
+	//seen is false, alert should become true
 	useEffect(() => {
 		if (!isLoggedIn) {
 			return;
@@ -113,6 +118,24 @@ function App(props) {
 						conversations: sortedConversations,
 					};
 				});
+
+				// first check sorted conversations for deleted false
+				// then check for seen to be false
+				// if satisfies both conditions, setAlert to true
+
+				const conversationChecked = sortedConversations.some(conversation => {
+					const sortedMessagesLatestFirst = conversation.messages.sort(
+						(a, b) => new Date(b.created_at) - new Date(a.created_at)
+					);
+					const lastMessage = sortedMessagesLatestFirst[0];
+					const lastSenderId = lastMessage.sender_id;
+					if (lastSenderId === logged_in_user.id) {
+						return false;
+					}
+
+					return !conversation.deleted && !conversation.seen;
+				});
+				setAlert(conversationChecked);
 			});
 
 		conversationsChannel = cableApp.cable.subscriptions.create(
@@ -294,6 +317,25 @@ function App(props) {
 					conversations: updatedConversations,
 				};
 			});
+			const updatedConversations = state.conversations.map(prevConversation => {
+				if (prevConversation.id === conversation.id) {
+					return newConversation;
+				}
+				return prevConversation;
+			});
+			const conversationChecked = updatedConversations.some(conversation => {
+				const sortedMessagesLatestFirst = conversation.messages.sort(
+					(a, b) => new Date(b.created_at) - new Date(a.created_at)
+				);
+				const lastMessage = sortedMessagesLatestFirst[0];
+				const lastSenderId = lastMessage.sender_id;
+				if (lastSenderId === logged_in_user.id) {
+					return false;
+				}
+
+				return !conversation.deleted && !conversation.seen;
+			});
+			setAlert(conversationChecked);
 		}
 	};
 
@@ -341,6 +383,7 @@ function App(props) {
 	const filteredConversations = conversations.filter(conversation => {
 		return !conversation.deleted;
 	});
+
 	//rendering component
 
 	return (
@@ -357,7 +400,11 @@ function App(props) {
 				<Button variant="contained" onClick={handleOpen}>
 					Current User
 				</Button>
-				<Button variant="contained" href="/chat">
+				<Button
+					variant="contained"
+					href="/chat"
+					className={classNames({ alert })}
+				>
 					Chat
 				</Button>
 				<DropDownLogin
