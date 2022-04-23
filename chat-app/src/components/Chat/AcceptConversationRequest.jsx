@@ -1,6 +1,7 @@
 import axios from "axios";
 export default function AcceptConversationRequest(props) {
 	const { conversation_id } = props;
+
 	const handleDeclineRequest = e => {
 		e.preventDefault();
 		axios
@@ -34,6 +35,7 @@ export default function AcceptConversationRequest(props) {
 			})
 			.catch(error => console.log("api errors:", error));
 	};
+
 	return (
 		<>
 			<h3>You have a friend request, do you wish to accept?</h3>

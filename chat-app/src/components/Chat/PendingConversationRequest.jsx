@@ -1,5 +1,4 @@
 import axios from "axios";
-import { HEADERS } from "../../constants";
 
 export default function PendingConversationRequest(props) {
 	const { conversation_id } = props;
@@ -11,12 +10,6 @@ export default function PendingConversationRequest(props) {
 
 				{ withCredentials: true }
 			)
-			// fetch(`http://localhost:3000/conversations/${conversation_id}`, {
-			// 	method: "DELETE",
-			// 	headers: HEADERS,
-
-			// 	credentials: "include",
-			// })
 			.then(response => {
 				console.log(
 					`conversation id ${conversation_id} was successfully deleted`

@@ -1,7 +1,7 @@
 import classNames from "classnames";
-import "./MessagesListItem.scss";
+import "./styles/MessagesListItem.scss";
 export default function MessagesListItem(props) {
-	const { sender, message, current_user } = props;
+	const { message, current_user } = props;
 	return (
 		<li
 			className={classNames("messages-list-item", {

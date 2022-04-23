@@ -1,4 +1,3 @@
-import { ActionCableConsumer } from "@thrash-industries/react-actioncable-provider";
 import ConversationsListItem from "./ConversationsListItem";
 export default function ConversationsList(props) {
 	const { conversations, handleClick, handleReceivedMessage, cableApp } = props;

@@ -1,8 +1,8 @@
 import React from "react";
 import NewMessageForm from "./NewMessageForm";
-import "./MessagesArea.scss";
-import MessagesList from "./Chat/MessagesList";
-import ConversationRequestForm from "./Chat/ConversationRequestForm";
+import "./styles/MessagesArea.scss";
+import MessagesList from "./MessagesList";
+import ConversationRequestForm from "./ConversationRequestForm";
 
 const MessagesArea = ({
 	conversation: {
@@ -17,19 +17,13 @@ const MessagesArea = ({
 	},
 	logged_in_user,
 }) => {
-	// console.log("conversation", conversation);
-	// if (conversation) {
-	// 	const { id, friend_id, messages, friend_first_name, friend_last_name } =
-	// 		conversation;
-	// }
 	return (
 		<div className="messagesArea">
 			<div className="message-area-banner">
-				{/* Friend id: {friend_id} :  */}
 				{friend_first_name + " " + friend_last_name}
-				{/* {" "}
-				Conversation id: {id} */}
 			</div>
+
+			{/* If not accepted, render form */}
 			{!accepted && (
 				<ConversationRequestForm
 					friend_id={friend_id}
@@ -39,6 +33,8 @@ const MessagesArea = ({
 					conversation_id={id}
 				></ConversationRequestForm>
 			)}
+
+			{/* If accepted, render message list and new message form */}
 			{accepted && (
 				<MessagesList
 					messages={messages}
