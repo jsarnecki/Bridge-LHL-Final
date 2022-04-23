@@ -1,21 +1,5 @@
 class SessionsController < ApplicationController
-	#first tutorial
-	# before_action :redirect_if_authenticated, only: %i[create new]
-	# before_action :authenticate_user!, only: [:destroy]
-	# def create
-	# 	@user = User.find_by(email: params[:email].downcase)
-	# 	if @user.authenticate(params[:password])
-	# 		login @user
-	# 	else
-	# 		raise 'Error logging in'
-	# 	end
-	# end
-	# def destroy
-	# 	logout
-	# 	redirect_to root_path, notice: 'Signed out.'
-	# end
-	# def new; end
-
+	#Logging in
 	def create
 		@user = User.find_by(email: session_params[:email])
 
@@ -26,6 +10,8 @@ class SessionsController < ApplicationController
 			render json: { status: 401, errors: ['no such user, please try again'] }
 		end
 	end
+
+	#Checking with server if user logged in
 	def is_logged_in?
 		if logged_in? && current_user
 			render json: { logged_in: true, user: current_user }
@@ -33,6 +19,8 @@ class SessionsController < ApplicationController
 			render json: { logged_in: false, message: 'no such user' }
 		end
 	end
+
+	#Logging out
 	def destroy
 		logout!
 		render json: { status: 200, logged_out: true }

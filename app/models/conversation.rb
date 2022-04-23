@@ -9,7 +9,7 @@ class Conversation < ApplicationRecord
 	validate :cannot_add_self, on: :create
 
 	private
-
+	# Validations
 	def users_are_not_already_friends
 		if Conversation.where(requester_id: accepter_id, accepter_id: requester_id)
 				.exists? ||

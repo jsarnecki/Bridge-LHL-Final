@@ -1,26 +1,14 @@
 class MessagesController < ApplicationController
 	def create
+		#Creates a new unseen non-initializer (not request or accept request) message
 		message = Message.new({ **message_params, seen: false, initializer: false })
+
+		#Sets conversation to not seen as well
 		conversation = Conversation.find(message_params[:conversation_id])
 		conversation.seen = false
+
 		if message.save && conversation.save
-			# conversation_serialized_data =
-			# 	ActiveModelSerializers::Adapter::Json.new(
-			# 		ConversationSerializer.new(conversation),
-			# 	).serializable_hash
-
-			# ActionCable.server.broadcast(
-			# 	# Broadcast to accepter private channel
-			# 	"current_user_#{conversation.accepter_id}",
-			# 	{ **conversation_serialized_data, action: 'seen' },
-			# )
-
-			# ActionCable.server.broadcast(
-			# 	# Broadcast to requester private channel
-			# 	"current_user_#{conversation.requester_id}",
-			# 	{ **conversation_serialized_data, action: 'seen' },
-			# )
-
+			# Sends cable to that conversation channel
 			serialized_data =
 				ActiveModelSerializers::Adapter::Json.new(
 					MessageSerializer.new(message),

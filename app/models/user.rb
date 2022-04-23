@@ -27,22 +27,6 @@ class User < ApplicationRecord
 	has_many :users_languages
 	has_many :languages, through: :users_languages
 
-	# def confirm!
-	#   update_columns(confirmed_at: Time.current)
-	# end
-
-	# def confirmed?
-	#   confirmed_at.present?
-	# end
-
-	# def generate_confirmation_token
-	#   signed_id expires_in: CONFIRMATION_TOKEN_EXPIRATION, purpose: :confirm_email
-	# end
-
-	# def unconfirmed?
-	#   !confirmed?
-	# end
-
 	private
 
 	def downcase_email

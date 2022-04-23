@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 	def index
 		@users = User.all
 		if @users
+			#Adds user_languages information to the user object for sending to client
 			users_with_languages =
 				@users.map do |user|
 					user_languages_with_names =
@@ -22,13 +23,13 @@ class UsersController < ApplicationController
 					{ user: user, languages: user_languages_with_names }
 				end
 
-			# render json: { users: @users }
 			render json: users_with_languages
 		else
 			render json: { status: 500, errors: ['no users found'] }
 		end
 	end
 
+	#Not in use
 	def show
 		@user = User.find(params[:id])
 		if @user
@@ -38,9 +39,8 @@ class UsersController < ApplicationController
 		end
 	end
 
+	#Not in use
 	def create
-		#First tutorial
-		# @user = User.create!(user_params)
 		@user = User.new(user_params)
 		if @user.save
 			login!
@@ -50,6 +50,7 @@ class UsersController < ApplicationController
 		end
 	end
 
+	#Not in use
 	def new
 		@user = User.new
 	end
