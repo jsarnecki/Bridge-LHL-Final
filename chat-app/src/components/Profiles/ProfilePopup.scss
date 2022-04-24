@@ -40,6 +40,7 @@
 	// box-shadow: 7px 7px 8px 8px hsla(240, 88%, 7%);
   border: solid #F7EDF0;
   box-shadow: 2px 12px 36px -11px;
+  margin-bottom: 1em;
 }
 
 .popup-top {
@@ -102,7 +103,7 @@ th, td {
   padding: 10px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 720px) {
   .popup-top {
     display: flex;
     align-items: center;
