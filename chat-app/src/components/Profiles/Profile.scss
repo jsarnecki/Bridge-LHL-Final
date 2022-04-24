@@ -11,14 +11,21 @@ div.mdc-card {
 	font-family: 'Cuprum', sans-serif;
 	font-size: 1.5em;
 	color: white;
-	background-color: black;
-	box-shadow: 9px 9px rgb(63 107 169 / 34%);
+	background-color: rgba(5, 5, 61, 0.85);
+	box-shadow: 5px 5px rgb(63 107 169 / 34%);
 	flex-basis: 20%; //Makes it 3 per line --- 33.333% == 4 per line
 }
 
 
 div.mdc-card:hover {
-	box-shadow: 15px 15px rgba(20, 59, 114, 0.34);
+	box-shadow: 9px 9px rgba(20, 59, 114, 0.50);
+
+	.profile-img {
+		max-width: 100%;
+		border-radius: 30%;
+		border-style: solid;
+		border-color: rgba(3, 3, 50, 0.85);
+	}
 }
 
 
