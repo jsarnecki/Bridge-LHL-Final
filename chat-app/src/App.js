@@ -435,20 +435,26 @@ function App(props) {
 		>
 			<nav className="nav">
 				<a href="/profiles">
-					<img id="logo" src="/logo-orange.png"></img>
+					<div className="home-logo">
+						<img id="bridge-logo" src="/bridge.png" />
+						<p>Bridge</p>
+					</div>
 				</a>
 
-				<div id="nav-bar-links">
-					<p className="nav-bar-link" onClick={handleOpen}>
-						Account Information
-					</p>
-					<a href="/chat">
-						<p className={classNames("nav-bar-link", { alert })}>Chat</p>
-					</a>
-					{alert && <i class="fa-solid fa-comment-dots alert"></i>}
-				</div>
+				<a className="chat-logo-button" href="/chat">
+					<img
+						id="chat-logo"
+						src="/chat.png"
+						className={classNames({ alert })}
+					/>
+				</a>
+
+				<a className="profile-logo-button" href="javascript:void(0)">
+					<img id="profile-logo" src="/account.png" onClick={handleOpen} />
+				</a>
 
 				<DropDownLogin
+					className={"dropDownMenu"}
 					state={userState}
 					setState={setUserState}
 					userInformation={userInformation}

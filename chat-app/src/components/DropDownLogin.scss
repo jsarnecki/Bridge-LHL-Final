@@ -1,0 +1,28 @@
+
+.login-select {
+  margin-top: 15px;
+  max-width: 300px;
+  max-height: 45px;
+  color: white;
+  font-family: 'Cuprum', sans-serif;
+
+  // background-color: black
+  border: 4px solid black;
+}
+
+.login-select:hover {
+  outline: none;
+}
+
+#demo-simple-select-label {
+  color: black;
+  font-family: 'Cuprum', sans-serif;
+
+  top: 10px;
+  font-size: x-large;
+  max-width: 300px;
+}
+
+.login-drop-down-item {
+  font-size: 1.05em;
+}

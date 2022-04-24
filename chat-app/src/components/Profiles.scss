@@ -1,3 +1,40 @@
+main#main-container {
+	// background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(178, 168, 218, 0.25)), url(../../public/world-flags.jpg);
+	// background-repeat: repeat-y;
+	// background-size: cover;
+	// position: absolute;
+	background-color: #f7edf0;
+
+	// background-image: linear-gradient(45deg, transparent 20%, black 25%, transparent 25%),
+	//                   linear-gradient(-45deg, transparent 20%, black 25%, transparent 25%),
+	//                   linear-gradient(-45deg, transparent 75%, black 80%, transparent 45%),
+	//                   radial-gradient(gray 2px, transparent 0);
+	// background-size: 30px 30px, 30px 30px;
+
+	// opacity: 70%;
+
+	/* darkmode ideas:  */
+	// background-blend-mode: color;
+	// background-color: rgba(66, 6, 6, 0.55);
+
+	// background-blend-mode: multiply;
+	// background-color: rgba(5, 4, 36, 0.85);
+
+	//  background-blend-mode: saturation;
+	//  //With image white or slightly gradient up to light color
+	// background-color: rgba(0, 0, 0, 0.85);
+
+	/* two light mode ideas: */
+
+	//  background-blend-mode: luminosity;
+	//  //Makes colors quite vibrant
+	// background-color: rgba(221, 20, 20, 0.15);
+
+	//  background-color: rgba(6, 27, 69, 0.2);
+	//  //This is better with less opacity, is quite soft with a light blue
+	// background-blend-mode: color-dodge;
+}
+
 ul.cards {
 	display: flex;
 	flex-wrap: wrap;
@@ -7,7 +44,8 @@ ul.cards {
 	// justify-content: space-evenly;
 }
 
-main {
-	padding-top: 15vh;
-	padding-left: 20px;
+section.profile-container {
+	// position: fixed;
+	margin-top: 150px;
+	// background-repeat: inherit;
 }

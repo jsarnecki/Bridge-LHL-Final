@@ -1,10 +1,5 @@
 @use "@material/card";
-
 @include card.core-styles;
-
-.my-card-content {
-	padding: 16px;
-}
 
 .profile-card {
 	display: flex;
@@ -17,16 +12,37 @@
 }
 
 div.mdc-card {
+	position: relative;
+	// border: 1px solid rgb(139, 7, 7);
+	border-radius: 8%;
 	padding: 2%;
 	width: 50%;
-	margin: 2%;
-	color: black;
-	background-color: white;
+	margin: 5%;
+	font-family: "Cuprum", sans-serif;
+	font-size: 1.5em;
+	color: rgb(4, 0, 0);
+	align-items: center; //Doesn't look too bad when name text is to the left
+	text-shadow: 2px 2px 3px #9a7d7d;
+	background-color: hsl(180, 83%, 79%, 0.4);
+	box-shadow: 6px 6px 5px rgb(63 107 169 / 34%);
 	flex-basis: 20%; //Makes it 3 per line --- 33.333% == 4 per line
+}
+
+div.mdc-card:hover {
+	box-shadow: 10px 10px 12px rgba(6, 27, 57, 0.5);
+
+	.profile-img {
+		max-width: 100%;
+		border-radius: 25%;
+		box-shadow: 5px 5px 8px rgba(3, 19, 42, 0.25);
+		// border-style: solid;
+		// border-color: rgba(5, 5, 61, 0.85);
+	}
 }
 
 .profile-img {
 	max-width: 100%;
+	border-radius: 20%;
 }
 
 ul {
@@ -37,6 +53,8 @@ ul {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-top: 10px;
+	margin-bottom: -10px;
 	i {
 		font-size: 0.7em;
 		padding-bottom: 2px;
@@ -50,4 +68,14 @@ ul {
 }
 .learning {
 	font-size: 25px;
+}
+
+#speak-logo {
+	width: 35px;
+	margin-right: 25px;
+}
+
+#hear-logo {
+	width: 35px;
+	margin-left: 29px;
 }

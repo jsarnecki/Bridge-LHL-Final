@@ -4,6 +4,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import "./DropDownFilter.scss";
 
 export default function DropDownFilter(props) {
 	console.log("props.languageId: ", props.languageId);
@@ -67,10 +68,14 @@ export default function DropDownFilter(props) {
 	}
 
 	return (
-		<Box sx={{ maxWidth: 120 }} className="drop-down-filter">
+		<Box
+			id="filter-container"
+			// sx={{ maxWidth: 120 }}
+		>
 			<FormControl fullWidth>
-				<InputLabel id="demo-simple-select-label">Languages</InputLabel>
+				<InputLabel id="demo-simple-select-label-test">Languages</InputLabel>
 				<Select
+					className="language-filter"
 					labelId="demo-simple-select-label"
 					id="demo-simple-select"
 					value={props.languageId}

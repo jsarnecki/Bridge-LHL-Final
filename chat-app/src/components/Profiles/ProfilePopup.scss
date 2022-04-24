@@ -1,24 +1,29 @@
 .popup-box {
 	flex-direction: column;
-	background-color: black;
-	color: white;
-	position: absolute;
+	background-color: hsla(240, 85%, 13%, 0.9);
+	color: rgb(234, 204, 204);
+	text-shadow: 5px 5px 3px #000000;
+	font-family: "Cuprum", sans-serif;
+	position: fixed;
 	height: 85vh;
+	min-height: 320px;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 550px;
-	border: 2px solid #000;
+	width: 400;
+	border: 3px solid rgba(1, 11, 26, 0.5);
 	border-radius: 10%;
-	box-shadow: 24;
-	padding: 4;
+	box-shadow: 6px 6px 5px 9999px rgba(1, 11, 26, 0.5);
+	// padding: 4px;
+	overflow: hidden;
 }
 
 #modal-modal-title {
 	display: flex;
 	position: relative;
 	justify-content: center;
-	color: black;
+	color: rgb(234, 204, 204);
+
 	margin: 7%;
 	font-size: xx-large;
 }
@@ -32,6 +37,7 @@
 	position: relative;
 	max-width: 35%;
 	border-radius: 50%;
+	box-shadow: 7px 7px 8px 8px hsla(240, 88%, 7%);
 }
 
 .popup-top {
@@ -46,10 +52,20 @@
 	margin-top: -15px; //bandaid fix to hold button in parent
 }
 
-.rating {
-	list-style-type: none;
+img#edit-button {
+	position: relative;
+	width: 45px;
+	margin-right: 45px;
+	bottom: 300px;
+	background-color: hsla(240, 86%, 31%, 0.4);
+	border-radius: 50%;
 }
 
-.dark-mode-label {
-	padding-left: 10px;
+img#edit-button:hover {
+	background-color: hsla(240, 57%, 41%, 0.5);
+}
+
+#mock-edit {
+	display: flex;
+	justify-content: flex-end;
 }

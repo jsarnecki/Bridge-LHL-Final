@@ -66,11 +66,11 @@ export default function ProfilePopup(props) {
 
 	return (
 		<div
-			style={{
-				"background-color": props.checked ? "#2e2d2d" : "white",
-				color: props.checked ? "white" : "black",
-			}}
 			className="popup-box"
+			// style={{
+			// 	"background-color": props.checked ? "#2e2d2d" : "white",
+			// 	color: props.checked ? "white" : "black",
+			// }}
 		>
 			<div id="modal-modal-title" variant="h6" component="h2">
 				{props.firstName} {props.lastName}
@@ -82,13 +82,11 @@ export default function ProfilePopup(props) {
 			</div>
 
 			{currentUser && (
-				<Button
-					variant="contained"
-					onClick={() => setClickEdit(clickEdit ? false : true)}
-				>
-					Edit
-				</Button>
+				<a id="mock-edit" href="/">
+					<img id="edit-button" src="/system-update.png" />
+				</a>
 			)}
+
 
 			{currentUser && clickEdit && (
 				<form>
