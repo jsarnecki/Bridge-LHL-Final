@@ -51,6 +51,8 @@ function App(props) {
 		// Auto logins in user 1
 	});
 
+	console.log("#######################", userState.user);
+
 	//State for handling modal open and close
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
