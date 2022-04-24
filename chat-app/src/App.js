@@ -447,14 +447,14 @@ function App(props) {
 					</a>
 
 
-				{/* <div className="nav-icons-top-wrap" > */}
 					<div className="nav-right-icons" >
 
 						<a className="chat-logo-button" href="/chat">
+
+							{alert &&	<div className="alert" />	}
 							<img
 								id="chat-logo"
 								src="/chat.png"
-								className={classNames({ alert })}
 								/>
 						</a>
 
@@ -469,7 +469,6 @@ function App(props) {
 							userInformation={userInformation}
 							/>
 					</div>
-			{/* </div> */}
 
 				<Modal
 					open={open}
