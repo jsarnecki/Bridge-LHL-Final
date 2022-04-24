@@ -3,14 +3,13 @@
 	flex-direction: row;
 	.conversations {
 		width: 30%;
-		border: black solid 1px;
 		.conversations-list {
-			height: 60vh;
+			height: 85vh;
 			overflow-y: scroll;
 		}
 	}
 }
 
 .chat {
-	padding-top: 120px;
+	padding-top: 15vh;
 }

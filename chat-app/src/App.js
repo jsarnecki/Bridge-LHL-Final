@@ -435,7 +435,7 @@ function App(props) {
 		>
 			<nav className="nav">
 				<a href="/profiles">
-					<img src="/bridge_logo_font.png"></img>
+					<img id="logo" src="/bridge_logo_font.png"></img>
 				</a>
 
 				<div id="nav-bar-links">
