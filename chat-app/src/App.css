@@ -45,7 +45,7 @@
 	display: flex;
 	justify-content: space-around;
 	border-bottom: 5px solid rgb(35, 33, 33);
-	background-color: #d87093; 
+	background-color: palevioletred;
 	/* background-color: forestgreen; I like both of these */
 
 	opacity: 95%;
@@ -74,7 +74,7 @@
 
 	/* background-color: #d87093; */
 	font-family: 'Shrikhand', cursive;
-	top: -20px;
+	top: -15px;
 }
 
 a, a:hover, a:focus, a:active {
@@ -87,7 +87,7 @@ a, a:hover, a:focus, a:active {
 	/* background-color: palevioletred; */
 	text-align: center;
 	position: relative;
-	top: -20px;
+	top: -25px;
 	left: 10px;
 	font-size: 3em;
 }

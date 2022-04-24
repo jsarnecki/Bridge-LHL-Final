@@ -6,6 +6,7 @@
   font-family: 'Cuprum', sans-serif;
   position: fixed;
   height: 85vh;
+  min-height: 320px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -13,7 +14,8 @@
   border: 3px solid rgba(1, 11, 26, 0.5);
   border-radius: 10%;
   box-shadow: 6px 6px 5px 9999px rgba(1, 11, 26, 0.5);;
-  padding: 4;
+  // padding: 4px;
+  overflow: hidden;
 }
 
 #modal-modal-title {
