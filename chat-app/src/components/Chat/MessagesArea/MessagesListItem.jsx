@@ -19,6 +19,10 @@ export default function MessagesListItem(props) {
 		setEditing(true);
 	};
 
+	const handleClose = e => {
+		setEditing(false);
+	};
+
 	return (
 		<li
 			className={classNames("messages-list-item", {
@@ -36,16 +40,23 @@ export default function MessagesListItem(props) {
 			)}
 
 			<div className="text-and-edit-section">
-				{<p class="message-text">{message.text}</p>}
+				<div className="original-message">
+					{<p class="message-text">{message.text}</p>}
 
-				{hover && !current_user && !message.edit && !editing && (
-					<i
-						onClick={handleClickEdit}
-						class="fa-solid fa-pen-to-square edit-button"
-					></i>
+					{hover && !current_user && !message.edit && !editing && (
+						<i
+							onClick={handleClickEdit}
+							class="fa-solid fa-pen-to-square edit-button"
+						></i>
+					)}
+				</div>
+
+				{editing && (
+					<EditingForm
+						oldText={message.text}
+						handleClose={handleClose}
+					></EditingForm>
 				)}
-
-				{editing && <EditingForm oldText={message.text}></EditingForm>}
 			</div>
 		</li>
 	);

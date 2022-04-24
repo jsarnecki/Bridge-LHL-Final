@@ -1,0 +1,24 @@
+i {
+	padding: 5px;
+}
+
+.editing-form {
+	display: flex;
+	flex-direction: row;
+	.editing-form-buttons {
+		display: flex;
+		flex-direction: column;
+		color: #9cf6f6;
+		color: #f4f482;
+		color: #d87093;
+		// background-color: #9cf6f6;
+		// background-color: #f4f482;
+		// background-color: #d87093;
+		.accept-edit-button {
+			color: #f4f482;
+		}
+	}
+	textarea {
+		font-family: inherit;
+	}
+}
