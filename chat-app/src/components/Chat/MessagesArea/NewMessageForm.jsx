@@ -57,7 +57,7 @@ export default function NewMessageForm(props) {
 
 	inputHeight = Math.min(
 		maxHeight,
-		Math.max(1, Math.ceil(state.text.length / bounds.width / 0.12348))
+		Math.max(1, Math.ceil(state.text.length / bounds.width / 0.2))
 	);
 
 	return (

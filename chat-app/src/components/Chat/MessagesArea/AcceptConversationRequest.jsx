@@ -39,8 +39,12 @@ export default function AcceptConversationRequest(props) {
 	return (
 		<>
 			<h3>You have a friend request, do you wish to accept?</h3>
-			<button onClick={handleAcceptRequest}>Accept</button>
-			<button onClick={handleDeclineRequest}>Decline</button>
+			<button className="accept-request-button" onClick={handleAcceptRequest}>
+				Accept
+			</button>
+			<button className="decline-request-button" onClick={handleDeclineRequest}>
+				Decline
+			</button>
 		</>
 	);
 }

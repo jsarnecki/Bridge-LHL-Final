@@ -1,4 +1,17 @@
 .accept-conversation-form {
-	border: 1px solid black;
+	// border: 1px solid black;
+	padding: 20px;
 	height: 100%;
+	button {
+		background-color: #f4f482;
+		border: none;
+		border-radius: 5px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.decline-request-button {
+		margin-left: 15px;
+	}
 }
