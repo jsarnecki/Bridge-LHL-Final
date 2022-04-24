@@ -66,11 +66,11 @@ export default function ProfilePopup(props) {
 
 	return (
 		<div
-			style={{
-				"background-color": props.checked ? "#2e2d2d" : "white",
-				color: props.checked ? "white" : "black",
-			}}
 			className="popup-box"
+			// style={{
+			// 	"background-color": props.checked ? "#2e2d2d" : "white",
+			// 	color: props.checked ? "white" : "black",
+			// }}
 		>
 			<div id="modal-modal-title" variant="h6" component="h2">
 				{props.firstName} {props.lastName}
