@@ -1,6 +1,9 @@
-#main-container {
+main#main-container {
   background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(178, 168, 218, 0.45)), url(../../public/world-flags.jpg);
-
+  background-repeat: repeat-y;
+  // background-size: cover;
+  // position: absolute;
+  
   // opacity: 70%;
 
   
@@ -35,5 +38,11 @@ ul.cards {
   //hardcoded for now, come back later
   padding-left: 120px;
   // justify-content: space-evenly;
+}
+
+section.profile-container {
+  // position: fixed;
+  margin-top: 150px;
+  // background-repeat: inherit;
 }
 

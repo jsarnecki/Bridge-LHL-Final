@@ -89,14 +89,18 @@ export default function Profiles() {
 
   return (
     <main id="main-container" style={{ padding: "1rem 0" }}>
+      <section className="profile-container">
+
+
       <DropDownFilter
         languageId={languageId}
         setLanguageId={setLanguageId}
         learningLanguages={learningLanguages}
         learningLanguagesIds={learningLanguagesIds}
         handleChange={handleChange}
-      />
+        />
       <ul className="cards">{usersMapped}</ul>
+      </section>
     </main>
   );
 }
