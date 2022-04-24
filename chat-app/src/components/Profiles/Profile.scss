@@ -3,6 +3,7 @@
 
 
 div.mdc-card {
+	position: relative;
 	border: 2px solid rgb(43, 0, 0);
 	border-radius: 8%;
 	padding: 2%;
@@ -11,20 +12,22 @@ div.mdc-card {
 	font-family: 'Cuprum', sans-serif;
 	font-size: 1.5em;
 	color: white;
+	text-shadow:  5px 5px 3px #000000;
 	background-color: rgba(5, 5, 61, 0.85);
-	box-shadow: 5px 5px rgb(63 107 169 / 34%);
+	box-shadow: 6px 6px 5px rgb(63 107 169 / 34%);
 	flex-basis: 20%; //Makes it 3 per line --- 33.333% == 4 per line
 }
 
 
 div.mdc-card:hover {
-	box-shadow: 9px 9px rgba(20, 59, 114, 0.50);
+	box-shadow: 10px 10px 12px rgba(6, 27, 57, 0.5);
 
 	.profile-img {
 		max-width: 100%;
-		border-radius: 30%;
-		border-style: solid;
-		border-color: rgba(3, 3, 50, 0.85);
+		border-radius: 25%;
+		box-shadow: 5px 5px 8px rgba(3, 19, 42, 0.25);
+		// border-style: solid;
+		// border-color: rgba(5, 5, 61, 0.85);
 	}
 }
 
