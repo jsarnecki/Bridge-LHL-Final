@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import SelectUnstyled from "@mui/base/SelectUnstyled";
+import Select from "@mui/material/Select";
 import { red } from "@mui/material/colors";
 
 export default function DropDownLogin(props) {
@@ -84,7 +84,7 @@ export default function DropDownLogin(props) {
 				<img
 					src={information.user.image}
 					style={{
-						"max-height": "2.4em",
+						"max-height": "1.5em",
 						"border-radius": "35%",
 						margin: "-5px, 5px",
 					}}
@@ -98,17 +98,16 @@ export default function DropDownLogin(props) {
 		<Box className="drop-down-box-test">
 			<FormControl fullWidth>
 				<InputLabel id="demo-simple-select-label-test"></InputLabel>
-				<SelectUnstyled
+				<Select
 					className="login-select"
-					// labelId="demo-simple-select-label-test"
-					// id="demo-simple-select"
+					labelId="demo-simple-select-label"
+					id="demo-simple-select"
 					value={props.state.user.id}
 					label="Language"
 					onChange={handleChange}
-					// src={props.image}
 				>
 					{dropDownArray}
-				</SelectUnstyled>
+				</Select>
 			</FormControl>
 		</Box>
 	);
