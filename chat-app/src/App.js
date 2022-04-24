@@ -444,25 +444,32 @@ function App(props) {
 			</a>
 
 
-				{/* <Button variant="contained" onClick={handleOpen}>
-					My Profile
-				</Button> */}
-
 				<a className="profile-logo-button" href="javascript:void(0)" >
 
 					<img id="profile-logo" src="/account.png" onClick={handleOpen} />
 
 			</a>
 
+			<a className="chat-logo-button" href="/chat" >
+
+				<img id="chat-logo" src="/chat.png" 	className={classNames({ alert })} />
+
+			</a>
 
 
-				<Button
+				{/* <Button
 					variant="contained"
 					href="/chat"
 					className={classNames({ alert })}
 				>
 					Chat
-				</Button>
+				</Button> */}
+
+
+
+
+
+
 				<DropDownLogin
 					className={"dropDownMenu"}
 					state={userState}

@@ -103,3 +103,9 @@ img#profile-logo {
 	width: 70px;
 	top: 3px;
 }
+
+img#chat-logo {
+	position: relative;
+	width: 65px;
+	top: 3px;
+}
