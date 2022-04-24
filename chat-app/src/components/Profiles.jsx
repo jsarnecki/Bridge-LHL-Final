@@ -89,7 +89,6 @@ export default function Profiles() {
 
   return (
     <main id="main-container" style={{ padding: "1rem 0" }}>
-      <h2>Profiles</h2>
       <DropDownFilter
         languageId={languageId}
         setLanguageId={setLanguageId}
