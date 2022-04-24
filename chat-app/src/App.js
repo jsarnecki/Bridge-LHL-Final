@@ -439,28 +439,32 @@ function App(props) {
 				<a href="/profiles">
 					<div className="home-logo">
 						<img id="bridge-logo" src="/bridge.png" />
-						<p>Bridge</p>
+						<h2>Bridge</h2>
 					</div>
 				</a>
 
-				<a className="chat-logo-button" href="/chat">
-					<img
-						id="chat-logo"
-						src="/chat.png"
-						className={classNames({ alert })}
-					/>
-				</a>
 
-				<a className="profile-logo-button" href="javascript:void(0)">
-					<img id="profile-logo" src="/account.png" onClick={handleOpen} />
-				</a>
+				<div className="nav-right-icons" >
 
-				<DropDownLogin
-					className={"dropDownMenu"}
-					state={userState}
-					setState={setUserState}
-					userInformation={userInformation}
-				/>
+					<a className="chat-logo-button" href="/chat">
+						<img
+							id="chat-logo"
+							src="/chat.png"
+							className={classNames({ alert })}
+							/>
+					</a>
+
+					<a className="profile-logo-button" href="javascript:void(0)">
+						<img id="profile-logo" src="/account.png" onClick={handleOpen} />
+					</a>
+
+					<DropDownLogin
+						className={"dropDownMenu"}
+						state={userState}
+						setState={setUserState}
+						userInformation={userInformation}
+						/>
+				</div>
 
 				<Modal
 					open={open}
