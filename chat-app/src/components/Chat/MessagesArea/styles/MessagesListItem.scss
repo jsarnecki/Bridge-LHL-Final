@@ -4,26 +4,40 @@
 	list-style-type: none;
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	margin-top: 5px;
+	padding-left: 10px;
 
 	.profile-picture {
-		width: 20px;
-		height: 20px;
+		width: 25px;
+		height: 25px;
 		border-radius: 50%;
 		padding-right: 5px;
 	}
 	.message-text {
 		text-align: left;
 		word-wrap: break-word;
-		margin-top: 0px;
+		margin: 0px;
 		border-radius: 15px;
-		border: black solid 1px;
-		padding-left: 5px;
-		padding-right: 5px;
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top: 5px;
+		padding-bottom: 5px;
 		align-items: flex-start;
+		background-color: rgb(233, 233, 233);
 	}
 }
 
 .initializer {
 	display: none;
+}
+
+.current_user {
+	align-self: flex-end;
+	text-align: right;
+	margin-right: 20px;
+	.message-text {
+		color: white;
+		background-color: #5accfd;
+	}
 }
