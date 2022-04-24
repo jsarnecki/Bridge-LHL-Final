@@ -435,7 +435,7 @@ function App(props) {
 		>
 			<nav className="nav">
 				<a href="/profiles">
-					<img id="logo" src="/logo-overlap.png"></img>
+					<img id="logo" src="/logo-orange.png"></img>
 				</a>
 
 				<div id="nav-bar-links">

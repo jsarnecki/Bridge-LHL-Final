@@ -12,6 +12,7 @@ export default function NewMessageForm(props) {
 		receiver_id: null,
 	});
 
+	//Imported hook to dynamically size textarea based on text length
 	const [ref, bounds] = useMeasure();
 	const maxHeight = 5;
 
@@ -50,6 +51,8 @@ export default function NewMessageForm(props) {
 		});
 	};
 
+	//Set input height based on length vs textbox width
+	//0.12348 is magic number found through trial and error
 	let inputHeight;
 
 	inputHeight = Math.min(
