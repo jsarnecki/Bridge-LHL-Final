@@ -1,8 +1,8 @@
 .popup-box {
 	flex-direction: column;
-	background-color: hsla(240, 85%, 13%, 0.9);
-	color: rgb(234, 204, 204);
-	text-shadow: 5px 5px 3px #000000;
+	background-color: #9CF6F6;
+	color: black;
+	// text-shadow: 5px 5px 3px #000000;
 	font-family: "Cuprum", sans-serif;
 	position: fixed;
 	height: 85vh;
@@ -22,7 +22,7 @@
 	display: flex;
 	position: relative;
 	justify-content: center;
-	color: rgb(234, 204, 204);
+	color: black;
 
 	margin: 7%;
 	font-size: xx-large;
@@ -68,4 +68,16 @@ img#edit-button:hover {
 #mock-edit {
 	display: flex;
 	justify-content: flex-end;
+}
+
+table {
+  width: 200px;
+}
+
+th {
+  text-align: left;
+}
+
+table, th, td {
+  border: 1px solid black;
 }

@@ -54,13 +54,23 @@ export default function ProfilePopup(props) {
 		let skillLevel = stars(lang.skill_level);
 
 		return (
-			<div>
-				<li>
-					{lang.learning ? "Learning: " : "Native: "}
-					{lang.language_name}
-				</li>
-				<li className="rating">{skillLevel}</li>
-			</div>
+			<tr>
+				<td>
+				{lang.learning ? "Learning: " : "Native: "}
+				{lang.language_name}
+				</td>
+				<td>
+				{skillLevel}
+				</td>
+			</tr>
+
+			// <div>
+			// 	<li>
+			// 		{lang.learning ? "Learning: " : "Native: "}
+			// 		{lang.language_name}
+			// 	</li>
+			// 	<li className="rating">{skillLevel}</li>
+			// </div>
 		);
 	});
 
@@ -78,7 +88,13 @@ export default function ProfilePopup(props) {
 
 			<div className="popup-top">
 				<img className="popup-img" src={props.image} />
-				<ul>{languages}</ul>
+				<table>
+				<tr>
+					<th> Language </th>
+					<th> Skill level</th>
+				</tr>
+				{languages}
+			</table>
 			</div>
 
 			{currentUser && (
@@ -117,14 +133,15 @@ export default function ProfilePopup(props) {
 				<div className="popup-button">Requested!</div>
 			)}
 
-			{currentUser && <p className="dark-mode-label">Dark Mode</p>}
+				{/* //Commented out for now */}
+			{/* {currentUser && <p className="dark-mode-label">Dark Mode</p>}
 			{currentUser && (
 				<Switch
 					checked={props.isDarkTheme}
 					onChange={props.onChange}
 					inputProps={{ "aria-label": "controlled" }}
 				></Switch>
-			)}
+			)} */}
 		</div>
 	);
 }
