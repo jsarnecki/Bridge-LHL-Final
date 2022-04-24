@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { API_ROOT, HEADERS } from "../../../constants";
 import "./styles/NewMessageForm.scss";
+import useMeasure from "react-use-measure";
 export default function NewMessageForm(props) {
 	const { conversation_id, logged_in_user, friend_id } = props;
+
 	const [state, setState] = useState({
 		text: "",
 		conversation_id: null,
 		sender_id: null,
 		receiver_id: null,
 	});
+
+	const [ref, bounds] = useMeasure();
+	const maxHeight = 5;
 
 	useEffect(() => {
 		setState(prev => {
@@ -27,6 +32,11 @@ export default function NewMessageForm(props) {
 		});
 	};
 
+	const handleKeyDown = e => {
+		if (e.key === "Enter") {
+			handleSubmit(e);
+		}
+	};
 	const handleSubmit = e => {
 		e.preventDefault();
 
@@ -40,14 +50,27 @@ export default function NewMessageForm(props) {
 		});
 	};
 
+	let inputHeight;
+
+	inputHeight = Math.min(
+		maxHeight,
+		Math.max(1, Math.ceil(state.text.length / bounds.width / 0.12348))
+	);
+
 	return (
-		<div className="newMessageForm">
-			<form onSubmit={handleSubmit}>
-				<label>New Message:</label>
-				<br />
-				<input type="text" value={state.text} onChange={handleChange} />
-				<input type="submit" value="send" />
-			</form>
-		</div>
+		<form onSubmit={handleSubmit} className="newMessageForm">
+			<br />
+			<textarea
+				value={state.text}
+				onChange={handleChange}
+				className="new-message-textbox"
+				ref={ref}
+				style={{ height: inputHeight * 18 }}
+				onKeyDown={handleKeyDown}
+			/>
+			<button className="new-message-submit" type="submit">
+				<i class="fa-solid fa-paper-plane"></i>
+			</button>
+		</form>
 	);
 }

@@ -1,4 +1,19 @@
 .newMessageForm {
-	border: black 1px solid;
 	height: 10vh;
+	width: 100%;
+}
+
+.new-message-textbox {
+	margin-left: 10px;
+	width: calc(100% - 78px);
+	word-wrap: break-word;
+	resize: none;
+}
+.new-message-submit {
+	margin-right: 10px;
+	border: none;
+	background-color: white;
+	color: #60b0f4;
+	font-size: 1.1em;
+	width: 50px;
 }
