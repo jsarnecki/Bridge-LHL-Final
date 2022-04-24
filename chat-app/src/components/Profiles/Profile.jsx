@@ -6,12 +6,10 @@ import Modal from "@mui/material/Modal";
 import ProfilePopup from "./ProfilePopup";
 
 export default function Profile(props) {
-
 	// State for handling open and closing profilePopup feature
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-
 
 	// Make DRY by adding to helper function folder
 	const flags = function (languageId) {
@@ -36,7 +34,7 @@ export default function Profile(props) {
 	};
 
 	return (
-		<div className="mdc-card mdc-card--outlined">
+		<div className="mdc-card mdc-card--outlined profile-card">
 			<div>
 				<span>{props.firstName}</span> <span>{props.lastName}</span>
 			</div>
@@ -57,9 +55,13 @@ export default function Profile(props) {
 						.map(language => flags(language.language_id))}
 				</span>
 			</div>
-			<div> ______________________</div>
-			<Button variant="contained" onClick={handleOpen}>
-				Expand Profile
+
+			<Button
+				variant="contained"
+				onClick={handleOpen}
+				className="see-profile-button"
+			>
+				See Profile
 			</Button>
 			<Modal
 				open={open}
