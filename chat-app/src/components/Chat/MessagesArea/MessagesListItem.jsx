@@ -2,6 +2,7 @@ import classNames from "classnames";
 import "./styles/MessagesListItem.scss";
 import { useState } from "react";
 import EditingForm from "./EditingForm";
+
 export default function MessagesListItem(props) {
 	const { message, current_user, friend_first_name } = props;
 	const [hover, setHover] = useState(false);
