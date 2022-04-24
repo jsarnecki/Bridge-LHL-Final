@@ -42,8 +42,8 @@
 	top: 0px;
 	width: 100%;
 	height: 75px;
-	/* display: flex;
-	justify-content: space-around; */
+	display: flex;
+	justify-content: space-between;
 	border-bottom: 5px solid rgb(35, 33, 33);
 	background-color: #d87093;
 	/* background-color: forestgreen;  */
@@ -57,23 +57,16 @@
 	color: #5accfd;
 }
 .nav .alert {
-	color: red;
+	color: forestgreen;
 	font-weight: bold;
+	height: 10px;
+	width: 10px;
 }
 
-.nav .dropDownMain {
-	max-height: 2em; /* Not working - make shorter*/
-	border-color: red;
-	background-color: white;
-}
-
-/* .nav .home-button {
-	font-size: x-large;
-	background-color: forestgreen;
-} */
 
 .home-logo {
-	max-height: 75px;
+	max-height: 85px;
+	margin-left: 15px;
 }
 
 .nav .home-logo {
@@ -81,9 +74,11 @@
 	flex-direction: row;
 	position: relative;
 
+	padding-right: 20px;
 	/* background-color: #d87093; */
 	font-family: "Shrikhand", cursive;
 	top: -15px;
+	overflow: hidden;
 }
 
 a,
@@ -94,9 +89,8 @@ a:active {
 	color: inherit;
 }
 
-.home-logo h2 {
-	/* z-index: 0; */
-	/* background-color: palevioletred; */
+.home-logo p {
+	z-index: 999;
 	text-align: center;
 	position: relative;
 	top: 25px;
@@ -118,17 +112,21 @@ a:active {
 
 img#profile-logo {
 	position: relative;
-	width: 70px;
-	top: 3px;
+	width: 65px;
+	top: 6px;
+	margin: 0px 15px;
 }
 
 img#chat-logo {
 	position: relative;
 	width: 65px;
-	top: 5px;
+	top: 7px;
+	margin: 0px 15px;
+
 }
 
 .nav-right-icons {
 	display:flex;
-	justify-content: flex-end;
+	justify-content: flex-start;
+	justify-content: space-evenly;
 }

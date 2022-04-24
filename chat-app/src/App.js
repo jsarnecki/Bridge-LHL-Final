@@ -435,36 +435,41 @@ function App(props) {
 				color: isDarkTheme ? "white" : "black",
 			}}
 		>
-			<nav className="nav">
-				<a href="/profiles">
-					<div className="home-logo">
-						<img id="bridge-logo" src="/bridge.png" />
-						<h2>Bridge</h2>
-					</div>
-				</a>
 
 
-				<div className="nav-right-icons" >
 
-					<a className="chat-logo-button" href="/chat">
-						<img
-							id="chat-logo"
-							src="/chat.png"
-							className={classNames({ alert })}
+				<nav className="nav">
+					<a id="nav-profiles-button" href="/profiles">
+						<div className="home-logo">
+							<img id="bridge-logo" src="/bridge.png" />
+							<p>Bridge</p>
+						</div>
+					</a>
+
+
+				{/* <div className="nav-icons-top-wrap" > */}
+					<div className="nav-right-icons" >
+
+						<a className="chat-logo-button" href="/chat">
+							<img
+								id="chat-logo"
+								src="/chat.png"
+								className={classNames({ alert })}
+								/>
+						</a>
+
+						<a className="profile-logo-button" href="javascript:void(0)">
+							<img id="profile-logo" src="/account.png" onClick={handleOpen} />
+						</a>
+
+						<DropDownLogin
+							className={"dropDownMenu"}
+							state={userState}
+							setState={setUserState}
+							userInformation={userInformation}
 							/>
-					</a>
-
-					<a className="profile-logo-button" href="javascript:void(0)">
-						<img id="profile-logo" src="/account.png" onClick={handleOpen} />
-					</a>
-
-					<DropDownLogin
-						className={"dropDownMenu"}
-						state={userState}
-						setState={setUserState}
-						userInformation={userInformation}
-						/>
-				</div>
+					</div>
+			{/* </div> */}
 
 				<Modal
 					open={open}
