@@ -37,7 +37,9 @@
 	position: relative;
 	max-width: 35%;
 	border-radius: 50%;
-	box-shadow: 7px 7px 8px 8px hsla(240, 88%, 7%);
+	// box-shadow: 7px 7px 8px 8px hsla(240, 88%, 7%);
+  border: solid #F7EDF0;
+  box-shadow: 2px 12px 36px -11px;
 }
 
 .popup-top {
@@ -50,6 +52,18 @@
 	display: flex;
 	justify-content: space-evenly;
 	margin-top: -15px; //bandaid fix to hold button in parent
+}
+
+button.MuiButton-root {
+  background-color: #F4F482;
+  color:black;
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+//Trying to target hover
+button.MuiButton-root.popup-button:hover {
+  background-color: #DC965A;
 }
 
 img#edit-button {
@@ -71,7 +85,8 @@ img#edit-button:hover {
 }
 
 table {
-  width: 200px;
+  width: 250px;
+  border-collapse: collapse;
 }
 
 th {
@@ -79,5 +94,34 @@ th {
 }
 
 table, th, td {
-  border: 1px solid black;
+  // border: 1px solid black;
+  border-spacing: 0cm;
+}
+
+th, td {
+  padding: 10px;
+}
+
+@media (max-width: 700px) {
+  .popup-top {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #modal-modal-description {
+    display: flex;
+    justify-content: center;
+  }
+
+  .popup-button {
+    margin-top: 10px;
+  }
+
+  table {
+    flex-direction: column;
+    width: 300px;
+  }
+
+
 }
