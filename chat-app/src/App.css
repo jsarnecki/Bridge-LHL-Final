@@ -92,6 +92,10 @@ a, a:hover, a:focus, a:active {
 	font-size: 3em;
 }
 
+.home-logo:hover {
+	text-shadow: 3px 3px #ac365d;
+}
+
 #bridge-logo {
 	width: 7em;
 	height: 7em;
