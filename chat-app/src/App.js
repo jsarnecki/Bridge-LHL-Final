@@ -445,6 +445,7 @@ function App(props) {
 					<a href="/chat">
 						<p className={classNames("nav-bar-link", { alert })}>Chat</p>
 					</a>
+					{alert && <i class="fa-solid fa-comment-dots alert"></i>}
 				</div>
 
 				<DropDownLogin
