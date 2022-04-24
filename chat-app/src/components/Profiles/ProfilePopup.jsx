@@ -82,13 +82,11 @@ export default function ProfilePopup(props) {
 			</div>
 
 			{currentUser && (
-				<Button
-					variant="contained"
-					onClick={() => setClickEdit(clickEdit ? false : true)}
-				>
-					Edit
-				</Button>
+				<a>
+					<img id="edit-button" src="/system-update.png" />
+				</a>
 			)}
+
 
 			{currentUser && clickEdit && (
 				<form>
