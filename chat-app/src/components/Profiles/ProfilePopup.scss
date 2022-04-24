@@ -1,47 +1,55 @@
 .popup-box {
-  flex-direction: column;
-  background-color: black;
-  color: white;
-  position: absolute;
-  height: 85vh;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400;
-  border: 2px solid #000;
-  border-radius: 10%;
-  box-shadow: 24;
-  padding: 4;
+	flex-direction: column;
+	background-color: black;
+	color: white;
+	position: absolute;
+	height: 85vh;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 550px;
+	border: 2px solid #000;
+	border-radius: 10%;
+	box-shadow: 24;
+	padding: 4;
 }
 
 #modal-modal-title {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  color: red;
-  margin: 7%;
-  font-size: xx-large;
+	display: flex;
+	position: relative;
+	justify-content: center;
+	color: black;
+	margin: 7%;
+	font-size: xx-large;
 }
 
 #modal-modal-description {
-  margin: 7%;
-  position: relative;
+	margin: 7%;
+	position: relative;
 }
 
 .popup-img {
-  position: relative;
-  max-width: 35%;
-  border-radius: 50%;
+	position: relative;
+	max-width: 35%;
+	border-radius: 50%;
 }
 
 .popup-top {
-  margin-top: 7%;
-  display: flex;
-  justify-content: space-evenly;
+	margin-top: 7%;
+	display: flex;
+	justify-content: space-evenly;
 }
 
 .popup-button {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: -15px; //bandaid fix to hold button in parent
+	display: flex;
+	justify-content: space-evenly;
+	margin-top: -15px; //bandaid fix to hold button in parent
+}
+
+.rating {
+	list-style-type: none;
+}
+
+.dark-mode-label {
+	padding-left: 10px;
 }

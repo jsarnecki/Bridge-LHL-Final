@@ -59,7 +59,7 @@ export default function ProfilePopup(props) {
 					{lang.learning ? "Learning: " : "Native: "}
 					{lang.language_name}
 				</li>
-				<li>{skillLevel}</li>
+				<li className="rating">{skillLevel}</li>
 			</div>
 		);
 	});
@@ -119,12 +119,13 @@ export default function ProfilePopup(props) {
 				<div className="popup-button">Requested!</div>
 			)}
 
+			{currentUser && <p className="dark-mode-label">Dark Mode</p>}
 			{currentUser && (
 				<Switch
 					checked={props.isDarkTheme}
 					onChange={props.onChange}
 					inputProps={{ "aria-label": "controlled" }}
-				/>
+				></Switch>
 			)}
 		</div>
 	);
