@@ -82,7 +82,7 @@ export default function ProfilePopup(props) {
 			</div>
 
 			{currentUser && (
-				<a>
+				<a id="mock-edit" href="/">
 					<img id="edit-button" src="/system-update.png" />
 				</a>
 			)}

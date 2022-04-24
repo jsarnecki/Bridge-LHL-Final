@@ -53,5 +53,17 @@
 img#edit-button {
 	position: relative;
 	width: 45px;
-	top: 5px;
+  margin-right: 45px;
+  bottom: 300px;
+	background-color: hsla(240, 86%, 31%, 0.4);
+  border-radius: 50%;
+}
+
+img#edit-button:hover {
+  background-color: hsla(240, 57%, 41%, 0.5);
+}
+
+#mock-edit{
+  display: flex;
+  justify-content: flex-end;
 }
