@@ -45,8 +45,10 @@
 	display: flex;
 	justify-content: space-around;
 	border-bottom: 5px solid rgb(35, 33, 33);
-	background-color: #d87093;
-	opacity: 80%;
+	background-color: #d87093; 
+	/* background-color: forestgreen; I like both of these */
+
+	opacity: 95%;
 	z-index: 99;
 }
 
@@ -60,10 +62,10 @@
 	background-color: white;
 }
 
-.nav .home-button {
+/* .nav .home-button {
 	font-size: x-large;
 	background-color: forestgreen;
-}
+} */
 
 .nav .home-logo {
 	display: flex;
@@ -94,4 +96,10 @@ a, a:hover, a:focus, a:active {
 	width: 7em;
 	height: 7em;
 	top: -5px;
+}
+
+img#profile-logo {
+	position: relative;
+	width: 70px;
+	top: 3px;
 }

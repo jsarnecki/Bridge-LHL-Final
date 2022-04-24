@@ -444,14 +444,16 @@ function App(props) {
 			</a>
 
 
-				{/* <Button className="home-button" variant="contained" href="/profiles">
-					Home
+				{/* <Button variant="contained" onClick={handleOpen}>
+					My Profile
 				</Button> */}
 
+				<a className="profile-logo-button" href="javascript:void(0)" >
 
-				<Button variant="contained" onClick={handleOpen}>
-					My Profile
-				</Button>
+					<img id="profile-logo" src="/account.png" onClick={handleOpen} />
+
+			</a>
+
 
 
 				<Button
