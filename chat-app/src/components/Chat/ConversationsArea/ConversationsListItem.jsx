@@ -29,31 +29,34 @@ export default function ConversationsListItem(props) {
 			<div class="conversation-preview">
 				{conversation.friend_first_name + " " + conversation.friend_last_name}
 				<br></br>
-				{/* If the latest message is a request, set appropriate message preview */}
-				{lastMessage.initializer &&
-					lastMessage.text === "request" &&
-					(lastMessage.sender_id === conversation.friend_id
-						? conversation.friend_first_name + " has sent you a friend request"
-						: "You have sent a friend request ")}
-				{/* If the latest message is a request acceptance, set appropriate message preview */}
-				{lastMessage.initializer &&
-					lastMessage.text === "accept" &&
-					(lastMessage.sender_id === conversation.friend_id
-						? conversation.friend_first_name +
-						  " has accepted your friend request"
-						: `You have accepted ${conversation.friend_first_name}'s friend request`)}
-				{/* If the latest message is not an initializer (request or acceptance), set appropriate message preview */}
-				{lastMessage &&
-					!lastMessage.initializer &&
-					(lastMessage.sender_id === conversation.friend_id
-						? conversation.friend_first_name + ": "
-						: "You: ")}
-				{/* Limit message preview to 20 characters long */}
-				{lastMessage &&
-					!lastMessage.initializer &&
-					(lastMessage.text.length > 20
-						? lastMessage.text.slice(0, 20) + "..."
-						: lastMessage.text)}
+				<span className="message-preview">
+					{/* If the latest message is a request, set appropriate message preview */}
+					{lastMessage.initializer &&
+						lastMessage.text === "request" &&
+						(lastMessage.sender_id === conversation.friend_id
+							? conversation.friend_first_name +
+							  " has sent you a friend request"
+							: "You have sent a friend request ")}
+					{/* If the latest message is a request acceptance, set appropriate message preview */}
+					{lastMessage.initializer &&
+						lastMessage.text === "accept" &&
+						(lastMessage.sender_id === conversation.friend_id
+							? conversation.friend_first_name +
+							  " has accepted your friend request"
+							: `You have accepted ${conversation.friend_first_name}'s friend request`)}
+					{/* If the latest message is not an initializer (request or acceptance), set appropriate message preview */}
+					{lastMessage &&
+						!lastMessage.initializer &&
+						(lastMessage.sender_id === conversation.friend_id
+							? conversation.friend_first_name + ": "
+							: "You: ")}
+					{/* Limit message preview to 20 characters long */}
+					{lastMessage &&
+						!lastMessage.initializer &&
+						(lastMessage.text.length > 20
+							? lastMessage.text.slice(0, 20) + "..."
+							: lastMessage.text)}
+				</span>
 			</div>
 		</li>
 	);

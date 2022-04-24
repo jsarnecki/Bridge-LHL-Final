@@ -1,4 +1,5 @@
 import ConversationsListItem from "./ConversationsListItem";
+import "./styles/ConversationsList.scss";
 export default function ConversationsList(props) {
 	const { conversations, handleClick, handleReceivedMessage, cableApp } = props;
 
