@@ -56,6 +56,7 @@ export default function MessagesListItem(props) {
 					<EditingForm
 						oldText={message.text}
 						handleClose={handleClose}
+						message={message}
 					></EditingForm>
 				)}
 			</div>

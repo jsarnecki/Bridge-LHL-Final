@@ -28,6 +28,8 @@ class MessagesController < ApplicationController
 	end
 
 	def update
+		puts 'GOT HERE'
+
 		#Creates a new message with edit as true and new_text from user
 		message =
 			Message.new(
@@ -60,6 +62,6 @@ class MessagesController < ApplicationController
 	def message_params
 		params
 			.require(:message)
-			.permit(:text, :conversation_id, :sender_id, :receiver_id)
+			.permit(:text, :conversation_id, :sender_id, :receiver_id, :new_text)
 	end
 end
