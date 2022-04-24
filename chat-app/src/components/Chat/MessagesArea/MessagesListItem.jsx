@@ -1,9 +1,11 @@
 import classNames from "classnames";
 import "./styles/MessagesListItem.scss";
 import { useState } from "react";
+import EditingForm from "./EditingForm";
 export default function MessagesListItem(props) {
 	const { message, current_user, friend_first_name } = props;
 	const [hover, setHover] = useState(false);
+	const [editing, setEditing] = useState(false);
 
 	const handleMouseOver = e => {
 		setHover(true);
@@ -11,6 +13,10 @@ export default function MessagesListItem(props) {
 
 	const handleMouseOut = e => {
 		setHover(false);
+	};
+
+	const handleClickEdit = e => {
+		setEditing(true);
 	};
 
 	return (
@@ -29,11 +35,18 @@ export default function MessagesListItem(props) {
 				></img>
 			)}
 
-			<p class="message-text">{message.text}</p>
+			<div className="text-and-edit-section">
+				{<p class="message-text">{message.text}</p>}
 
-			{hover && !current_user && !message.edit && (
-				<i class="fa-solid fa-pen-to-square"></i>
-			)}
+				{hover && !current_user && !message.edit && !editing && (
+					<i
+						onClick={handleClickEdit}
+						class="fa-solid fa-pen-to-square edit-button"
+					></i>
+				)}
+
+				{editing && <EditingForm oldText={message.text}></EditingForm>}
+			</div>
 		</li>
 	);
 }
