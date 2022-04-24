@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_19_025515) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_24_211303) do
   create_table "conversations", force: :cascade do |t|
     t.integer "requester_id"
     t.integer "accepter_id"
@@ -19,6 +19,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_19_025515) do
     t.boolean "seen"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "edits", force: :cascade do |t|
+    t.integer "message_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_edits_on_message_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -34,6 +41,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_19_025515) do
     t.integer "receiver_id"
     t.boolean "seen"
     t.boolean "initializer"
+    t.boolean "edit"
+    t.string "new_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
@@ -62,5 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_19_025515) do
     t.index ["user_id"], name: "index_users_languages_on_user_id"
   end
 
+  add_foreign_key "edits", "messages"
   add_foreign_key "messages", "conversations"
 end
