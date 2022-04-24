@@ -1,22 +1,30 @@
 @use "@material/card";
-
 @include card.core-styles;
 
-.my-card-content {
-	padding: 16px;
-}
 
 div.mdc-card {
+	border: 2px solid rgb(43, 0, 0);
+	border-radius: 8%;
 	padding: 2%;
 	width: 50%;
 	margin: 5%;
+	font-family: 'Cuprum', sans-serif;
+	font-size: 1.5em;
 	color: white;
 	background-color: black;
+	box-shadow: 9px 9px rgb(63 107 169 / 34%);
 	flex-basis: 20%; //Makes it 3 per line --- 33.333% == 4 per line
 }
 
+
+div.mdc-card:hover {
+	box-shadow: 15px 15px rgba(20, 59, 114, 0.34);
+}
+
+
 .profile-img {
 	max-width: 100%;
+	border-radius: 20%;
 }
 
 ul {

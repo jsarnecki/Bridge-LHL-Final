@@ -57,7 +57,7 @@ export default function Profile(props) {
 						.map(language => flags(language.language_id))}
 				</span>
 			</div>
-			<div> ______________________</div>
+			<br />
 			<Button variant="contained" onClick={handleOpen}>
 				Expand Profile
 			</Button>
