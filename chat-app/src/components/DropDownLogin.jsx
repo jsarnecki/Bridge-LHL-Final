@@ -94,7 +94,7 @@ export default function DropDownLogin(props) {
   return (
     <Box className="drop-down-box" >
       <FormControl  fullWidth>
-        <InputLabel id="demo-simple-select-label" >LoggedIn</InputLabel>
+        <InputLabel id="demo-simple-select-label" ></InputLabel>
         <Select
 
           className="login-select"

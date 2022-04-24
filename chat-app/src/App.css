@@ -45,8 +45,8 @@
 	display: flex;
 	justify-content: space-around;
 	border-bottom: 5px solid rgb(35, 33, 33);
-	background-color: palevioletred;
-	/* background-color: forestgreen; I like both of these */
+	background-color: #d87093;
+	/* background-color: forestgreen;  */
 
 	opacity: 95%;
 	z-index: 99;

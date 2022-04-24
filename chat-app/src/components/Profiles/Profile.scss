@@ -4,17 +4,17 @@
 
 div.mdc-card {
 	position: relative;
-	border: 2px solid rgb(43, 0, 0);
+	// border: 1px solid rgb(139, 7, 7);
 	border-radius: 8%;
 	padding: 2%;
 	width: 50%;
 	margin: 5%;
 	font-family: 'Cuprum', sans-serif;
 	font-size: 1.5em;
-	color: white;
+	color: rgb(4, 0, 0);
 	align-items: center; //Doesn't look too bad when name text is to the left
-	text-shadow:  5px 5px 3px #000000;
-	background-color: rgba(5, 5, 61, 0.85);
+	text-shadow:  2px 2px 3px #9a7d7d;
+	background-color: hsl(180, 83%, 79%, .4);
 	box-shadow: 6px 6px 5px rgb(63 107 169 / 34%);
 	flex-basis: 20%; //Makes it 3 per line --- 33.333% == 4 per line
 }
