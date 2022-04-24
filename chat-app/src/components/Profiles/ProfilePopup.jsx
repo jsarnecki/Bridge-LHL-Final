@@ -67,7 +67,7 @@ export default function ProfilePopup(props) {
 	return (
 		<div
 			style={{
-				"background-color": props.checked ? "#2e2d2d" : "white",
+				"background-color": props.checked ? "#444444" : "white",
 				color: props.checked ? "white" : "black",
 			}}
 			className="popup-box"

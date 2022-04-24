@@ -18,7 +18,7 @@
   display: flex;
   position: relative;
   justify-content: center;
-  color: red;
+  color: black;
   margin: 7%;
   font-size: xx-large;
 }
@@ -32,6 +32,8 @@
   position: relative;
   max-width: 35%;
   border-radius: 50%;
+  border: solid #fff;
+  box-shadow: 2px 12px 36px -11px;
 }
 
 .popup-top {

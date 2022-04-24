@@ -37,8 +37,9 @@ export default function Profile(props) {
 
 	return (
 		<div className="mdc-card mdc-card--outlined">
-			<div>
-				<span>{props.firstName}</span> <span>{props.lastName}</span>
+			<div className="name-display">
+				<span>{props.firstName}</span>
+				{/* <span>{props.lastName}</span> */}
 			</div>
 			<div className="my-card__media">
 				<img className="profile-img" src={props.image} />
@@ -57,7 +58,7 @@ export default function Profile(props) {
 						.map(language => flags(language.language_id))}
 				</span>
 			</div>
-			<div> ______________________</div>
+			{/* <div> ______________________</div> */}
 			<Button variant="contained" onClick={handleOpen}>
 				Expand Profile
 			</Button>

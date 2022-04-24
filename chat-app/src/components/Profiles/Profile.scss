@@ -10,13 +10,44 @@ div.mdc-card {
 	padding: 2%;
 	width: 50%;
 	margin: 5%;
-	color: white;
-	background-color: black;
+	color: black;
+	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	// background-color: black;
+	background-image: radial-gradient(
+    circle at 56.16% 120.44%,
+    #c6f3ff 0,
+    #8cd5fe 25%,
+    #3cb5f2 50%,
+    #0095e6 75%,
+    #0078dc 100%
+  );
 	flex-basis: 20%; //Makes it 3 per line --- 33.333% == 4 per line
+}
+
+div.mdc-card:hover {
+	transform: scale(1.1, 1.1);
+	box-shadow: 0 0 60px rgba(0,0,0,.8);
+}
+
+.name-display {
+	display: flex;
+	justify-content: spa;
+}
+
+.my-card__media {
+	display: flex;
+	justify-content: center;
+
 }
 
 .profile-img {
 	max-width: 100%;
+	width: 130px;
+  height: 130px;
+  // background-size: cover;
+  border-radius: 7pc;
+  border: solid #fff;
+  box-shadow: 2px 12px 36px -11px;
 }
 
 ul {

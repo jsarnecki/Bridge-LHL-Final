@@ -2,6 +2,7 @@
 	text-align: center;
 }
 
+
 .App-logo {
 	height: 40vmin;
 	pointer-events: none;
@@ -41,7 +42,8 @@
 	display: flex;
 	justify-content: space-around;
 	border: 5px rgb(35, 33, 33);
-	background-color: purple;
+	background-color: white;
+	height: 55px;
 }
 
 .nav .alert {

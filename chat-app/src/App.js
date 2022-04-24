@@ -6,6 +6,7 @@ import DropDownLogin from "./components/DropDownLogin";
 import ProfilePopup from "./components/Profiles/ProfilePopup";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
+import Avatar from "@mui/material/Avatar";
 import { API_ROOT } from "./constants";
 import classNames from "classnames";
 
@@ -429,23 +430,25 @@ function App(props) {
 	return (
 		<div
 			style={{
-				"background-color": isDarkTheme ? "#2e2d2d" : "white",
+				"background-color": isDarkTheme ? "#444444" : "white",
+				backgroundImage: isDarkTheme ? "" : 'url("/flags.png")',
 				color: isDarkTheme ? "white" : "black",
 			}}
 		>
 			<nav className="nav">
-				<Button variant="contained" href="/profiles">
-					Profiles
+				<Button variant="contained" href="/profiles" startIcon={<Avatar src={'/bridge.png'} />}>
+					Bridge
 				</Button>
-				<Button variant="contained" onClick={handleOpen}>
-					Current User
+				<Button variant="contained" onClick={handleOpen} startIcon={<Avatar src={'/user1.png'} />}>
+					User Profile
 				</Button>
 				<Button
 					variant="contained"
 					href="/chat"
 					className={classNames({ alert })}
+					startIcon={<Avatar src={'/chat1.png'} />}
 				>
-					Chat
+					{/* Chat */}
 				</Button>
 				<DropDownLogin
 					className="drop-down-main"
