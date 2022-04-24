@@ -1,6 +1,12 @@
 .newMessageForm {
 	height: 10vh;
-	width: 100%;
+	width: calc(100% - 300px);
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	position: fixed;
+	bottom: 0;
+	padding-bottom: 20px;
 }
 
 .new-message-textbox {
@@ -16,4 +22,5 @@
 	color: #60b0f4;
 	font-size: 1.1em;
 	width: 50px;
+	padding-bottom: 3px;
 }

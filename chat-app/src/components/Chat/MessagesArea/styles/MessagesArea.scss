@@ -19,9 +19,10 @@
 	.messages-list {
 		display: flex;
 		flex-direction: column-reverse;
-		height: 63vh;
+		height: 65vh;
 		overflow-y: scroll;
 		padding: 0;
 		margin: 0;
+		margin-bottom: 10vh;
 	}
 }

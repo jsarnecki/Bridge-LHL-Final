@@ -58,7 +58,11 @@ export default function NewMessageForm(props) {
 	);
 
 	return (
-		<form onSubmit={handleSubmit} className="newMessageForm">
+		<form
+			onSubmit={handleSubmit}
+			className="newMessageForm"
+			style={{ height: inputHeight * 30 }}
+		>
 			<br />
 			<textarea
 				value={state.text}
