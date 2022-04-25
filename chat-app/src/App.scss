@@ -1,4 +1,6 @@
-
+.main {
+	
+}
 
 .nav {
 	position: fixed;
@@ -7,11 +9,10 @@
 	height: 75px;
 	display: flex;
 	justify-content: space-between;
-	border-bottom: 5px solid rgb(35, 33, 33);
+	border-bottom: 3px solid rgb(35, 33, 33);
 	background-color: #d87093;
-	/* background-color: forestgreen;  */
-
-	opacity: 95%;
+	// background-color: #228b22;
+	opacity: 93%;
 	z-index: 99;
 }
 
@@ -30,7 +31,6 @@
 	display: flex;
 	flex-direction: row;
 	position: relative;
-
 	padding-right: 20px;
 	/* background-color: #d87093; */
 	font-family: "Shrikhand", cursive;
