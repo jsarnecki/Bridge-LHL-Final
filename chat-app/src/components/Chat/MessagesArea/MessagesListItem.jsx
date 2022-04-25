@@ -35,7 +35,7 @@ export default function MessagesListItem(props) {
 		>
 			{!current_user && (
 				<img
-					class="profile-picture"
+					className="profile-picture"
 					src={`/seed_assets/${friend_first_name}.png`}
 				></img>
 			)}
@@ -43,12 +43,12 @@ export default function MessagesListItem(props) {
 			{!message.edit && (
 				<div className="text-and-edit-section">
 					<div className="original-message">
-						{<p class="message-text">{message.text}</p>}
+						{<p className="message-text">{message.text}</p>}
 
 						{hover && !current_user && !message.edit && !editing && (
 							<i
 								onClick={handleClickEdit}
-								class="fa-solid fa-pen-to-square edit-button"
+								className="fa-solid fa-pen-to-square edit-button"
 							></i>
 						)}
 					</div>
@@ -65,12 +65,12 @@ export default function MessagesListItem(props) {
 
 			{message.edit && (
 				<div className="edited-message">
-					<div class="old-text">
-						<i class="fa-solid fa-xmark"></i>
+					<div className="old-text">
+						<i className="fa-solid fa-xmark"></i>
 						<p className="message-text">{message.text}</p>
 					</div>
-					<div class="new-text">
-						<i class="fa-solid fa-check"></i>
+					<div className="new-text">
+						<i className="fa-solid fa-check"></i>
 						<p className="message-text">{message.new_text}</p>
 					</div>
 				</div>

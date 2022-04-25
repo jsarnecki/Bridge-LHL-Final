@@ -42,7 +42,6 @@ export default function EditingForm(props) {
 
 	const width = bounds.width;
 	let inputHeight;
-
 	inputHeight = Math.max(1, Math.ceil(newText.length / width / 0.125));
 
 	return (
@@ -56,11 +55,11 @@ export default function EditingForm(props) {
 			></textarea>
 			<div className="editing-form-buttons">
 				<i
-					class="fa-solid fa-circle-check fa-stack edit-accept-button"
+					className="fa-solid fa-circle-check fa-stack edit-accept-button"
 					onClick={handleSave}
 				></i>
 				<i
-					class="fa-solid fa-circle-xmark fa-stack edit-cancel-button"
+					className="fa-solid fa-circle-xmark fa-stack edit-cancel-button"
 					onClick={handleClose}
 				></i>
 			</div>

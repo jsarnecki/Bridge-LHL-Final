@@ -23,10 +23,10 @@ export default function ConversationsListItem(props) {
 			})}
 		>
 			<img
-				class="profile-picture"
+				className="profile-picture"
 				src={`/seed_assets/${conversation.friend_first_name}.png`}
 			></img>
-			<div class="conversation-preview">
+			<div className="conversation-preview">
 				{conversation.friend_first_name + " " + conversation.friend_last_name}
 				<br></br>
 				<span className="message-preview">

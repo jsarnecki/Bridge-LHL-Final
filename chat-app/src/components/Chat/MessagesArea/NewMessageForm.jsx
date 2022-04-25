@@ -76,7 +76,7 @@ export default function NewMessageForm(props) {
 				onKeyDown={handleKeyDown}
 			/>
 			<button className="new-message-submit" type="submit">
-				<i class="fa-solid fa-paper-plane"></i>
+				<i className="fa-solid fa-paper-plane"></i>
 			</button>
 		</form>
 	);
