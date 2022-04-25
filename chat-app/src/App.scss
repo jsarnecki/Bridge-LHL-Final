@@ -1,5 +1,4 @@
 .main {
-	
 }
 
 .nav {
@@ -20,7 +19,6 @@
 	background-color: #5accfd;
 	color: #5accfd;
 }
-
 
 .home-logo {
 	max-height: 85px;
@@ -74,36 +72,35 @@ img#profile-logo {
 	margin: 0px 15px;
 }
 
+.alert {
+	color: #f4f482;
+}
 
-.nav .nav-right-icons .chat-logo-button .alert {
-	background-color: forestgreen;
+.nav .nav-right-icons .alert {
 	height: 40px;
 	width: 40px;
-	position:relative;
-	left: 10px;
-	top: 15px;	
+	position: relative;
+	top: 15px;
 }
 
-img#chat-logo-alert {
+// img#chat-logo-alert {
+// 	position: relative;
+// 	width: 40px;
+// 	top: 7px;
+// 	margin-right: 10px;
+// 	margin-top: -40px;
+
+// }
+
+.fa-comment-dots {
 	position: relative;
-	width: 40px;
-	top: 7px;
+	font-size: 2.6em;
+	top: 15px;
 	margin-right: 10px;
-	margin-top: -40px;
-	
-}
-
-
-img#chat-logo {
-	position: relative;
-	width: 40px;
-	top: 21px;
-	margin-right: 10px;
-
 }
 
 .nav-right-icons {
-	display:flex;
+	display: flex;
 	justify-content: flex-start;
 	justify-content: space-evenly;
 }
