@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -451,11 +451,16 @@ function App(props) {
 
 						<a className="chat-logo-button" href="/chat">
 
-							{alert &&	<div className="alert" />	}
-							<img
-								id="chat-logo"
-								src="/chat.png"
-								/>
+							{alert &&	(
+								<>
+									<div className="alert" />	
+									<img id="chat-logo-alert" src="/chat.png" />
+								</>
+								)
+							}
+
+							{!alert && <img id="chat-logo"	src="/chat.png"	/>}
+							
 						</a>
 
 						<a className="profile-logo-button" href="javascript:void(0)">
