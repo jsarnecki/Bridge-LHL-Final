@@ -62,9 +62,10 @@ button.MuiButton-root {
   border: 1px solid black;
 }
 
-
+//Change bg-color based on preference
 button.MuiButton-root:hover {
-  background-color: #DC965A;
+  // background-color: #DC965A;
+  background-color: #F4F482;
 }
 
 img#edit-button {
@@ -72,7 +73,7 @@ img#edit-button {
 	width: 45px;
 	margin-right: 45px;
 	bottom: 300px;
-	background-color: hsla(240, 86%, 31%, 0.4);
+	background-color: #F4F482;
 	border-radius: 50%;
 }
 
