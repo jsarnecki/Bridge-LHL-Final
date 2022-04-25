@@ -18,11 +18,11 @@ export default function PendingConversationRequest(props) {
 			.catch(error => console.log("api errors:", error));
 	};
 	return (
-		<>
+		<div className="pending-request-form">
 			<h3>
 				You have sent this person a friend request, do you wish to cancel?
 			</h3>
 			<button onClick={handleCancelRequest}>cancel</button>
-		</>
+		</div>
 	);
 }

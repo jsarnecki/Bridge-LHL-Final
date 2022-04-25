@@ -14,13 +14,18 @@
 	width: calc(100% - 78px);
 	word-wrap: break-word;
 	resize: none;
+	font-family: inherit;
 }
 .new-message-submit {
 	margin-right: 10px;
 	border: none;
 	background-color: white;
+	background-color: #f7edf0;
 	color: #60b0f4;
 	color: #1976d2;
+	color: #9cf6f6;
+	color: #f4f482;
+	color: #d87093;
 	font-size: 1.1em;
 	width: 50px;
 	padding-bottom: 3px;

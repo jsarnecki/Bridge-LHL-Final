@@ -7,6 +7,8 @@ class CreateMessages < ActiveRecord::Migration[7.0]
 			t.integer :receiver_id, foreign_key: true
 			t.boolean :seen
 			t.boolean :initializer
+			t.boolean :edit
+			t.string :new_text
 
 			t.timestamps
 		end

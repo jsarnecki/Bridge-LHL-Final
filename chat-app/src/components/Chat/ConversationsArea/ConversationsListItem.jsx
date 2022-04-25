@@ -23,10 +23,10 @@ export default function ConversationsListItem(props) {
 			})}
 		>
 			<img
-				class="profile-picture"
+				className="profile-picture"
 				src={`/seed_assets/${conversation.friend_first_name}.png`}
 			></img>
-			<div class="conversation-preview">
+			<div className="conversation-preview">
 				{conversation.friend_first_name + " " + conversation.friend_last_name}
 				<br></br>
 				<span className="message-preview">
@@ -44,15 +44,22 @@ export default function ConversationsListItem(props) {
 							? conversation.friend_first_name +
 							  " has accepted your friend request"
 							: `You have accepted ${conversation.friend_first_name}'s friend request`)}
-					{/* If the latest message is not an initializer (request or acceptance), set appropriate message preview */}
+					{lastMessage.edit &&
+						(lastMessage.sender_id === conversation.friend_id
+							? conversation.friend_first_name + " has made a correction"
+							: `You have made a correction`)}
+
+					{/* If the latest message is not an initializer (request or acceptance), and not an edit, set appropriate message preview */}
 					{lastMessage &&
 						!lastMessage.initializer &&
+						!lastMessage.edit &&
 						(lastMessage.sender_id === conversation.friend_id
 							? conversation.friend_first_name + ": "
 							: "You: ")}
 					{/* Limit message preview to 20 characters long */}
 					{lastMessage &&
 						!lastMessage.initializer &&
+						!lastMessage.edit &&
 						(lastMessage.text.length > 20
 							? lastMessage.text.slice(0, 20) + "..."
 							: lastMessage.text)}

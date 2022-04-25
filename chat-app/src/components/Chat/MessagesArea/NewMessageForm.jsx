@@ -57,7 +57,7 @@ export default function NewMessageForm(props) {
 
 	inputHeight = Math.min(
 		maxHeight,
-		Math.max(1, Math.ceil(state.text.length / bounds.width / 0.12348))
+		Math.max(1, Math.ceil(state.text.length / bounds.width / 0.2))
 	);
 
 	return (
@@ -76,7 +76,7 @@ export default function NewMessageForm(props) {
 				onKeyDown={handleKeyDown}
 			/>
 			<button className="new-message-submit" type="submit">
-				<i class="fa-solid fa-paper-plane"></i>
+				<i className="fa-solid fa-paper-plane"></i>
 			</button>
 		</form>
 	);

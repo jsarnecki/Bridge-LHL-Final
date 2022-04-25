@@ -1,5 +1,5 @@
-import AcceptConversationRequest from "../AcceptConversationRequest";
-import PendingConversationRequest from "../PendingConversationRequest";
+import AcceptConversationRequest from "./AcceptConversationRequest";
+import PendingConversationRequest from "./PendingConversationRequest";
 import "./styles/ConversationRequestForm.scss";
 export default function ConversationRequestForm(props) {
 	const { requester_id, friend_id, conversation_id } = props;

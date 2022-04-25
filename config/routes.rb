@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 	resources :conversations, only: %i[index create destroy update]
-	resources :messages, only: [:create]
+	resources :messages, only: %i[create update]
 
 	post 'login', to: 'sessions#create'
 	get '/logged_in', to: 'sessions#is_logged_in?'

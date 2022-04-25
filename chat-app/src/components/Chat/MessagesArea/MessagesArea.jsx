@@ -21,7 +21,7 @@ const MessagesArea = ({
 		<div className="messagesArea">
 			<div className="message-area-banner">
 				<img
-					class="profile-picture"
+					className="profile-picture"
 					src={`/seed_assets/${friend_first_name}.png`}
 				></img>
 				{friend_first_name + " " + friend_last_name}
