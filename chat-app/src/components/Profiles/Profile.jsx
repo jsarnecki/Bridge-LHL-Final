@@ -43,7 +43,6 @@ export default function Profile(props) {
 			</div>
 			<div>{props.langauages}</div>
 			<div className="languages-container">
-				<img id="speak-logo" src="breathable.png" />
 				<span className="native">
 					{props.languages
 						.filter(language => !language.learning)
@@ -55,7 +54,6 @@ export default function Profile(props) {
 						.filter(language => language.learning)
 						.map(language => flags(language.language_id))}
 				</span>
-				<img id="hear-logo" src="ear.png" />
 			</div>
 
 			<br />

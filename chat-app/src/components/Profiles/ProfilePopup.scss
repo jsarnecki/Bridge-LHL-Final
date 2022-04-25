@@ -62,8 +62,8 @@ button.MuiButton-root {
   border: 1px solid black;
 }
 
-//Trying to target hover
-button.MuiButton-root.popup-button:hover {
+
+button.MuiButton-root:hover {
   background-color: #DC965A;
 }
 

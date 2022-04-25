@@ -130,7 +130,7 @@ export default function ProfilePopup(props) {
         <div className="popup-button">Requested!</div>
       )}
 
-      {/* //Commented out for now */}
+      {/* //Dark mode toggle, uncomment once we decide how to use it */}
       {/* {currentUser && <p className="dark-mode-label">Dark Mode</p>}
 			{currentUser && (
 				<Switch
