@@ -32,7 +32,7 @@ UsersLanguage.destroy_all
 	)
 @user3 =
 	User.create!(
-		first_name: 'Michael',
+		first_name: 'Mike',
 		last_name: 'Scott',
 		email: 'admin3@admin.com',
 		password: '123456',
@@ -122,7 +122,7 @@ UsersLanguage.destroy_all
 		email: 'admin12@admin.com',
 		password: '123456',
 		bio: "If you're not first, you're last.",
-		image: '/seed_assets/will.png',
+		image: '/seed_assets/ricky.png',
 	)
 @user13 =
 	User.create!(
@@ -203,7 +203,7 @@ UsersLanguage.destroy_all
 		email: 'admin21@admin.com',
 		password: '123456',
 		bio:
-			`I always like it when I eat myself out of breath. That's a good boost to my day. You know, I'm eating, and I go, 'Oooohhh.' It's better a few moments later when you get to think about it, when you're like, 'Why did I just stop to take a deep breath? Oh yeah, my body also needs air.'`,
+			"I always like it when I eat myself out of breath. That's a good boost to my day. You know, I'm eating, and I go, 'Oooohhh.' It's better a few moments later when you get to think about it, when you're like, 'Why did I just stop to take a deep breath? Oh yeah, my body also needs air.'",
 		image: '/seed_assets/tom.png',
 	)
 @user22 =
@@ -213,7 +213,7 @@ UsersLanguage.destroy_all
 		email: 'admin22@admin.com',
 		password: '123456',
 		bio: 'Top Bollywood star, look at me!',
-		image: '/seed_assets/khan.png',
+		image: '/seed_assets/sharukh.png',
 	)
 
 @user23 =
@@ -388,7 +388,7 @@ UsersLanguage.create!(
 	user_id: @user8.id,
 	skill_level: 5,
 )
-#Yukis
+# Yukis
 
 #Beyonce
 UsersLanguage.create!(
@@ -711,6 +711,27 @@ UsersLanguage.create!(
 	learning: true,
 	user_id: @user22.id,
 	skill_level: 2,
+)
+
+UsersLanguage.create!(
+	language_id: @language4.id,
+	learning: true,
+	user_id: @user23.id,
+	skill_level: 3,
+)
+
+UsersLanguage.create!(
+	language_id: @language2.id,
+	learning: true,
+	user_id: @user23.id,
+	skill_level: 4,
+)
+
+UsersLanguage.create!(
+	language_id: @language1.id,
+	learning: false,
+	user_id: @user23.id,
+	skill_level: 5,
 )
 
 #Conversations
