@@ -64,9 +64,15 @@ export default function MessagesListItem(props) {
 			)}
 
 			{message.edit && (
-				<div className="edited-message message-text">
-					{<p class="old-text">{"❌" + message.text}</p>}
-					{<p class="new-text">{"✅" + message.new_text}</p>}
+				<div className="edited-message">
+					<div class="old-text">
+						<i class="fa-solid fa-xmark"></i>
+						<p className="message-text">{message.text}</p>
+					</div>
+					<div class="new-text">
+						<i class="fa-solid fa-check"></i>
+						<p className="message-text">{message.new_text}</p>
+					</div>
 				</div>
 			)}
 		</li>
