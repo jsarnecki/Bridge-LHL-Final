@@ -27,9 +27,9 @@
 	padding-bottom: 5px;
 	align-items: flex-start;
 	background-color: rgb(233, 233, 233);
-	background-color: #f4f482;
-	background-color: #d87093;
 	background-color: #9cf6f6;
+	background-color: #d87093;
+	background-color: #f4f482;
 
 	color: white;
 	color: rgb(77, 77, 77);
@@ -44,17 +44,18 @@
 	text-align: right;
 	margin-right: 20px;
 	.message-text {
-		color: black;
 		color: white;
+		color: black;
 		background-color: #5accfd;
 		background-color: #1976d2;
 		background-color: #f4f482;
-		background-color: #9cf6f6;
 		background-color: #d87093;
+		background-color: #9cf6f6;
 	}
 	.edited-message {
 		color: white;
 		background-color: #d87093;
+		background-color: #9cf6f6;
 	}
 }
 
@@ -72,6 +73,9 @@
 .edited-message {
 	border-radius: 15px;
 	background-color: #9cf6f6;
+	background-color: #d87093;
+	background-color: #f4f482;
+
 	color: rgb(77, 77, 77);
 
 	i {
@@ -100,4 +104,12 @@
 			color: rgb(48, 194, 48);
 		}
 	}
+}
+
+.deleted-text {
+	color: red;
+}
+
+.added-text {
+	color: rgb(48, 194, 48);
 }

@@ -13,6 +13,11 @@ export default function EditingForm(props) {
 		setNewText(e.target.value);
 	};
 
+	const handleKeyDown = e => {
+		if (e.key === "Enter") {
+			handleSave(e);
+		}
+	};
 	const handleSave = e => {
 		e.preventDefault();
 		const { text, conversation_id, sender_id, receiver_id } = message;
@@ -52,6 +57,7 @@ export default function EditingForm(props) {
 				style={{ height: inputHeight * 20 }}
 				onChange={handleChange}
 				ref={ref}
+				onKeyDown={handleKeyDown}
 			></textarea>
 			<div className="editing-form-buttons">
 				<i

@@ -1,7 +1,8 @@
 import classNames from "classnames";
 import "./styles/MessagesListItem.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditingForm from "./EditingForm";
+import findChange from "../trackChanges";
 
 export default function MessagesListItem(props) {
 	const { message, current_user, friend_first_name } = props;
@@ -23,6 +24,47 @@ export default function MessagesListItem(props) {
 	const handleClose = e => {
 		setEditing(false);
 	};
+
+	let oldTextWithStrikes;
+	let newTextWithColour;
+
+	if (message.edit) {
+		console.log(`message id :${message.id}`);
+		const oldTextArr = message.text.split(" ");
+		const newTextArr = message.new_text.split(" ");
+		const { matched, added, deleted, result } = findChange(
+			oldTextArr,
+			newTextArr
+		);
+
+		oldTextWithStrikes = oldTextArr.map((word, i) => {
+			if (deleted.includes(i)) {
+				return (
+					<span>
+						<s className="deleted-text" key={i}>
+							{word}
+						</s>{" "}
+					</span>
+				);
+			}
+			return (
+				<span className="matched-text" key={i}>
+					{word + " "}
+				</span>
+			);
+		});
+
+		newTextWithColour = newTextArr.map((word, i) => {
+			if (added.includes(i)) {
+				return <span className="added-text">{word + " "}</span>;
+			}
+			return (
+				<span className="matched-text" key={i}>
+					{word + " "}
+				</span>
+			);
+		});
+	}
 
 	return (
 		<li
@@ -67,11 +109,11 @@ export default function MessagesListItem(props) {
 				<div className="edited-message">
 					<div className="old-text">
 						<i className="fa-solid fa-xmark"></i>
-						<p className="message-text">{message.text}</p>
+						<p className="message-text">{oldTextWithStrikes}</p>
 					</div>
 					<div className="new-text">
 						<i className="fa-solid fa-check"></i>
-						<p className="message-text">{message.new_text}</p>
+						<p className="message-text">{newTextWithColour}</p>
 					</div>
 				</div>
 			)}
