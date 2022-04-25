@@ -33,6 +33,7 @@ export default function EditingForm(props) {
 			.then(response => {
 				console.log(`message ${message.id} was successfully edited`);
 				setNewText("");
+				handleClose();
 			})
 			.catch(error => {
 				console.log("api errors:", error);
@@ -42,7 +43,7 @@ export default function EditingForm(props) {
 	const width = bounds.width;
 	let inputHeight;
 
-	inputHeight = Math.max(1, Math.ceil(newText.length / width / 0.141));
+	inputHeight = Math.max(1, Math.ceil(newText.length / width / 0.125));
 
 	return (
 		<div className="editing-form">

@@ -40,26 +40,35 @@ export default function MessagesListItem(props) {
 				></img>
 			)}
 
-			<div className="text-and-edit-section">
-				<div className="original-message">
-					{<p class="message-text">{message.text}</p>}
+			{!message.edit && (
+				<div className="text-and-edit-section">
+					<div className="original-message">
+						{<p class="message-text">{message.text}</p>}
 
-					{hover && !current_user && !message.edit && !editing && (
-						<i
-							onClick={handleClickEdit}
-							class="fa-solid fa-pen-to-square edit-button"
-						></i>
+						{hover && !current_user && !message.edit && !editing && (
+							<i
+								onClick={handleClickEdit}
+								class="fa-solid fa-pen-to-square edit-button"
+							></i>
+						)}
+					</div>
+
+					{editing && (
+						<EditingForm
+							oldText={message.text}
+							handleClose={handleClose}
+							message={message}
+						></EditingForm>
 					)}
 				</div>
+			)}
 
-				{editing && (
-					<EditingForm
-						oldText={message.text}
-						handleClose={handleClose}
-						message={message}
-					></EditingForm>
-				)}
-			</div>
+			{message.edit && (
+				<div className="edited-message message-text">
+					{<p class="old-text">{"❌" + message.text}</p>}
+					{<p class="new-text">{"✅" + message.new_text}</p>}
+				</div>
+			)}
 		</li>
 	);
 }
