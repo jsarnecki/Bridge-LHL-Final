@@ -4,20 +4,21 @@
 .profile-card {
 	display: flex;
 	flex-direction: column;
-	min-width: 200px;
+	min-width: 225px;
+	background-color: red;
 }
 
 .profile-card:hover {
-	background-color: rgb(185, 185, 185);
+	background-color: hsl(26, 13%, 44%, 0.65);
 }
 
 div.mdc-card {
 	position: relative;
 	// border: 1px solid rgb(139, 7, 7);
 	border-radius: 8%;
-	padding: 2%;
-	width: 50%;
-	margin: 5%;
+	padding: 1%; //Was 2%.. how do we like this?  little tighter
+	// max-width: 90px ;
+	margin: 2%;
 	font-family: "Cuprum", sans-serif;
 	font-size: 1.5em;
 	color: rgb(4, 0, 0);
@@ -25,7 +26,8 @@ div.mdc-card {
 	text-shadow: 2px 2px 3px #9a7d7d;
 	background-color: hsl(180, 83%, 79%, 0.4);
 	box-shadow: 6px 6px 5px rgb(63 107 169 / 34%);
-	flex-basis: 20%; //Makes it 3 per line --- 33.333% == 4 per line
+	flex-basis: 15%; 
+	// overflow: hidden;
 }
 
 div.mdc-card:hover {
