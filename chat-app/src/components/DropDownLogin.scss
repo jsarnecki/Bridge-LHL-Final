@@ -1,33 +1,60 @@
 .login-select {
-  appearance: none;
-  margin-top: 20px;
-  max-width: 150px;
-  max-height: 40px;
-  font-weight: bolder;
-  color: black;
-  font-family: 'Cuprum', sans-serif;
+	appearance: none;
+	margin-top: 20px;
+	max-width: 150px;
+	max-height: 40px;
+	font-weight: bolder;
+	color: black;
+	font-family: "Cuprum", sans-serif;
 
-  background-color: palevioletred;
-  // border: 4px solid black;
+	background-color: palevioletred;
+	// border: 4px solid black;
 	margin-left: 10px;
-  margin-right: 15px;
-
+	margin-right: 15px;
 }
 
-
 .login-select:hover {
-  outline: none;
+	outline: none;
 }
 
 #demo-simple-select-label {
-  color: black;
-  font-family: 'Cuprum', sans-serif;
+	color: black;
+	font-family: "Cuprum", sans-serif;
 
-  top: 10px;
-  font-size: x-large;
-  max-width: 300px;
+	top: 10px;
+	font-size: x-large;
+	max-width: 300px;
 }
 
 .login-drop-down-item {
-  font-size: 1.05em;
+	font-size: 1.05em;
+}
+.drop-down-box-test div fieldset {
+	border: none;
+}
+
+.drop-down-box-test div svg {
+	display: none;
+}
+
+#demo-simple-select span {
+	display: none;
+}
+
+#demo-simple-select img {
+	padding-top: 5px;
+	max-height: 2.3em;
+}
+#demo-simple-select li img {
+	max-height: 20px;
+}
+
+#menu- li img {
+	max-height: 1.5em;
+}
+
+#menu- {
+	div:nth-child(3) {
+		top: 30px;
+	}
 }

@@ -84,12 +84,12 @@ export default function DropDownLogin(props) {
 				<img
 					src={information.user.image}
 					style={{
-						"max-height": "1.5em",
-						"border-radius": "35%",
+						// "max-height": "1.5em",
+						"border-radius": "50%",
 						margin: "-5px, 5px",
 					}}
 				/>
-				{information.user.first_name}
+				<span>{information.user.first_name}</span>
 			</MenuItem>
 		);
 	});
