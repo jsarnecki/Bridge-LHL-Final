@@ -32,6 +32,7 @@ export default function MessagesListItem(props) {
 	if (message.edit) {
 		const oldTextArr = message.text.split(" ");
 		const newTextArr = message.new_text.split(" ");
+
 		//returns arrays with indices of elements matched, added, and deleted, as well as result which contains all indices
 		const { matched, added, deleted, result } = findChange(
 			oldTextArr,
