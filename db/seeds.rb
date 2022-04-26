@@ -811,8 +811,7 @@ UsersLanguage.create!(
 @conversation2.messages.create!(
 	sender_id: @user4.id,
 	receiver_id: @user1.id,
-	text:
-		'I have a business proposal for you… Do you want some 🐶 🪙? Funding secured!',
+	text: '🐶 🪙 to 🌙! Funding secured!',
 	seen: true,
 	initializer: false,
 	edit: false,
@@ -853,7 +852,7 @@ UsersLanguage.create!(
 @conversation4.messages.create!(
 	sender_id: @user6.id,
 	receiver_id: @user1.id,
-	text: 'Meet me in the metaverse?',
+	text: 'Metaverse at 8?',
 	seen: true,
 	initializer: false,
 	edit: false,
@@ -893,7 +892,7 @@ UsersLanguage.create!(
 @conversation6.messages.create!(
 	sender_id: @user9.id,
 	receiver_id: @user23.id,
-	text: 'When are you gonna put a 💍 on it?',
+	text: 'Put a 💍 on it',
 	seen: true,
 	initializer: false,
 	edit: false,
@@ -914,7 +913,7 @@ UsersLanguage.create!(
 	sender_id: @user11.id,
 	receiver_id: @user23.id,
 	text:
-		"I don't have money. But what I do have are a very particular set of skills, skills I have acquired over a very long career…",
+		'I have a very particular set of skills, skills I have acquired over a very long career…',
 	seen: true,
 	initializer: false,
 	edit: false,
