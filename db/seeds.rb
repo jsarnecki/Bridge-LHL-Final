@@ -37,7 +37,7 @@ UsersLanguage.destroy_all
 		email: 'admin3@admin.com',
 		password: '123456',
 		bio: "I'm not superstitious, but I am a little stitious.",
-		image: '/seed_assets/michael.png',
+		image: '/seed_assets/mike.png',
 	)
 @user4 =
 	User.create!(
@@ -167,7 +167,7 @@ UsersLanguage.destroy_all
 		email: 'admin17@admin.com',
 		password: '123456',
 		bio: '안녕! 전여빈입니다!',
-		image: '/seed_assets/yuki.png',
+		image: '/seed_assets/jeon.png',
 	)
 @user18 =
 	User.create!(
@@ -234,12 +234,12 @@ UsersLanguage.destroy_all
 @language6 = Language.create!(name: 'Spanish')
 @language7 = Language.create!(name: 'Portuguese')
 @language8 = Language.create!(name: 'Hindi')
-@langauge9 = Language.create!(name: 'dummy')
+@language9 = Language.create!(name: 'dummy')
 #Tonys
 
 #John Cena
 UsersLanguage.create!(
-	language_id: @language9.id,
+	language_id: @language4.id,
 	learning: false,
 	user_id: @user1.id,
 	skill_level: 5,
@@ -252,48 +252,48 @@ UsersLanguage.create!(
 	skill_level: 2,
 )
 
-UsersLanguage.create!(
-	language_id: @language2.id,
-	learning: true,
-	user_id: @user1.id,
-	skill_level: 2,
-)
-UsersLanguage.create!(
-	language_id: @language3.id,
-	learning: true,
-	user_id: @user1.id,
-	skill_level: 2,
-)
-UsersLanguage.create!(
-	language_id: @language4.id,
-	learning: true,
-	user_id: @user1.id,
-	skill_level: 2,
-)
-UsersLanguage.create!(
-	language_id: @language5.id,
-	learning: true,
-	user_id: @user1.id,
-	skill_level: 2,
-)
-UsersLanguage.create!(
-	language_id: @language6.id,
-	learning: true,
-	user_id: @user1.id,
-	skill_level: 2,
-)
-UsersLanguage.create!(
-	language_id: @language7.id,
-	learning: true,
-	user_id: @user1.id,
-	skill_level: 2,
-)
-UsersLanguage.create!(
-	language_id: @language8.id,
-	learning: true,
-	user_id: @user1.id,
-	skill_level: 2,
-)
+# UsersLanguage.create!(
+# 	language_id: @language2.id,
+# 	learning: true,
+# 	user_id: @user1.id,
+# 	skill_level: 2,
+# )
+# UsersLanguage.create!(
+# 	language_id: @language3.id,
+# 	learning: true,
+# 	user_id: @user1.id,
+# 	skill_level: 2,
+# )
+# UsersLanguage.create!(
+# 	language_id: @language4.id,
+# 	learning: true,
+# 	user_id: @user1.id,
+# 	skill_level: 2,
+# )
+# UsersLanguage.create!(
+# 	language_id: @language5.id,
+# 	learning: true,
+# 	user_id: @user1.id,
+# 	skill_level: 2,
+# )
+# UsersLanguage.create!(
+# 	language_id: @language6.id,
+# 	learning: true,
+# 	user_id: @user1.id,
+# 	skill_level: 2,
+# )
+# UsersLanguage.create!(
+# 	language_id: @language7.id,
+# 	learning: true,
+# 	user_id: @user1.id,
+# 	skill_level: 2,
+# )
+# UsersLanguage.create!(
+# 	language_id: @language8.id,
+# 	learning: true,
+# 	user_id: @user1.id,
+# 	skill_level: 2,
+# )
 #Thor
 
 UsersLanguage.create!(
@@ -523,14 +523,14 @@ UsersLanguage.create!(
 
 #Ahn Jae-hong
 UsersLanguage.create!(
-	language_id: @language2.id,
+	language_id: @language7.id,
 	learning: false,
-	user_id: @user13.id,
+	user_id: @user14.id,
 	skill_level: 5,
 )
 
 UsersLanguage.create!(
-	language_id: @language1.id,
+	language_id: @language8.id,
 	learning: true,
 	user_id: @user14.id,
 	skill_level: 5,
@@ -547,21 +547,21 @@ UsersLanguage.create!(
 UsersLanguage.create!(
 	language_id: @language1.id,
 	learning: false,
-	user_id: @user13.id,
+	user_id: @user15.id,
 	skill_level: 5,
 )
 
 UsersLanguage.create!(
 	language_id: @language3.id,
 	learning: false,
-	user_id: @user13.id,
+	user_id: @user15.id,
 	skill_level: 5,
 )
 
 UsersLanguage.create!(
 	language_id: @language2.id,
 	learning: true,
-	user_id: @user13.id,
+	user_id: @user15.id,
 	skill_level: 2,
 )
 
@@ -645,6 +645,7 @@ UsersLanguage.create!(
 	skill_level: 1,
 )
 
+#Song Joong-ki
 UsersLanguage.create!(
 	language_id: @language2.id,
 	learning: false,
@@ -673,6 +674,7 @@ UsersLanguage.create!(
 	skill_level: 3,
 )
 
+#Lee Byung-hun
 UsersLanguage.create!(
 	language_id: @language1.id,
 	learning: false,
@@ -701,13 +703,7 @@ UsersLanguage.create!(
 	skill_level: 1,
 )
 
-UsersLanguage.create!(
-	language_id: @language1.id,
-	learning: false,
-	user_id: @user21.id,
-	skill_level: 5,
-)
-
+#Tom Segura
 UsersLanguage.create!(
 	language_id: @language1.id,
 	learning: false,
@@ -736,6 +732,7 @@ UsersLanguage.create!(
 	skill_level: 1,
 )
 
+#Sharukh Kahn
 UsersLanguage.create!(
 	language_id: @language1.id,
 	learning: false,
@@ -757,6 +754,7 @@ UsersLanguage.create!(
 	skill_level: 2,
 )
 
+#Tony
 UsersLanguage.create!(
 	language_id: @language4.id,
 	learning: true,
@@ -787,14 +785,14 @@ UsersLanguage.create!(
 		accepter_id: @user5.id,
 		deleted: false,
 		accepted: true,
-		seen: false,
+		seen: true,
 	)
 
 @conversation1.messages.create!(
 	sender_id: @user1.id,
 	receiver_id: @user5.id,
 	text: '我很困惑!',
-	seen: false,
+	seen: true,
 	initializer: false,
 	edit: false,
 	new_text: '',
@@ -807,7 +805,7 @@ UsersLanguage.create!(
 		accepter_id: @user4.id,
 		deleted: false,
 		accepted: true,
-		seen: false,
+		seen: true,
 	)
 
 @conversation2.messages.create!(
@@ -815,28 +813,28 @@ UsersLanguage.create!(
 	receiver_id: @user1.id,
 	text:
 		'I have a business proposal for you… Do you want some 🐶 🪙? Funding secured!',
-	seen: false,
+	seen: true,
 	initializer: false,
 	edit: false,
 	new_text: '',
 )
 
-#Groot to Elon
+#Groot to John Cena
 
-@conversation3 =
-	Conversation.create!(
-		requester_id: @user5.id,
-		accepter_id: @user4.id,
-		deleted: false,
-		accepted: true,
-		seen: false,
-	)
+# @conversation3 =
+# 	Conversation.create!(
+# 		requester_id: @user5.id,
+# 		accepter_id: @user1.id,
+# 		deleted: false,
+# 		accepted: true,
+# 		seen: true,
+# 	)
 
-@conversation3.messages.create!(
+@conversation1.messages.create!(
 	sender_id: @user5.id,
-	receiver_id: @user4.id,
+	receiver_id: @user1.id,
 	text: '🌱🌱🌱🌱🌱🌱, 🌱🌱🌱🌱🌱🌱🌱🌱🌱. 🌱🌱🌱🌱🌱🌱🌱🌱🌱?',
-	seen: false,
+	seen: true,
 	initializer: false,
 	edit: false,
 	new_text: '',
@@ -849,14 +847,14 @@ UsersLanguage.create!(
 		accepter_id: @user1.id,
 		deleted: false,
 		accepted: true,
-		seen: false,
+		seen: true,
 	)
 
 @conversation4.messages.create!(
 	sender_id: @user6.id,
 	receiver_id: @user1.id,
 	text: 'Meet me in the metaverse?',
-	seen: false,
+	seen: true,
 	initializer: false,
 	edit: false,
 	new_text: '',
@@ -869,14 +867,14 @@ UsersLanguage.create!(
 		accepter_id: @user23.id,
 		deleted: false,
 		accepted: true,
-		seen: false,
+		seen: true,
 	)
 
 @conversation5.messages.create!(
 	sender_id: @user7.id,
 	receiver_id: @user23.id,
 	text: 'I broke another bone yesterday…',
-	seen: false,
+	seen: true,
 	initializer: false,
 	edit: false,
 	new_text: '',
@@ -889,14 +887,14 @@ UsersLanguage.create!(
 		accepter_id: @user23.id,
 		deleted: false,
 		accepted: true,
-		seen: false,
+		seen: true,
 	)
 
 @conversation6.messages.create!(
 	sender_id: @user9.id,
 	receiver_id: @user23.id,
 	text: 'When are you gonna put a 💍 on it?',
-	seen: false,
+	seen: true,
 	initializer: false,
 	edit: false,
 	new_text: '',
@@ -909,7 +907,7 @@ UsersLanguage.create!(
 		accepter_id: @user23.id,
 		deleted: false,
 		accepted: true,
-		seen: false,
+		seen: true,
 	)
 
 @conversation7.messages.create!(
@@ -917,7 +915,27 @@ UsersLanguage.create!(
 	receiver_id: @user23.id,
 	text:
 		"I don't have money. But what I do have are a very particular set of skills, skills I have acquired over a very long career…",
-	seen: false,
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+#Ahn Jae-hong  to Tony Fu
+@conversation7 =
+	Conversation.create!(
+		requester_id: @user14.id,
+		accepter_id: @user23.id,
+		deleted: false,
+		accepted: true,
+		seen: true,
+	)
+
+@conversation7.messages.create!(
+	sender_id: @user14.id,
+	receiver_id: @user23.id,
+	text: '뭐랄까? 그냥 그래.. 무슨 말일지 모르겠는데',
+	seen: true,
 	initializer: false,
 	edit: false,
 	new_text: '',
@@ -1190,7 +1208,7 @@ UsersLanguage.create!(
 # 		title: 'second_friends',
 # 		accepted: false,
 # 		deleted: false,
-# 		seen: false,
+# 		seen: true,
 # 	)
 
 # @conversation3 =
