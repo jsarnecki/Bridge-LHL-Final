@@ -82,9 +82,41 @@ img#edit-button:hover {
 	background-color: hsla(240, 57%, 41%, 0.5);
 }
 
+img#edit-button {
+	position: relative;
+	width: 45px;
+	margin-right: 45px;
+	bottom: 300px;
+	background-color: #F4F482;
+	border-radius: 50%;
+	overflow: hidden;
+}
 #mock-edit {
 	display: flex;
 	justify-content: flex-end;
+	// position: relative;
+	// width: 45px;
+	// margin-right: 45px;
+	// bottom: 300px;
+	// border-radius: 50%;
+	// overflow: hidden;
+}
+
+img#edit-button1 {
+	width: 45px;
+	margin-right: 45px;
+	bottom: 300px;
+	background-color: #F4F482;
+	border-radius: 50%;
+}
+
+#mock-edit1 {
+	display: flex;
+	justify-content: flex-end;
+}
+
+img#edit-button1:hover {
+	background-color: hsla(240, 57%, 41%, 0.5);
 }
 
 table {

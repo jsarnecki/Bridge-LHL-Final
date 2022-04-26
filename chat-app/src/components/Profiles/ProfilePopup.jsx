@@ -82,6 +82,11 @@ export default function ProfilePopup(props) {
     >
       <div id="modal-modal-title" variant="h6" component="h2">
         {props.firstName} {props.lastName}
+        {/* {currentUser && (
+        <a id="mock-edit1" href="/">
+          <img id="edit-button1" src="/system-update.png" />
+        </a>
+      )}  */}
       </div>
 
       <div className="popup-top">
@@ -95,11 +100,12 @@ export default function ProfilePopup(props) {
         </table>
       </div>
 
-      {currentUser && (
+      {/* {currentUser && (
         <a id="mock-edit" href="/">
           <img id="edit-button" src="/system-update.png" />
         </a>
-      )}
+      )} */}
+       
 
       {currentUser && clickEdit && (
         <form>
@@ -129,6 +135,12 @@ export default function ProfilePopup(props) {
       {!currentUser && friendRequest[id] && (
         <div className="popup-button">Requested!</div>
       )}
+
+      {currentUser && (
+        <a id="mock-edit1" href="/">
+          <img id="edit-button1" src="/system-update.png" />
+        </a>
+      )} 
 
       {/* //Dark mode toggle, uncomment once we decide how to use it */}
       {/* {currentUser && <p className="dark-mode-label">Dark Mode</p>}
