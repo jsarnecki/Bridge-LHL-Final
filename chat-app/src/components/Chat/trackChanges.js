@@ -1,24 +1,3 @@
-// const trackChanges = (old, s) => {
-// 	old = old.split(" ");
-// 	s = s.split(" ");
-
-// 	let same = [];
-// 	let diff = [];
-// 	let i = 0;
-// 	let j = 0;
-// 	while (true) {
-// 		if (old[i] === s[j]) {
-// 			same.push(old[i]);
-// 			i++;
-// 			j++;
-// 		}
-// 		if (old[i] !== s[j]) {
-// 			diff.push([old[i]]);
-// 		}
-// 	}
-// };
-
-// console.log(trackChanges("What's good?", "What is good?"));
 function LCATable(before, after) {
 	const table = Array(after.length + 1)
 		.fill(0)
@@ -60,17 +39,16 @@ function findChangeWithTable(table, before, after) {
 	}
 
 	while (i < after.length) {
-		result.push(`${after[i++]} is added`);
 		added.push(i);
+		result.push(`${after[i++]} is added`);
 	}
 
 	while (j < before.length) {
-		result.push(`${before[j++]} is deleted`);
 		deleted.push(j);
+		result.push(`${before[j++]} is deleted`);
 	}
 
 	return { matched, added, deleted, result };
-	// return result;
 }
 
 export default function findChange(before, after) {
@@ -78,8 +56,15 @@ export default function findChange(before, after) {
 	return findChangeWithTable(table, before, after);
 }
 
-console.log(findChange("What's good?".split(" "), "What is good?".split(" ")));
+// console.log(findChange("What's good?".split(" "), "What is good?".split(" ")));
 
-console.log(
-	findChange("What's good?".split(" "), "What's is good?".split(" "))
-);
+// console.log(
+// 	findChange("What's good?".split(" "), "What's is good?".split(" "))
+// );
+
+// console.log(
+// 	findChange(
+// 		"The sun will rise again".split(" "),
+// 		"The moon will rise again?".split(" ")
+// 	)
+// );

@@ -340,7 +340,7 @@ UsersLanguage.create!(
 #Elon Musk
 
 UsersLanguage.create!(
-	language_id: @language1.id,
+	language_id: @language8.id,
 	learning: false,
 	user_id: @user4.id,
 	skill_level: 5,
@@ -370,7 +370,7 @@ UsersLanguage.create!(
 )
 
 UsersLanguage.create!(
-	language_id: @language1.id,
+	language_id: @language7.id,
 	learning: false,
 	user_id: @user5.id,
 	skill_level: 4,
@@ -386,7 +386,7 @@ UsersLanguage.create!(
 )
 
 UsersLanguage.create!(
-	language_id: @language1.id,
+	language_id: @language6.id,
 	learning: false,
 	user_id: @user6.id,
 	skill_level: 5,
@@ -402,7 +402,7 @@ UsersLanguage.create!(
 )
 
 UsersLanguage.create!(
-	language_id: @language1.id,
+	language_id: @language2.id,
 	learning: false,
 	user_id: @user7.id,
 	skill_level: 5,
@@ -478,7 +478,7 @@ UsersLanguage.create!(
 )
 
 UsersLanguage.create!(
-	language_id: @language2.id,
+	language_id: @language5.id,
 	learning: false,
 	user_id: @user11.id,
 	skill_level: 5,
@@ -811,29 +811,124 @@ UsersLanguage.create!(
 @conversation2.messages.create!(
 	sender_id: @user4.id,
 	receiver_id: @user1.id,
-	text:
-		'I have a business proposal for you… Do you want some 🐶 🪙? Funding secured!',
+	text: '🐶 🪙 to 🌙! Funding secured!',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+) #Groot to Tony
+
+@conversation3 =
+	Conversation.create!(
+		requester_id: @user5.id,
+		accepter_id: @user23.id,
+		deleted: false,
+		accepted: true,
+		seen: true,
+	)
+
+@conversation3.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user5.id,
+	text: 'Hi Groot!',
 	seen: true,
 	initializer: false,
 	edit: false,
 	new_text: '',
 )
 
-#Groot to John Cena
-
-# @conversation3 =
-# 	Conversation.create!(
-# 		requester_id: @user5.id,
-# 		accepter_id: @user1.id,
-# 		deleted: false,
-# 		accepted: true,
-# 		seen: true,
-# 	)
-
-@conversation1.messages.create!(
+@conversation3.messages.create!(
 	sender_id: @user5.id,
-	receiver_id: @user1.id,
-	text: '🌱🌱🌱🌱🌱🌱, 🌱🌱🌱🌱🌱🌱🌱🌱🌱. 🌱🌱🌱🌱🌱🌱🌱🌱🌱?',
+	receiver_id: @user23.id,
+	text: '🌱!',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation3.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user5.id,
+	text: 'How are you doing today?',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation3.messages.create!(
+	sender_id: @user5.id,
+	receiver_id: @user23.id,
+	text: '🌱🌱🌱, 🌱?',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation3.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user5.id,
+	text: 'I am tired from coding.',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation3.messages.create!(
+	sender_id: @user5.id,
+	receiver_id: @user23.id,
+	text: '🌱🌱🌱🌱, 🌱🌱🌱🌱🌱',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation3.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user5.id,
+	text: 'Thank you.',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation3.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user5.id,
+	text: 'Btw, when is your next movie?',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+@conversation3.messages.create!(
+	sender_id: @user5.id,
+	receiver_id: @user23.id,
+	text: '🌱🌱🌱',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation3.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user5.id,
+	text: 'Oh cool, can you get me tickets?',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+@conversation3.messages.create!(
+	sender_id: @user5.id,
+	receiver_id: @user23.id,
+	text: '🌱🌱🌱, 🌱🌱🌱🌱!',
 	seen: true,
 	initializer: false,
 	edit: false,
@@ -853,18 +948,18 @@ UsersLanguage.create!(
 @conversation4.messages.create!(
 	sender_id: @user6.id,
 	receiver_id: @user1.id,
-	text: 'Meet me in the metaverse?',
+	text: 'Metaverse at 8?',
 	seen: true,
 	initializer: false,
 	edit: false,
 	new_text: '',
 )
 
-#Jackie Chan to Tony Fu
+#Jackie Chan to John Cena
 @conversation5 =
 	Conversation.create!(
 		requester_id: @user7.id,
-		accepter_id: @user23.id,
+		accepter_id: @user1.id,
 		deleted: false,
 		accepted: true,
 		seen: true,
@@ -872,7 +967,7 @@ UsersLanguage.create!(
 
 @conversation5.messages.create!(
 	sender_id: @user7.id,
-	receiver_id: @user23.id,
+	receiver_id: @user1.id,
 	text: 'I broke another bone yesterday…',
 	seen: true,
 	initializer: false,
@@ -893,7 +988,7 @@ UsersLanguage.create!(
 @conversation6.messages.create!(
 	sender_id: @user9.id,
 	receiver_id: @user23.id,
-	text: 'When are you gonna put a 💍 on it?',
+	text: 'Put a 💍 on it',
 	seen: true,
 	initializer: false,
 	edit: false,
@@ -911,10 +1006,208 @@ UsersLanguage.create!(
 	)
 
 @conversation7.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user11.id,
+	text: 'Hi Liam!',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
 	sender_id: @user11.id,
 	receiver_id: @user23.id,
-	text:
-		"I don't have money. But what I do have are a very particular set of skills, skills I have acquired over a very long career…",
+	text: 'If you are looking for a ransom',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user11.id,
+	text: '?',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user11.id,
+	receiver_id: @user23.id,
+	text: "I can tell you I don't have money",
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user11.id,
+	text: "I didn't ask for any...",
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user11.id,
+	receiver_id: @user23.id,
+	text: 'But what I do have',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user11.id,
+	text: 'what?',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user11.id,
+	receiver_id: @user23.id,
+	text: 'are a very particular set of skills',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user11.id,
+	text: 'Good for you',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user11.id,
+	receiver_id: @user23.id,
+	text: 'Skills I have acquired over a very long career',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user11.id,
+	text: 'Again, good for you...',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user11.id,
+	receiver_id: @user23.id,
+	text: 'Skills that make me a nightmare for people like you',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user11.id,
+	text: 'People like me? Excuse me?',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user11.id,
+	receiver_id: @user23.id,
+	text: "If you let my daughter go now, that'll be the end of it",
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+@conversation7.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user11.id,
+	text: "I don't have your daughter",
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user11.id,
+	receiver_id: @user23.id,
+	text: 'I will not look for you. I will not pursue you',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user11.id,
+	text: 'Good...',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user11.id,
+	receiver_id: @user23.id,
+	text: "But if you don't",
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user11.id,
+	text: "I don't!",
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user11.id,
+	receiver_id: @user23.id,
+	text: 'I will look for you, I will find you, and I will kill you',
+	seen: true,
+	initializer: false,
+	edit: false,
+	new_text: '',
+)
+
+@conversation7.messages.create!(
+	sender_id: @user23.id,
+	receiver_id: @user11.id,
+	text: "Ok, I'm calling the police.",
 	seen: true,
 	initializer: false,
 	edit: false,

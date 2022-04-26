@@ -7,10 +7,12 @@ i {
 	flex-direction: row;
 	.editing-form-buttons {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		color: #9cf6f6;
 		color: #f4f482;
 		color: #d87093;
+		justify-content: flex-start;
+		width: 40px;
 		.accept-edit-button {
 			color: #f4f482;
 		}

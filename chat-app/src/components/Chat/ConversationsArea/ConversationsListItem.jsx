@@ -14,6 +14,16 @@ export default function ConversationsListItem(props) {
 			? false
 			: !conversation.seen;
 
+	/* If the latest message is not an initializer (request or acceptance), and not an edit, set appropriate message preview */
+
+	let senderName =
+		lastMessage &&
+		!lastMessage.initializer &&
+		!lastMessage.edit &&
+		(lastMessage.sender_id === conversation.friend_id
+			? conversation.friend_first_name + ": "
+			: "You: ");
+
 	return (
 		<li
 			key={conversation.id}
@@ -49,20 +59,13 @@ export default function ConversationsListItem(props) {
 							? conversation.friend_first_name + " has made a correction"
 							: `You have made a correction`)}
 
-					{/* If the latest message is not an initializer (request or acceptance), and not an edit, set appropriate message preview */}
+					{/* Limit message preview to 26 characters long */}
 					{lastMessage &&
 						!lastMessage.initializer &&
 						!lastMessage.edit &&
-						(lastMessage.sender_id === conversation.friend_id
-							? conversation.friend_first_name + ": "
-							: "You: ")}
-					{/* Limit message preview to 20 characters long */}
-					{lastMessage &&
-						!lastMessage.initializer &&
-						!lastMessage.edit &&
-						(lastMessage.text.length > 20
-							? lastMessage.text.slice(0, 20) + "..."
-							: lastMessage.text)}
+						(senderName.length + lastMessage.text.length > 26
+							? (senderName + lastMessage.text).slice(0, 26) + "..."
+							: senderName + lastMessage.text)}
 				</span>
 			</div>
 		</li>
