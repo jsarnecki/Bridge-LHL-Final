@@ -70,6 +70,7 @@ export default function MessagesListItem(props) {
 		});
 	}
 
+	//Render component
 	return (
 		<li
 			className={classNames("messages-list-item", {
@@ -79,6 +80,7 @@ export default function MessagesListItem(props) {
 			onMouseOver={handleMouseOver}
 			onMouseOut={handleMouseOut}
 		>
+			{/* profile picture if not current user */}
 			{!current_user && (
 				<img
 					className="profile-picture"
@@ -86,11 +88,13 @@ export default function MessagesListItem(props) {
 				></img>
 			)}
 
+			{/* If message is not an edit display message without edited style*/}
 			{!message.edit && (
 				<div className="text-and-edit-section">
 					<div className="original-message">
 						{<p className="message-text">{message.text}</p>}
 
+						{/* Edit icon on hover */}
 						{hover && !current_user && !message.edit && !editing && (
 							<i
 								onClick={handleClickEdit}
@@ -99,6 +103,7 @@ export default function MessagesListItem(props) {
 						)}
 					</div>
 
+					{/* Edit form if editing  */}
 					{editing && (
 						<EditingForm
 							oldText={message.text}
@@ -108,7 +113,7 @@ export default function MessagesListItem(props) {
 					)}
 				</div>
 			)}
-
+			{/* If message is edit, display with appropriate style */}
 			{message.edit && (
 				<div className="edited-message">
 					<div className="old-text">
