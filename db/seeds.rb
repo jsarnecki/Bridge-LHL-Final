@@ -340,7 +340,7 @@ UsersLanguage.create!(
 #Elon Musk
 
 UsersLanguage.create!(
-	language_id: @language1.id,
+	language_id: @language8.id,
 	learning: false,
 	user_id: @user4.id,
 	skill_level: 5,
@@ -370,7 +370,7 @@ UsersLanguage.create!(
 )
 
 UsersLanguage.create!(
-	language_id: @language1.id,
+	language_id: @language7.id,
 	learning: false,
 	user_id: @user5.id,
 	skill_level: 4,
@@ -386,7 +386,7 @@ UsersLanguage.create!(
 )
 
 UsersLanguage.create!(
-	language_id: @language1.id,
+	language_id: @language6.id,
 	learning: false,
 	user_id: @user6.id,
 	skill_level: 5,
@@ -478,7 +478,7 @@ UsersLanguage.create!(
 )
 
 UsersLanguage.create!(
-	language_id: @language2.id,
+	language_id: @language5.id,
 	learning: false,
 	user_id: @user11.id,
 	skill_level: 5,
@@ -832,7 +832,7 @@ UsersLanguage.create!(
 @conversation1.messages.create!(
 	sender_id: @user5.id,
 	receiver_id: @user1.id,
-	text: '🌱🌱🌱🌱🌱🌱, 🌱🌱🌱🌱🌱🌱🌱🌱🌱. 🌱🌱🌱🌱🌱🌱🌱🌱🌱?',
+	text: '🌱🌱🌱, 🌱🌱🌱. 🌱?',
 	seen: true,
 	initializer: false,
 	edit: false,
