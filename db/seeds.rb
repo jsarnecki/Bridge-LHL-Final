@@ -234,12 +234,12 @@ UsersLanguage.destroy_all
 @language6 = Language.create!(name: 'Spanish')
 @language7 = Language.create!(name: 'Portuguese')
 @language8 = Language.create!(name: 'Hindi')
-
+@langauge9 = Language.create!(name: 'dummy')
 #Tonys
 
 #John Cena
 UsersLanguage.create!(
-	language_id: @language4.id,
+	language_id: @language9.id,
 	learning: false,
 	user_id: @user1.id,
 	skill_level: 5,
@@ -252,6 +252,48 @@ UsersLanguage.create!(
 	skill_level: 2,
 )
 
+UsersLanguage.create!(
+	language_id: @language2.id,
+	learning: true,
+	user_id: @user1.id,
+	skill_level: 2,
+)
+UsersLanguage.create!(
+	language_id: @language3.id,
+	learning: true,
+	user_id: @user1.id,
+	skill_level: 2,
+)
+UsersLanguage.create!(
+	language_id: @language4.id,
+	learning: true,
+	user_id: @user1.id,
+	skill_level: 2,
+)
+UsersLanguage.create!(
+	language_id: @language5.id,
+	learning: true,
+	user_id: @user1.id,
+	skill_level: 2,
+)
+UsersLanguage.create!(
+	language_id: @language6.id,
+	learning: true,
+	user_id: @user1.id,
+	skill_level: 2,
+)
+UsersLanguage.create!(
+	language_id: @language7.id,
+	learning: true,
+	user_id: @user1.id,
+	skill_level: 2,
+)
+UsersLanguage.create!(
+	language_id: @language8.id,
+	learning: true,
+	user_id: @user1.id,
+	skill_level: 2,
+)
 #Thor
 
 UsersLanguage.create!(
@@ -523,7 +565,7 @@ UsersLanguage.create!(
 	skill_level: 2,
 )
 
-#Joshs
+#Chun Woo-hee
 UsersLanguage.create!(
 	language_id: @language2.id,
 	learning: false,
@@ -545,6 +587,7 @@ UsersLanguage.create!(
 	skill_level: 2,
 )
 
+#Jeon Yeo-bin
 UsersLanguage.create!(
 	language_id: @language2.id,
 	learning: false,
@@ -573,6 +616,7 @@ UsersLanguage.create!(
 	skill_level: 2,
 )
 
+#Michael Jordan
 UsersLanguage.create!(
 	language_id: @language1.id,
 	learning: false,
