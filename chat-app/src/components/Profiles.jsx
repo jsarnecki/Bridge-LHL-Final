@@ -40,6 +40,16 @@ export default function Profiles() {
 		language => language.language_id
 	);
 
+	// Filters language objects array for only the languages native for user
+	const offeringLanguages = targetLanguages.filter(
+		language => language.learning === false
+	);
+
+	// Returns array of current user native language ids
+	const offeringLanguagesIds = offeringLanguages.map(
+		language => language.language_id
+	);
+
 	const usersMapped = userInformation.map(information => {
 		let offeredLanguages = [];
 		for (const language of information.languages) {
@@ -49,22 +59,39 @@ export default function Profiles() {
 			}
 		}
 
+		let mappedUserLearningLanguages=[];
+		for (const language of information.languages) {
+			// Create array of native languages per mapped user
+			if (language.learning === true) {
+				mappedUserLearningLanguages.push(language.language_id);
+			}
+		}
+
 		// Match becomes true when a mapped user's native lang matches with current user's target lang
 		let match = false;
 
 		if (languageId === 0) {
 			// If langId is 0 search thru all users
+			// Check if mapped user native language is equal to currentUser's learning language
 			for (let lang of offeredLanguages) {
 				if (learningLanguagesIds.includes(lang)) {
-					// If mapped user is native to currentUser's learning language, add profile
-					match = true;
+					// Check if mapped user learning language is equal to currentUser's offered languages
+					for (let learnLang of mappedUserLearningLanguages) {
+						if(offeringLanguagesIds.includes(learnLang)) {
+							match = true;
+						}
+					}
 				}
 			}
 		} else {
 			// If any other langId than 0, only filter based on native speakers of that language
 			for (let lang of offeredLanguages) {
 				if (languageId === lang) {
-					match = true;
+					for (let learnLang of mappedUserLearningLanguages) {
+						if(offeringLanguagesIds.includes(learnLang)) {
+							match = true;
+						}
+					}
 				}
 			}
 		}
