@@ -57,7 +57,11 @@ export default function Profile(props) {
 			</div>
 
 			<br />
-			<Button variant="contained" onClick={handleOpen}>
+			<Button
+				variant="contained"
+				className="expand-profile-button"
+				onClick={handleOpen}
+			>
 				Expand Profile
 			</Button>
 			<Modal

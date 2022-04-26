@@ -6,6 +6,9 @@
 	flex-direction: column;
 	min-width: 225px;
 	background-color: red;
+	.expand-profile-button:hover {
+		background-color: #c0c059;
+	}
 }
 
 .profile-card:hover {
@@ -26,7 +29,7 @@ div.mdc-card {
 	text-shadow: 2px 2px 3px #9a7d7d;
 	background-color: hsl(180, 83%, 79%, 0.4);
 	box-shadow: 6px 6px 5px rgb(63 107 169 / 34%);
-	flex-basis: 15%; 
+	flex-basis: 15%;
 	// overflow: hidden;
 }
 
