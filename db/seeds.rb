@@ -324,7 +324,14 @@ UsersLanguage.create!(
 
 #Michael Scott
 UsersLanguage.create!(
-	language_id: @language6.id,
+	language_id: @language4.id,
+	learning: true,
+	user_id: @user3.id,
+	skill_level: 1,
+)
+
+UsersLanguage.create!(
+	language_id: @language3.id,
 	learning: true,
 	user_id: @user3.id,
 	skill_level: 1,
@@ -337,6 +344,12 @@ UsersLanguage.create!(
 	skill_level: 5,
 )
 
+UsersLanguage.create!(
+	language_id: @language2.id,
+	learning: false,
+	user_id: @user3.id,
+	skill_level: 5,
+)
 #Elon Musk
 
 UsersLanguage.create!(
@@ -411,10 +424,17 @@ UsersLanguage.create!(
 #Jet Li
 
 UsersLanguage.create!(
-	language_id: @language6.id,
+	language_id: @language4.id,
 	learning: true,
 	user_id: @user8.id,
-	skill_level: 2,
+	skill_level: 1,
+)
+
+UsersLanguage.create!(
+	language_id: @language3.id,
+	learning: true,
+	user_id: @user8.id,
+	skill_level: 1,
 )
 
 UsersLanguage.create!(
@@ -425,7 +445,7 @@ UsersLanguage.create!(
 )
 
 UsersLanguage.create!(
-	language_id: @language4.id,
+	language_id: @language2.id,
 	learning: false,
 	user_id: @user8.id,
 	skill_level: 5,
@@ -500,7 +520,7 @@ UsersLanguage.create!(
 )
 
 UsersLanguage.create!(
-	language_id: @language5.id,
+	language_id: @language4.id,
 	learning: true,
 	user_id: @user12.id,
 	skill_level: 3,
@@ -574,17 +594,17 @@ UsersLanguage.create!(
 )
 
 UsersLanguage.create!(
-	language_id: @language7.id,
-	learning: true,
+	language_id: @language4.id,
+	learning: false,
 	user_id: @user16.id,
-	skill_level: 3,
+	skill_level: 5,
 )
 
 UsersLanguage.create!(
 	language_id: @language1.id,
-	learning: false,
+	learning: true,
 	user_id: @user16.id,
-	skill_level: 2,
+	skill_level: 3,
 )
 
 #Jeon Yeo-bin
@@ -626,23 +646,9 @@ UsersLanguage.create!(
 
 UsersLanguage.create!(
 	language_id: @language4.id,
-	learning: false,
-	user_id: @user18.id,
-	skill_level: 5,
-)
-
-UsersLanguage.create!(
-	language_id: @language5.id,
 	learning: true,
 	user_id: @user18.id,
-	skill_level: 4,
-)
-
-UsersLanguage.create!(
-	language_id: @language7.id,
-	learning: true,
-	user_id: @user18.id,
-	skill_level: 1,
+	skill_level: 3,
 )
 
 #Song Joong-ki
@@ -697,13 +703,14 @@ UsersLanguage.create!(
 )
 
 UsersLanguage.create!(
-	language_id: @language8.id,
+	language_id: @language3.id,
 	learning: true,
 	user_id: @user20.id,
 	skill_level: 1,
 )
 
 #Tom Segura
+
 UsersLanguage.create!(
 	language_id: @language1.id,
 	learning: false,
@@ -712,24 +719,10 @@ UsersLanguage.create!(
 )
 
 UsersLanguage.create!(
-	language_id: @language6.id,
-	learning: false,
-	user_id: @user21.id,
-	skill_level: 5,
-)
-
-UsersLanguage.create!(
-	language_id: @language5.id,
+	language_id: @language4.id,
 	learning: true,
 	user_id: @user21.id,
 	skill_level: 3,
-)
-
-UsersLanguage.create!(
-	language_id: @language8.id,
-	learning: true,
-	user_id: @user21.id,
-	skill_level: 1,
 )
 
 #Sharukh Kahn
@@ -771,6 +764,13 @@ UsersLanguage.create!(
 
 UsersLanguage.create!(
 	language_id: @language1.id,
+	learning: false,
+	user_id: @user23.id,
+	skill_level: 5,
+)
+
+UsersLanguage.create!(
+	language_id: @language3.id,
 	learning: false,
 	user_id: @user23.id,
 	skill_level: 5,
