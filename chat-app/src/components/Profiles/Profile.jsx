@@ -33,37 +33,60 @@ export default function Profile(props) {
 		}
 	};
 
-	return (
-		<div className="mdc-card mdc-card--outlined profile-card">
-			<div>
-				<span>{props.firstName}</span> <span>{props.lastName}</span>
-			</div>
-			<div className="my-card__media">
-				<img className="profile-img" src={props.image} />
-			</div>
-			<div>{props.langauages}</div>
-			<div className="languages-container">
-				<span className="native">
-					{props.languages
-						.filter(language => !language.learning)
-						.map(language => flags(language.language_id))}
-				</span>
-				<i className="fa-solid fa-right-left"></i>
-				<span className="learning">
-					{props.languages
-						.filter(language => language.learning)
-						.map(language => flags(language.language_id))}
-				</span>
-			</div>
+	let shortendedBio = "";
+	if (props.bio.length < 55) {
+		shortendedBio = props.bio;
+	} else {
+		let counter = 3;
+		for (let word of props.bio.split(" ")) {
+			if (counter + word.length >= 55) {
+				break;
+			}
+			shortendedBio += word + " ";
+			counter += word.length + 1;
+		}
+		shortendedBio += "...";
+	}
 
-			<br />
-			<Button
+	return (
+		<>
+			<div
+				className="mdc-card mdc-card--outlined profile-card"
+				onClick={handleOpen}
+			>
+				<div>
+					<span>{props.firstName}</span> <span>{props.lastName}</span>
+				</div>
+				<div className="my-card__media">
+					<img className="profile-img" src={props.image} />
+				</div>
+				<div>{props.langauages}</div>
+				<div className="languages-container">
+					<span className="native">
+						{props.languages
+							.filter(language => !language.learning)
+							.map(language => flags(language.language_id))}
+					</span>
+					<i className="fa-solid fa-right-left"></i>
+					<span className="learning">
+						{props.languages
+							.filter(language => language.learning)
+							.map(language => flags(language.language_id))}
+					</span>
+				</div>
+
+				{/* <br /> */}
+
+				{props.bio.length !== 0 && <p className="user-bio">{shortendedBio}</p>}
+
+				{/* <Button
 				variant="contained"
 				className="expand-profile-button"
 				onClick={handleOpen}
 			>
 				Expand Profile
-			</Button>
+			</Button> */}
+			</div>
 			<Modal
 				open={open}
 				onClose={handleClose}
@@ -83,6 +106,6 @@ export default function Profile(props) {
 					setFriendRequest={props.setFriendRequest}
 				/>
 			</Modal>
-		</div>
+		</>
 	);
 }
