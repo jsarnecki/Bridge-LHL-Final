@@ -130,7 +130,7 @@ UsersLanguage.destroy_all
 		last_name: 'Seo-joon',
 		email: 'admin13@admin.com',
 		password: '123456',
-		bio: '',
+		bio: '그냥 쓰린 밤이 내 삶이 달달했으면 했다',
 		image: '/seed_assets/park.png',
 	)
 @user14 =
