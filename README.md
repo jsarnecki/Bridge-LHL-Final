@@ -4,11 +4,11 @@ Language exchange application
 
 ## Final Product
 
-![""](https://github.com/jsarnecki/scheduler/blob/master/public/scheduler_home.png?raw=true)
+![""](link)
 
-![""](https://github.com/jsarnecki/scheduler/blob/master/public/scheduler_add.png?raw=true)
+![""](link)
 
-![""](https://github.com/jsarnecki/scheduler/blob/master/public/scheduler_confirm.png?raw=true)
+![""](link)
 
 ## Dependancies
 
