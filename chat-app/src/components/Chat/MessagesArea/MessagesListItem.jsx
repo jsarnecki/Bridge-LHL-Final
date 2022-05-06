@@ -85,7 +85,7 @@ export default function MessagesListItem(props) {
 			{!current_user && (
 				<img
 					className="profile-picture"
-					src={`/seed_assets/${friend_first_name}.png`}
+					src={`/seed_assets/${friend_first_name.toLowerCase()}.png`}
 				></img>
 			)}
 

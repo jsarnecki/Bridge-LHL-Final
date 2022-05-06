@@ -22,7 +22,7 @@ const MessagesArea = ({
 			<div className="message-area-banner">
 				<img
 					className="profile-picture"
-					src={`/seed_assets/${friend_first_name}.png`}
+					src={`/seed_assets/${friend_first_name.toLowerCase()}.png`}
 				></img>
 				{friend_first_name + " " + friend_last_name}
 			</div>

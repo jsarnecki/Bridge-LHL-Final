@@ -34,7 +34,7 @@ export default function ConversationsListItem(props) {
 		>
 			<img
 				className="profile-picture"
-				src={`/seed_assets/${conversation.friend_first_name}.png`}
+				src={`/seed_assets/${conversation.friend_first_name.toLowerCase()}.png`}
 			></img>
 			<div className="conversation-preview">
 				{conversation.friend_first_name + " " + conversation.friend_last_name}
